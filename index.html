@@ -90,8 +90,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>上一篇搞了服务的注册和发现，再来做下负载均衡 Ribbon</p>
-<h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>创建一个新的项目，过程同一，不了解可以过去回顾下<a href="/2018/03/07/SpringCloud入门">点我查看</a></p>
+        <p>上一篇搞了服务的注册和发现，再来做下负载均衡 Ribbon 和 Fiegn</p>
+<h2 id="第一章-Ribbon"><a href="#第一章-Ribbon" class="headerlink" title="第一章 Ribbon"></a>第一章 Ribbon</h2><h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>创建一个新的项目，过程同一，不过选择组件的时候需要勾选ribbon，不了解可以过去回顾下<a href="/2018/03/07/SpringCloud入门">点我查看</a></p>
 <p>在spring-cloud-ribbon-test\src\main\java\com\mztech\ribbon\RibbonApplication.java中添加注解和方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class RibbonApplication &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(RibbonApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    @LoadBalanced</span><br><span class="line">    RestTemplate restTemplate() &#123;</span><br><span class="line">        return new RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
         
           <p class="article-more-link">
