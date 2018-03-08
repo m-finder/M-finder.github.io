@@ -6,20 +6,7 @@
 
         
         <title>SpringCloud入门 | M-finder</title>
-        <script>
-        (function(){
-            var bp = document.createElement('script');
-            var curProtocol = window.location.protocol.split(':')[0];
-            if (curProtocol === 'https') {
-                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-            }
-            else {
-                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-            }
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(bp, s);
-        })();
-        </script>
+
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
             <meta name="keywords" content="SpringCloud入门 | M-finder" />
@@ -35,20 +22,10 @@
         <link rel="stylesheet" href="/js/layui/css/layui.css">
     </head>
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?524d4ff49c442d1db8994544cccacfc7";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
     <div id="banner"></div>
     <div id="header-outer" class="outer">
         <div id="header-title" class="inner">
@@ -84,8 +61,8 @@ var _hmt = _hmt || [];
         </div>
     </div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-SpringCloud入门" class="article article-type-post" itemscope itemprop="blogPost">
+            <div class="outer">
+                <section id="main"><article id="post-SpringCloud入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/07/SpringCloud入门/" class="article-date">
   <time datetime="2018-03-07T02:28:00.000Z" itemprop="datePublished">2018-03-07</time>
@@ -117,7 +94,7 @@ var _hmt = _hmt || [];
 <p>Spring Cloud是一系列框架的有序集合。它利用Spring Boot的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用Spring Boot的开发风格做到一键启动和部署。<br>Spring并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过Spring Boot风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
 </blockquote>
 <p>Spring 是一个全面、模块化的设计层面框架，Spring Boot 是 Spring 的一套快速配置脚手架，简化了基于 Spring 的应用开发，而 Spring Cloud 利用 Spring Boot 的开发便利性巧妙地简化了分布式系统基础设施的开发，是一系列框架的有序集合。</p>
-<p>Spring Cloud大礼包包含很多组件，Spring Cloud Eureka 是 Spring Cloud Netflix 微服务套件中的一部分，它基于Netflix Eureka 做了二次封装，主要负责完成微服务架构中的服务治理功能。这里先拿它下刀子。</p>
+<p>Spring Cloud大礼包包含很多组件，Spring Cloud Eureka 是 Spring Cloud Netflix 微服务套件中的一部分，它基于Netflix Eureka 做了二次封装，主要负责完成微服务架构中的服务治理功能。<br>相当于大管家，主管各项服务的注册与发现，这里先拿它下刀子好了。</p>
 <h4 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">编辑器：IDEA</span><br><span class="line">Spring Cloud版本：Finchley M7 （版本号以伦敦的地铁站命名）</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h5 id="新建项目："><a href="#新建项目：" class="headerlink" title="新建项目："></a>新建项目：</h5><p>file-&gt;new project-&gt;srping initializr<br><img src="/2018/03/07/SpringCloud入门/新建项目.png" alt="新建项目"></p>
@@ -125,7 +102,7 @@ var _hmt = _hmt || [];
 <p><img src="/2018/03/07/SpringCloud入门/填写信息.png" alt="填写信息"></p>
 <h5 id="选择服务："><a href="#选择服务：" class="headerlink" title="选择服务："></a>选择服务：</h5><p>Cloud Discovery-&gt;Eureka Server</p>
 <p>next-&gt;finish，创建完成</p>
-<p>然后在src\main\resources\application.properties中添加配置信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=eureka-server</span><br><span class="line">server.port=8081</span><br><span class="line">#设置hostname</span><br><span class="line">eureka.instance.hostname=localhost</span><br><span class="line"></span><br><span class="line">#防止注册中心自我注册</span><br><span class="line">eureka.client.register-with-eureka=false</span><br><span class="line">eureka.client.fetch-registry=false</span><br><span class="line">#注册地址</span><br><span class="line">eureka.client.serviceUrl.defaultZone=http://$&#123;eureka.instance.hostname&#125;:8081/eureka/</span><br></pre></td></tr></table></figure></p>
+<p>然后在src\main\resources\application.properties中添加配置信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=eureka-server</span><br><span class="line">server.port=8081</span><br><span class="line">#设置hostname</span><br><span class="line">eureka.instance.hostname=localhost</span><br><span class="line"></span><br><span class="line">#防止注册中心自我注册</span><br><span class="line">eureka.client.register-with-eureka=false</span><br><span class="line">eureka.client.fetch-registry=false</span><br><span class="line"></span><br><span class="line">#注册地址</span><br><span class="line">eureka.client.serviceUrl.defaultZone=http://$&#123;eureka.instance.hostname&#125;:8081/eureka/</span><br></pre></td></tr></table></figure></p>
 <h5 id="添加注解："><a href="#添加注解：" class="headerlink" title="添加注解："></a>添加注解：</h5><p>在src\main\java\com\mztech\test\TestApplication.java中添加注解: @EnableEurekaServer<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@EnableEurekaServer</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class TestApplication &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">            SpringApplication.run(TestApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h5 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h5><p>运行，然后浏览器访问:localhost:8081<br><img src="/2018/03/07/SpringCloud入门/结果.png" alt="结果"></p>
 <h5 id="创建第一个服务："><a href="#创建第一个服务：" class="headerlink" title="创建第一个服务："></a>创建第一个服务：</h5><p>新建一个项目，创建步骤同上，然后spring-cloud-client-test\src\main\java\com\mztech\client\ClientApplication.java的代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableEurekaClient</span><br><span class="line">@RestController</span><br><span class="line">public class ClientApplication &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(ClientApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;server.port&#125;&quot;)</span><br><span class="line">    String port;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(&quot;/hi&quot;)</span><br><span class="line">    public String home(@RequestParam String name) &#123;</span><br><span class="line">        return &quot;hi &quot; + name + &quot;,i am from port:&quot; + port;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -139,7 +116,6 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.m-finder.com/2018/03/07/SpringCloud入门/" data-id="cjehu6r7y000774umhtrlat3o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
@@ -149,6 +125,15 @@ var _hmt = _hmt || [];
   
     
 <nav id="article-nav">
+  
+    <a href="/2018/03/08/SpringCloud入门二/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SpringCloud入门二
+        
+      </div>
+    </a>
   
   
     <a href="/2018/03/05/人穷志短/" id="article-nav-older" class="article-nav-link-wrap">
@@ -164,8 +149,8 @@ var _hmt = _hmt || [];
 
 
 </section>
-        
-          <aside id="sidebar">
+                
+                  <aside id="sidebar">
 	<div class="widget-wrap">
 		<h3 class="widget-title">广告位</h3>
 		<div class="widget" >
@@ -186,7 +171,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/测试区/">测试区</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/码不能停/">码不能停</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲言赘语/">闲言赘语</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/测试区/">测试区</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/码不能停/">码不能停</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲言赘语/">闲言赘语</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -196,7 +181,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Layim/">Layim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui/">layui</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/">openssl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swoole/">swoole</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吃吃吃/">吃吃吃</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新年快乐/">新年快乐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲言赘语/">闲言赘语</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Layim/">Layim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui/">layui</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/">openssl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swoole/">swoole</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吃吃吃/">吃吃吃</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新年快乐/">新年快乐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲言赘语/">闲言赘语</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -206,7 +191,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/Layim/" style="font-size: 10px;">Layim</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/laravel/" style="font-size: 13.33px;">laravel</a> <a href="/tags/layui/" style="font-size: 13.33px;">layui</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/swoole/" style="font-size: 10px;">swoole</a> <a href="/tags/test/" style="font-size: 16.67px;">test</a> <a href="/tags/吃吃吃/" style="font-size: 10px;">吃吃吃</a> <a href="/tags/新年快乐/" style="font-size: 10px;">新年快乐</a> <a href="/tags/闲言赘语/" style="font-size: 10px;">闲言赘语</a>
+      <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/Layim/" style="font-size: 10px;">Layim</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringCloud/" style="font-size: 13.33px;">SpringCloud</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/laravel/" style="font-size: 13.33px;">laravel</a> <a href="/tags/layui/" style="font-size: 13.33px;">layui</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/swoole/" style="font-size: 10px;">swoole</a> <a href="/tags/test/" style="font-size: 16.67px;">test</a> <a href="/tags/吃吃吃/" style="font-size: 10px;">吃吃吃</a> <a href="/tags/新年快乐/" style="font-size: 10px;">新年快乐</a> <a href="/tags/闲言赘语/" style="font-size: 10px;">闲言赘语</a>
     </div>
   </div>
 
@@ -215,7 +200,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -226,6 +211,10 @@ var _hmt = _hmt || [];
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/03/08/SpringCloud入门二/">SpringCloud入门二</a>
+          </li>
         
           <li>
             <a href="/2018/03/07/SpringCloud入门/">SpringCloud入门</a>
@@ -241,10 +230,6 @@ var _hmt = _hmt || [];
         
           <li>
             <a href="/2018/02/27/Python版Spark牛刀小试/">Python版Spark牛刀小试</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/26/hexo多设备支持/">hexo多设备支持</a>
           </li>
         
       </ul>
@@ -276,9 +261,9 @@ var _hmt = _hmt || [];
         </div>
     
 </aside>
-        
-      </div>
-      <footer class="footer">
+                
+            </div>
+            <footer class="footer">
     
 
     <div class="footavatar site-footer clearfix u-textAlignCenter">
@@ -298,8 +283,9 @@ var _hmt = _hmt || [];
         Powered by <a href="http://www.m-finder.com" target="_blank"> M-finder</a> 
     </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
+        </div>
+
+        <nav id="mobile-nav">
   
     <a href="/" class="mobile-nav-link">博客首页</a>
   
@@ -308,7 +294,7 @@ var _hmt = _hmt || [];
     <a href="/about" class="mobile-nav-link">关于</a>
   
 </nav>
-    
+        
 
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/layui/layui.js"></script>
@@ -329,6 +315,6 @@ var _hmt = _hmt || [];
 
 
 
-  </div>
+    </div>
 </body>
 </html>
