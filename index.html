@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+
+        
+        <title>M-finder</title>
+        <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+            <meta name="keywords" content="M-finder" />
+        
+        
+            <meta name="description" content="M-finder - 删繁就简，发现更多">
+            <meta name="searchtitle" content="M-finder - 删繁就简，发现更多" />
+        
+        
+          <link rel="icon" href="/images/favicon.ico">
+        
+        <link rel="stylesheet" href="/css/css.css">
+        <link rel="stylesheet" href="/js/layui/css/layui.css">
+    </head>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?524d4ff49c442d1db8994544cccacfc7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+              <a href="/" id="logo">M-finder</a>
+            </h1>
+            
+                <h2 id="subtitle-wrap">删繁就简，发现更多</h2>
+            
+      </div>
+      <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <a class="main-nav-link" href="/">博客首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                <a id="nav-search-btn" class="nav-icon" title="搜索" style="display:none"></a>
+            </nav>
+            <div id="search-form-wrap" class="">
+                <form action="//baidu.com/s" method="get" accept-charset="UTF-8" class="search-form">
+                    <input type="search" name="wd" class="search-form-input" placeholder="Search">
+                    <input type="hidden" name="site:" value="http://www.m-finder.com">
+                    <button type="submit" class="search-form-submit">&#xF002;</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-SpringCloud入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/07/SpringCloud入门/" class="article-date">
+  <time datetime="2018-03-07T02:28:00.000Z" itemprop="datePublished">2018-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/07/SpringCloud入门/">SpringCloud入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>我领导，亮哥，昨天让我们看下微服务架构，接下来准备把手里的项目整合下。<br>推荐给我们的有 Spring Cloud 和 Dubbo。考虑到 Dubbo 有突然停止维护的前科，还是选用前者吧。<br>就这样，跟 Spring Cloud 开始了第一次握手。</p>
+<h4 id="初次见面"><a href="#初次见面" class="headerlink" title="初次见面"></a>初次见面</h4><p>初次见面，先介绍一下：</p>
+<blockquote>
+<p>Spring Cloud是一系列框架的有序集合。它利用Spring Boot的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用Spring Boot的开发风格做到一键启动和部署。<br>Spring并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过Spring Boot风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
+</blockquote>
+<p>Spring 是一个全面、模块化的设计层面框架，Spring Boot 是 Spring 的一套快速配置脚手架，简化了基于 Spring 的应用开发，而 Spring Cloud 利用 Spring Boot 的开发便利性巧妙地简化了分布式系统基础设施的开发，是一系列框架的有序集合。</p>
+<h4 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">编辑器：IDEA</span><br><span class="line">Spring Cloud版本：Finchley M7 （版本号以伦敦的地铁站命名）</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/07/SpringCloud入门/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.m-finder.com/2018/03/07/SpringCloud入门/" data-id="cjehu6r7y000774umhtrlat3o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-人穷志短" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/05/人穷志短/" class="article-date">
+  <time datetime="2018-03-05T03:06:46.000Z" itemprop="datePublished">2018-03-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/闲言赘语/">闲言赘语</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/05/人穷志短/">人穷志短</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>很久之前就想买个游戏手柄，像童年那样热血沸腾，去战斗。</p>
+<p>每次在内心挣扎许久之后，总会以这个东西除了玩对我没什么用而打消，归根结底，还是因为没钱。</p>
+<p>穷让我逐渐失去了娱乐和消遣的权利。</p>
+<p>前几天突然灵光一闪，买个手柄的想法再次闪现，不同以往，这次突然觉得不应该对自己太残忍。</p>
+<p>妈的，买！房子买不起就算了，买个手柄的钱还是有的。</p>
+<p>于是乎，元宵节那天中午，我趁着午休时间把自己关进小会客室，关了灯，小心翼翼的，打开淘宝，咬牙，下单。</p>
+<p>黑暗的空间里只有手机屏幕的光打在脸上，虽然我看不到自己的模样，但是我知道，我此刻肯定和刚刚偷吃了糖果的孩子一样，笑容里写满了欣喜和紧张。</p>
+<p>同城发货，第二天就到了，于是就战斗到深夜。</p>
+<p>昨天晚上，正窝在屋里用手柄玩狂野飚车，听到外边阵阵响声，还以为是有车路过，于是开大了电脑音量，使发动机的轰鸣声更加狂躁。</p>
+<p>直到室友过来喊了一句“我艹，外边打雷了”时我才知道，外边早已是电闪雷鸣，风雨交加。</p>
+<p>我笑说肯定是你们平时作孽太多，老天爷要降天罚来收人了。</p>
+<p>话音刚落，突然意识到我自己最近也在作孽：</p>
+<p>原本计划17年底完工的一个项目，写写停停，搬家后再没动过，距离上次更新，已经3月有余；</p>
+<p>上次过节女朋友送的手帐，也因为冬天太冷，不想动笔而搁浅数月；</p>
+<p>架构师的教材买来以后只翻了几页，现在还丢在桌子上落灰…</p>
+<p>等等等等，数不胜数。</p>
+<p>回头想想，才发觉我已经欠了自己这么多交代…</p>
+<p>我这个人呀，每过个一阵子，就会习惯性的检讨下自己，以往的这个时候，总有个小人儿在耳边唱着“一回头，时间就喂了狗”，然后我就发粪涂墙，打满鸡血继续战斗。</p>
+<p>这次大发了，粪没涂上墙，鸡血过期了，连唱歌的小人儿也已被乱枪打死，横尸街头。</p>
+<p>一丝羞愧从心里爬了出来，然后一口吞掉了飚车给我带来的刺激和爽快，我关了电脑，缩在被窝里瑟瑟发抖。</p>
+<p>暴爽的手柄还是放进柜子里吧，偶尔累了，拿出来小玩两把。</p>
+<p>先把项目赶上，再看看书，写写字，有空多接几个单子挣点钱。</p>
+<p>使我逐渐丧失了娱乐和消遣权利的，不仅仅是穷。</p>
+<p><img src="/2018/03/05/人穷志短/1.JPEG" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.m-finder.com/2018/03/05/人穷志短/" data-id="cjehu6r8i000n74um3opf7lta" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闲言赘语/">闲言赘语</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-添加网易云音乐测试" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/28/添加网易云音乐测试/" class="article-date">
+  <time datetime="2018-02-28T13:05:21.000Z" itemprop="datePublished">2018-02-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/测试区/">测试区</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/28/添加网易云音乐测试/">添加网易云音乐测试</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我只是个测试<br><img src="/2018/02/28/添加网易云音乐测试/test.jpg" alt="test"></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=29567192&auto=0&height=66"></iframe>
+
+<p>我喜欢的音乐列表在生成外链播放器时提示我受版权保护，那好吧。</p>
+<p>过了一晚上第二首竟然挂了…网易是在干嘛？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.m-finder.com/2018/02/28/添加网易云音乐测试/" data-id="cjehu6r8s001574umujsj52fz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+	<div class="widget-wrap">
+		<h3 class="widget-title">广告位</h3>
+		<div class="widget" >
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- M-finder -->
+			<ins class="adsbygoogle"
+				 style="display:block"
+				 data-ad-client="ca-pub-3280933721783945"
+				 data-ad-slot="2496953790"
+				 data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	</div>    
+	
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/测试区/">测试区</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/码不能停/">码不能停</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲言赘语/">闲言赘语</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Layim/">Layim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui/">layui</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/">openssl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swoole/">swoole</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吃吃吃/">吃吃吃</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新年快乐/">新年快乐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲言赘语/">闲言赘语</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.33px;">Java</a> <a href="/tags/Layim/" style="font-size: 10px;">Layim</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/laravel/" style="font-size: 13.33px;">laravel</a> <a href="/tags/layui/" style="font-size: 13.33px;">layui</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/swoole/" style="font-size: 10px;">swoole</a> <a href="/tags/test/" style="font-size: 16.67px;">test</a> <a href="/tags/吃吃吃/" style="font-size: 10px;">吃吃吃</a> <a href="/tags/新年快乐/" style="font-size: 10px;">新年快乐</a> <a href="/tags/闲言赘语/" style="font-size: 10px;">闲言赘语</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/07/SpringCloud入门/">SpringCloud入门</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/05/人穷志短/">人穷志短</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/28/添加网易云音乐测试/">添加网易云音乐测试</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/27/Python版Spark牛刀小试/">Python版Spark牛刀小试</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/26/hexo多设备支持/">hexo多设备支持</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+
+    
+        <div class="widget-wrap">
+            <h3 class="widget-title">友情链接</h3>
+            <div class="widget" >
+                
+                    <a href="http://www.aprilblank.com" title="AprilBlank" target="_blank" rel="noopener">AprilBlank</a>
+                
+            </div>
+        </div>
+    
+</aside>
+        
+      </div>
+      <footer class="footer">
+    
+
+    <div class="footavatar site-footer clearfix u-textAlignCenter">
+        <img src="/images/logo.gif">
+        <ul class="footinfo">
+            <p class="fname"><a>M-finder</a></p>
+            <p class="finfo">删繁就简，发现更多</p>
+        </ul>
+    </div>
+    <div class="Copyright">
+        <br><p>
+            <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=c4f068d3baefa9f0e31f6271d9bebe70e542830dd6e713d7689fd2a084a952e7">
+                <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="php行业交流" title="php行业交流">
+            </a>
+        </p><br>
+        &copy; 2018 M-finder<br>
+        Powered by <a href="http://www.m-finder.com" target="_blank"> M-finder</a> 
+    </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">博客首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.config({
+        base: '/js/'
+        ,version: false
+    }).extend({
+        index: 'index'
+    }).use(['index']);
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
