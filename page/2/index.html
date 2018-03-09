@@ -64,54 +64,6 @@
             <div class="outer">
                 <section id="main">
   
-    <article id="post-添加网易云音乐测试" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/28/添加网易云音乐测试/" class="article-date">
-  <time datetime="2018-02-28T13:05:21.000Z" itemprop="datePublished">2018-02-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/测试区/">测试区</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/28/添加网易云音乐测试/">添加网易云音乐测试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我只是个测试<br><img src="/2018/02/28/添加网易云音乐测试/test.jpg" alt="test"></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=29567192&auto=0&height=66"></iframe>
-
-<p>我喜欢的音乐列表在生成外链播放器时提示我受版权保护，那好吧。</p>
-<p>过了一晚上第二首竟然挂了…网易是在干嘛？</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
     <article id="post-Python版Spark牛刀小试" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/02/27/Python版Spark牛刀小试/" class="article-date">
@@ -138,21 +90,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>想在windows10下搭建环境试试spark，鼓捣孤岛顺便把过程记录下来。</p>
-<p>1.安装Anaconda，官网直接下载，我选的2.7的64位版本：<a href="https://repo.continuum.io/archive/Anaconda2-5.1.0-Windows-x86_64.exe" target="_blank" rel="noopener">呐，点我</a><br>安装时记得勾选添加path</p>
-<p>在系统变量添加path<br><img src="/2018/02/27/Python版Spark牛刀小试/系统变量.png" alt="添加path"></p>
-<p>然后开个命令行窗口，输入下 python 测试是否成功安装<br><img src="/2018/02/27/Python版Spark牛刀小试/运行测试.png" alt="运行测试"></p>
-<p>2.下载spark，直接最新版好了，2.21：<a href="https://www.apache.org/dyn/closer.lua/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz" target="_blank" rel="noopener">呐，点我</a><br>下载解压后，自己建个目录，把解压后的东西复制进去，再添加SPARK_HOME = C:\spark，path中再添加两个：%SPARK_HOME%\bin，%SPARK_HOME%\sbin</p>
-<p>3.下载hadoop：<a href="https://github.com/steveloughran/winutils" target="_blank" rel="noopener">2.7.0</a>，其实只需要bin下边一个 winutils.exe<br>下载后存放在 C:\winutils\bin 文件夹下，再添加系统变量 HADOOP_HOME = C:\winutils</p>
-<p>开个命令行，执行 pyspark-shell，出现以下画面就好了：<br><img src="/2018/02/27/Python版Spark牛刀小试/spark.png" alt="运行测试"></p>
-<p>4.Python 直接下载集成环境 Anaconda Navigator ，然后用命令通过 pip 下载 pypark</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyspark</span><br></pre></td></tr></table></figure>
-<p>如果出现pip无法识别，执行下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install -U pip</span><br></pre></td></tr></table></figure></p>
-<p>5.在 pycharm 中添加 SPARK_HOME 和 PYTHONPATH（这一步少了会有一堆莫名其妙的错误） :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SPARK_HOME:C:\Users\wu\Anaconda2\Lib\site-packages\pyspark</span><br><span class="line">PYTHONPATH:C:\Users\wu\Anaconda2\Lib\site-packages\pyspark\python</span><br></pre></td></tr></table></figure></p>
-<p><em>* 2018-3-7</em><br>这里更新一下，在pycharm创建项目的时候，把 python 源选为下载的 Anaconda2 即可省去这一步，如下图：<br><img src="/2018/02/27/Python版Spark牛刀小试/python配置.png" alt="配置"></p>
-<p>6.网上找段代码，开始测试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">from pyspark import SparkContext</span><br><span class="line"></span><br><span class="line">sc = SparkContext(&quot;local&quot;,&quot;Simple App&quot;)</span><br><span class="line">doc = sc.parallelize([[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;],[&apos;b&apos;,&apos;d&apos;,&apos;d&apos;]])</span><br><span class="line">words = doc.flatMap(lambda d:d).distinct().collect()</span><br><span class="line">word_dict = &#123;w:i for w,i in zip(words,range(len(words)))&#125;</span><br><span class="line">word_dict_b = sc.broadcast(word_dict)</span><br><span class="line"></span><br><span class="line">def wordCountPerDoc(d):</span><br><span class="line">    dict=&#123;&#125;</span><br><span class="line">    wd = word_dict_b.value</span><br><span class="line">    for w in d:</span><br><span class="line">        if dict.get(wd[w],0):</span><br><span class="line">            dict[wd[w]] +=1</span><br><span class="line">        else:</span><br><span class="line">            dict[wd[w]] = 1</span><br><span class="line">    return dict</span><br><span class="line">print(doc.map(wordCountPerDoc).collect())</span><br><span class="line">print(&quot;successful!&quot;)</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2018/02/27/Python版Spark牛刀小试/运行结果.png" alt="运行结果"></p>
-
+        <p>想在搭建个环境试试spark，看到有人说在windows系统搭建纯粹属于浪费时间……</p>
+<p>但是虚拟机搭建了别的环境，怕冲突，也嫌麻烦，就先在windos系统搭建下试试吧，鼓捣鼓捣也顺便把过程记录下来。</p>
+<p>顺手记一下，方便你我他。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/02/27/Python版Spark牛刀小试/#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -220,11 +165,118 @@
 
 
   
+    <article id="post-新年快乐，祝大家狗年旺旺旺" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/15/新年快乐，祝大家狗年旺旺旺/" class="article-date">
+  <time datetime="2018-02-15T04:29:25.000Z" itemprop="datePublished">2018-02-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/闲言赘语/">闲言赘语</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/15/新年快乐，祝大家狗年旺旺旺/">新年快乐，祝大家狗年旺旺旺</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一晚上的火车，再加上3个小时的大巴，总算是在年前赶回了家。</p>
+<p>看着周围熟悉的环境，听着亲切万分的乡音，瞬间觉得，这一路的折腾也没什么大不了的。</p>
+<p>可能这就是“家”所赋予“年”的特殊力量吧。</p>
+<p>忐忐忑忑的本命年，终于在今天画上了句号。</p>
+<p>回头想想，又特么一如既往地穷了一年。不过，这些在今天看来，似乎都不太重要了，重要的是老子畏畏缩缩的过了本命年，明天又可以继续开始浪~</p>
+<p>哈哈哈哈哈……</p>
+<p>2017”鸡”将结束，2018”犬”力以赴！！</p>
+<p>祝大家新年快乐，狗年好合，哦不，狗年大吉，狗年旺旺旺！</p>
+<p><img src="/2018/02/15/新年快乐，祝大家狗年旺旺旺/2018.jpg" alt="大吉大利，今晚吃鸡"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/新年快乐/">新年快乐</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-新博客写作测试" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/13/新博客写作测试/" class="article-date">
+  <time datetime="2018-02-13T13:44:28.000Z" itemprop="datePublished">2018-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/测试区/">测试区</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/13/新博客写作测试/">新博客写作测试</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>折腾了一天，终于把博客搬家了，之前的服务器马上到期，刚好赶上。</p>
+<p>php 版本的源码继续维护，有问题的话请在群里问我或者在 github 和码云上提交。</p>
+<p>顺便来几发测试。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">'hello world!'</span>;</span><br></pre></td></tr></table></figure>
+<p>よし，tag 会显示在页面下边。</p>
+<h2 id="图片插件"><a href="#图片插件" class="headerlink" title="图片插件"></a>图片插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<p>运行以后，在配置文件中修改 post_asset_folder 为 true，然后重启服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">'article title'</span></span><br></pre></td></tr></table></figure>
+<p>创建新文章以后，md 文件夹中会自动创建相应的文件夹，把图片放进去，然后在 md 文件中插入一下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![图片添加测试](新博客写作测试/logo.jpg)</span><br></pre></td></tr></table></figure></p>
+<p>执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></p>
+<p>刷新页面，图片出来了。<br><img src="/2018/02/13/新博客写作测试/logo.jpg" alt="图片添加测试"></p>
+<p>抽时间把评论也弄上去了，不过是国外的，需要翻墙，改天再找找有没有国内的插件吧，本来想用畅言的，结果发现需要网站备案，备你奶奶个腿儿呀！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
 
 </section>
