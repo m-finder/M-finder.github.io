@@ -89,8 +89,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在入门第二篇里已经搞定了两个负载均衡的组件，当时如果多台服务中某个或多个服务出现问题而无法及时反映，那么调用这个服务的线程就会出现阻塞，对微服务造成很大的影响。就个时候，就需要新的组件来支持了，这个组件就是断路器Hystrix。</p>
-<a id="more"></a>
-<p><img src="/2018/03/09/SpringCloud入门三/Fallback.png" alt="回退防止联级故障"></p>
+<p><img src="/2018/03/09/SpringCloud入门三/Fallback.png" alt="回退防止联级故障"><br><a id="more"></a></p>
 <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>因为上一篇最后是配置的Feign，所以这一步偷个懒，也先从Feign的断路器开始好了。</p>
 <p>因为Feign默认是自带断路器的，所以这一步不用创建新项目，直接在Feign的项目中创建新的文件：FeignServiceHystrix<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class FeignServiceHystrix implements FeignService&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String sayHiFromClient(String name)&#123;</span><br><span class="line">        return &quot;sorry &quot; + name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>然后在FeignService中的注解FeignClient增加Fallback：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@FeignClient(value=&quot;Client-service&quot;,fallback = FeignServiceHystrix.class)</span><br></pre></td></tr></table></figure></p>
