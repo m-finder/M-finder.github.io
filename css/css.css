@@ -12,6 +12,7 @@ s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,
     font-family: inherit;
     font-size: 100%;
     vertical-align: baseline;
+	word-wrap: break-word;
 }
 ::-webkit-scrollbar{width:10px;height:10px;}
 ::-webkit-scrollbar-button:vertical{display:none}
@@ -170,7 +171,7 @@ body {
     color: #999;
 }
 .article-entry li {
-     list-style: decimal!important; 
+    list-style: decimal!important; 
 }
 .article-entry hr,.widget hr {
     border: 1px dashed #ddd;
@@ -786,6 +787,7 @@ a.article-title:hover {
 }
 .article-share-links {
     background: #eee;
+    height:36px;
 }
 .article-share-links:before,
 .article-share-links:after {
@@ -1045,7 +1047,7 @@ a.article-title:hover {
     display: block;
     padding: 50px 0 0 0px;
     font-family: exoregular;
-    
+
 }
 
 .fname {
@@ -1071,7 +1073,7 @@ a.article-title:hover {
     color: #666;
     margin: 0px 0 0;
     font-family: exoregular;
-    line-height: 35px;
+    line-height: 24px;
 }
 
 .Copyright ul a {
@@ -1103,20 +1105,16 @@ a.article-title:hover {
 }
 .article-entry pre,
 .article-entry .highlight {
-    margin: 10px 0;
-    padding: 10px!important;
-    line-height: 20px;
-    border-left: 6px solid #0078AD;
-    background-color: #F2F2F2;
-    color: #333;
-    font-family: Courier New;
-    font-size: 12px;
-    white-space:pre-wrap;
-    word-wrap:break-word;
-    margin: 0 -20px;
-    padding: 15px 20px;
+	display: block;
+    padding: 10px 16px;
+    margin: 0 0 24px;
+    border-left: 8px solid #0078AD;
+    background: #F2F2F2;
+    overflow: auto;
+    word-wrap: normal;
+    word-break: normal;
+    margin: 0px;
     color: #333333;
-    line-height: 22.400000000000002px;
 }
 .article-entry .highlight .gutter pre,
 .article-entry .gist .gist-file .gist-data .line-numbers {
