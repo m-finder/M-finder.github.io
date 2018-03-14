@@ -491,13 +491,27 @@
 
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/layui/layui.js"></script>
+<script src="/js/nprogress.js"></script>
 <script type="text/javascript">
     layui.config({
         base: '/js/'
         ,version: false
     }).extend({
         index: 'index'
-    }).use(['index']);
+        ,pjax: 'pjax'
+    }).use(['pjax','index'],function (){
+        var $ = layui.jquery;
+            $(function () {
+                $(document).pjax('a', '#main');
+                $(document).on('pjax:start', function () {
+                    NProgress.start();
+                });
+                $(document).on('pjax:end', function () {
+                    NProgress.done();
+                });
+                
+            });
+    });
 </script>
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
