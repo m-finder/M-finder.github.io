@@ -1,8 +1,8 @@
 (function ($) {
     // Search
     var $searchWrap = $('#search-form-wrap'),
-            isSearchAnim = false,
-            searchAnimDuration = 200;
+        isSearchAnim = false,
+        searchAnimDuration = 200;
 
     var startSearchAnim = function () {
         isSearchAnim = true;
@@ -92,7 +92,7 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
-    
+
     //百度推送
     (function () {
         var bp = document.createElement('script');
@@ -106,4 +106,5 @@
         s.parentNode.insertBefore(bp, s);
     })();
 
+    
 })(jQuery);
