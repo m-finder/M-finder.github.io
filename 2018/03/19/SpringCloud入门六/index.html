@@ -107,7 +107,9 @@
 <p>这里没有成功的话一般有两个错误，连接被拒绝和无法注册Queue，第一个请检查权限和用户名密码是否正确，guest的用户好像也是不能在程序中用的。第二个就看下是不是导错了包。</p>
 <p>然后运行test</p>
 <p><img src="/2018/03/19/SpringCloud入门六/ok.png" alt="运行结果"></p>
-<h2 id="整合Spring-Cloud-Bus"><a href="#整合Spring-Cloud-Bus" class="headerlink" title="整合Spring Cloud Bus"></a>整合Spring Cloud Bus</h2><p>明天再搞，今天先到这儿。</p>
+<h2 id="整合Spring-Cloud-Bus"><a href="#整合Spring-Cloud-Bus" class="headerlink" title="整合Spring Cloud Bus"></a>整合Spring Cloud Bus</h2><p>改造上一个项目中的config-client的configClientController<br>添加一个注解：@RefreshScope</p>
+<p>在application的配置文件中添加RabbitMQ的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring.rabbitmq.host=localhost</span><br><span class="line">spring.rabbitmq.port=5672</span><br><span class="line">spring.rabbitmq.username=SpringCloud</span><br><span class="line">spring.rabbitmq.password=SpringCloud</span><br></pre></td></tr></table></figure></p>
+<p>发现在config项目里有个问题，refresh不能用，每次都返回404，暂未找到解决方法，so，解决了再说。</p>
 
       
     </div>
@@ -247,7 +249,7 @@
                         </li>
                     
                         <li>
-                            <a href="https://sgclzqq.github.io/" title="Sgclzqq" target="_blank" rel="noopener">Sgclzqq</a>
+                            <a href="http://www.sgclzqq.com/" title="Sgclzqq" target="_blank" rel="noopener">Sgclzqq</a>
                         </li>
                     
                 </ul>
