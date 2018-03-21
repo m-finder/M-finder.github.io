@@ -110,6 +110,12 @@
 <h2 id="整合Spring-Cloud-Bus"><a href="#整合Spring-Cloud-Bus" class="headerlink" title="整合Spring Cloud Bus"></a>整合Spring Cloud Bus</h2><p>改造上一个项目中的config-client的configClientController<br>添加一个注解：@RefreshScope</p>
 <p>在application的配置文件中添加RabbitMQ的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring.rabbitmq.host=localhost</span><br><span class="line">spring.rabbitmq.port=5672</span><br><span class="line">spring.rabbitmq.username=SpringCloud</span><br><span class="line">spring.rabbitmq.password=SpringCloud</span><br></pre></td></tr></table></figure></p>
 <p>发现在config项目里有个问题，refresh不能用，每次都返回404，暂未找到解决方法，so，解决了再说。</p>
+<p>发现是因为actuator加载后只有 info 和 health 默认是打开的，而且需要在url加一层 actuator，别的都需要手动开启,在配置文件加一句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">management.endpoints.web.exposure.include=health,info,beans,refresh</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/03/19/SpringCloud入门六/actuator.png" alt="终于出来了"></p>
+<p>postman 来访问一下，用post方式</p>
+<p><img src="/2018/03/19/SpringCloud入门六/post.png" alt="post"></p>
+<p>刷新页面<br><img src="/2018/03/19/SpringCloud入门六/posted.png" alt="posted"></p>
+<p>ok，这一步算是搞定了，忍不住想吐槽一下，真特么的坑！</p>
 
       
     </div>
