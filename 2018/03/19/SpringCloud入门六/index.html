@@ -110,12 +110,17 @@
 <h2 id="整合Spring-Cloud-Bus"><a href="#整合Spring-Cloud-Bus" class="headerlink" title="整合Spring Cloud Bus"></a>整合Spring Cloud Bus</h2><p>改造上一个项目中的config-client的configClientController<br>添加一个注解：@RefreshScope</p>
 <p>在application的配置文件中添加RabbitMQ的配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring.rabbitmq.host=localhost</span><br><span class="line">spring.rabbitmq.port=5672</span><br><span class="line">spring.rabbitmq.username=SpringCloud</span><br><span class="line">spring.rabbitmq.password=SpringCloud</span><br></pre></td></tr></table></figure></p>
 <p>发现在config项目里有个问题，refresh不能用，每次都返回404，暂未找到解决方法，so，解决了再说。</p>
-<p>发现是因为actuator加载后只有 info 和 health 默认是打开的，而且需要在url加一层 actuator，别的都需要手动开启,在配置文件加一句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">management.endpoints.web.exposure.include=health,info,beans,refresh</span><br></pre></td></tr></table></figure></p>
+<p><em><font color="red">更新于 2018-03-20</font></em></p>
+<p>发现是因为actuator加载后只有 info 和 health 默认是打开的，而且需要在url加一层 actuator，别的都需要手动开启,在配置文件加一句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">management.endpoints.web.exposure.include=health,info,beans,refresh</span><br><span class="line">or</span><br><span class="line">management.endpoints.web.exposure.include=*</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2018/03/19/SpringCloud入门六/actuator.png" alt="终于出来了"></p>
 <p>postman 来访问一下，用post方式</p>
 <p><img src="/2018/03/19/SpringCloud入门六/post.png" alt="post"></p>
 <p>刷新页面<br><img src="/2018/03/19/SpringCloud入门六/posted.png" alt="posted"></p>
 <p>ok，这一步算是搞定了，忍不住想吐槽一下，真特么的坑！</p>
+<p><em><font color="red">更新于 2018-03-22 注：关于 bus/refresh</font></em><br>传说中的这个刷新配置的url在n多年前已经失效了，折腾了多天之后终于知道问题的解决办法了：</p>
+<p>在配置文件中添加注解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-amqp&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-bus&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-stream-binder-rabbit&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后postman访问 <font color="red">localhost:8088/actuator/bus-refresh </font>就可以了，正常应该是没返回值的，但是结果还是会刷新的。至少我是这样。</p>
+<p>欲仙欲死的感觉真棒！</p>
 
       
     </div>
