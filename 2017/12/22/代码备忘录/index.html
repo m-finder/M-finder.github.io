@@ -42,6 +42,10 @@
                 
                     <a class="main-nav-link" href="/">博客首页</a>
                 
+                    <a class="main-nav-link" href="/categories/码不能停">码不能停</a>
+                
+                    <a class="main-nav-link" href="/categories/测试区">测试区</a>
+                
                     <a class="main-nav-link" href="/archives">归档</a>
                 
                     <a class="main-nav-link" href="/about">关于</a>
@@ -107,6 +111,9 @@
 <h3 id="Js调用系统桌面通知"><a href="#Js调用系统桌面通知" class="headerlink" title="Js调用系统桌面通知:"></a>Js调用系统桌面通知:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (window.Notification &amp;&amp; Notification.permission !== &quot;denied&quot;) &#123;</span><br><span class="line">	Notification.requestPermission(function (status) &#123;</span><br><span class="line">		var n = new Notification(&quot;sir, you got a message&quot;, &#123;</span><br><span class="line">			icon: &apos;/img/logo.png&apos;,</span><br><span class="line">			body: &apos;you will have a meeting 5 minutes later.&apos;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="数据分配："><a href="#数据分配：" class="headerlink" title="数据分配："></a>数据分配：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$max_worker_num = 30;</span><br><span class="line">$data_num = 74;</span><br><span class="line"></span><br><span class="line">if ($data_num == 0) &#123;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for ($i = 0; $i &lt; $data_num; $i++) &#123;</span><br><span class="line">	$data[$i] = $i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$min_worker_num = min($data_num, $max_worker_num);</span><br><span class="line"></span><br><span class="line">$data_arr = array_chunk($data, ceil($data_num / $min_worker_num), true);</span><br><span class="line"></span><br><span class="line">$worker_num = ceil($data_num / ceil($data_num / $min_worker_num));</span><br></pre></td></tr></table></figure>
 
+        <p class="article-more-link">
+            <a class="dashang" href="javascript:;">小额打赏</a>
+        </p>
       
     </div>
     <footer class="article-footer">
@@ -289,6 +296,10 @@
         <nav id="mobile-nav">
   
     <a href="/" class="mobile-nav-link">博客首页</a>
+  
+    <a href="/categories/码不能停" class="mobile-nav-link">码不能停</a>
+  
+    <a href="/categories/测试区" class="mobile-nav-link">测试区</a>
   
     <a href="/archives" class="mobile-nav-link">归档</a>
   

@@ -42,6 +42,10 @@
                 
                     <a class="main-nav-link" href="/">博客首页</a>
                 
+                    <a class="main-nav-link" href="/categories/码不能停">码不能停</a>
+                
+                    <a class="main-nav-link" href="/categories/测试区">测试区</a>
+                
                     <a class="main-nav-link" href="/archives">归档</a>
                 
                     <a class="main-nav-link" href="/about">关于</a>
@@ -106,6 +110,9 @@
 <h4 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h4><p>网上找段代码，开始测试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">from pyspark import SparkContext</span><br><span class="line"></span><br><span class="line">sc = SparkContext(&quot;local&quot;,&quot;Simple App&quot;)</span><br><span class="line">doc = sc.parallelize([[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;],[&apos;b&apos;,&apos;d&apos;,&apos;d&apos;]])</span><br><span class="line">words = doc.flatMap(lambda d:d).distinct().collect()</span><br><span class="line">word_dict = &#123;w:i for w,i in zip(words,range(len(words)))&#125;</span><br><span class="line">word_dict_b = sc.broadcast(word_dict)</span><br><span class="line"></span><br><span class="line">def wordCountPerDoc(d):</span><br><span class="line">    dict=&#123;&#125;</span><br><span class="line">    wd = word_dict_b.value</span><br><span class="line">    for w in d:</span><br><span class="line">        if dict.get(wd[w],0):</span><br><span class="line">            dict[wd[w]] +=1</span><br><span class="line">        else:</span><br><span class="line">            dict[wd[w]] = 1</span><br><span class="line">    return dict</span><br><span class="line">print(doc.map(wordCountPerDoc).collect())</span><br><span class="line">print(&quot;successful!&quot;)</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2018/02/27/Python版Spark牛刀小试/运行结果.png" alt="运行结果"></p>
 
+        <p class="article-more-link">
+            <a class="dashang" href="javascript:;">小额打赏</a>
+        </p>
       
     </div>
     <footer class="article-footer">
@@ -288,6 +295,10 @@
         <nav id="mobile-nav">
   
     <a href="/" class="mobile-nav-link">博客首页</a>
+  
+    <a href="/categories/码不能停" class="mobile-nav-link">码不能停</a>
+  
+    <a href="/categories/测试区" class="mobile-nav-link">测试区</a>
   
     <a href="/archives" class="mobile-nav-link">归档</a>
   

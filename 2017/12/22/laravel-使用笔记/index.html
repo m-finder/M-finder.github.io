@@ -42,6 +42,10 @@
                 
                     <a class="main-nav-link" href="/">博客首页</a>
                 
+                    <a class="main-nav-link" href="/categories/码不能停">码不能停</a>
+                
+                    <a class="main-nav-link" href="/categories/测试区">测试区</a>
+                
                     <a class="main-nav-link" href="/archives">归档</a>
                 
                     <a class="main-nav-link" href="/about">关于</a>
@@ -116,6 +120,9 @@
 <h3 id="自定义404页面"><a href="#自定义404页面" class="headerlink" title="自定义404页面"></a>自定义404页面</h3><p>在 app\Exceptions文件夹下的Hander中有个render方法，改造一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public function render($request, Exception $exception)&#123;</span><br><span class="line"></span><br><span class="line">    if ($exception instanceof ModelNotFoundException) &#123;</span><br><span class="line">        $exception = new NotFoundHttpException($exception-&gt;getMessage(), $exception);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ( ! config(&apos;app.debug&apos;)) &#123;</span><br><span class="line">        return response()-&gt;view(&apos;errors.500&apos;, [], 500);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return parent::render($request, $exception);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>然后在views文件夹新建error文件夹和对应错误代码的blade文件。</p>
 
+        <p class="article-more-link">
+            <a class="dashang" href="javascript:;">小额打赏</a>
+        </p>
       
     </div>
     <footer class="article-footer">
@@ -298,6 +305,10 @@
         <nav id="mobile-nav">
   
     <a href="/" class="mobile-nav-link">博客首页</a>
+  
+    <a href="/categories/码不能停" class="mobile-nav-link">码不能停</a>
+  
+    <a href="/categories/测试区" class="mobile-nav-link">测试区</a>
   
     <a href="/archives" class="mobile-nav-link">归档</a>
   
