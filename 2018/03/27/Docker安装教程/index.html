@@ -5,11 +5,11 @@
         
 
         
-        <title>hexo多设备支持 | M-finder</title>
+        <title>Docker安装教程 | M-finder</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
-            <meta name="keywords" content="hexo多设备支持 | M-finder" />
+            <meta name="keywords" content="Docker安装教程 | M-finder" />
         
         
             <meta name="description" content="M-finder - 删繁就简，发现更多">
@@ -66,10 +66,10 @@
     </div>
 </header>
             <div class="outer">
-                <section id="main"><article id="post-hexo多设备支持" class="article article-type-post" itemscope itemprop="blogPost">
+                <section id="main"><article id="post-Docker安装教程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/02/26/hexo多设备支持/" class="article-date">
-  <time datetime="2018-02-26T06:35:02.000Z" itemprop="datePublished">2018-02-26</time>
+    <a href="/2018/03/27/Docker安装教程/" class="article-date">
+  <time datetime="2018-03-27T07:34:30.000Z" itemprop="datePublished">2018-03-27</time>
 </a>
     
   <div class="article-category">
@@ -84,7 +84,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hexo多设备支持
+      Docker安装教程
     </h1>
   
 
@@ -92,14 +92,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>测试时未知原因，markdown格式的图片标签无法识别，只能用下边hexo推荐的标签。<br>各种尝试，最后推掉重来，好了。</p>
-<p>mmp，可能是中间有什么步骤没做好。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% img [class names] /path/to/image [width] [height] [title text [alt text]] %&#125;</span><br></pre></td></tr></table></figure>
-<p>多设备什么的把源码丢在.io的分支上就好了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init   #初始化本地仓库</span><br><span class="line">git add .  #添加文件</span><br><span class="line">git commit -m &quot;Blog Source Hexo&quot;</span><br><span class="line">git branch hexo  #新建hexo分支</span><br><span class="line">git checkout hexo  #切换到hexo分支上</span><br><span class="line">git remote add origin git@github.com:yourname/yourname.github.io.git  #将本地与Github项目对接</span><br><span class="line">git push origin hexo  #push到Github项目的hexo分支上</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2018/02/26/hexo多设备支持/截图.png" alt="效果图"></p>
-<p>别的设备只需要拉下代码，然后切换下分支，再执行下 “npm install” 就可以愉快的玩耍了。</p>
-<p>后来测试下把源码放在码云也可以的，为了安全起见，把源码放在码云的私有项目去了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">新建私有仓库</span><br><span class="line">克隆到本地</span><br><span class="line">然后把博客源文件丢进去</span><br><span class="line">提交</span><br><span class="line">搞定</span><br></pre></td></tr></table></figure></p>
-<p><img src="/2018/02/26/hexo多设备支持/x.gif" alt="test"></p>
+        <p>Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。</p>
+<p>Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。</p>
+<p>容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。</p>
+<p><img src="/2018/03/27/Docker安装教程/logo.png" alt="Docker"><br><a id="more"></a></p>
+<h4 id="centos-安装"><a href="#centos-安装" class="headerlink" title="centos 安装"></a>centos 安装</h4><p><em><font color="red">注意：docker要求centos在3.0以上</font></em></p>
+<p>可以用 uname -r 查看centos内核：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# uname -r</span><br><span class="line">2.6.32-696.20.1.el6.x86_64</span><br></pre></td></tr></table></figure></p>
+<p>好可惜，我的虚拟机不支持,换台继续装。</p>
+<p>Docker 软件包和依赖包已经包含在默认的 CentOS-Extras 软件源里，安装命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install docker</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/03/27/Docker安装教程/yum.png" alt="安装"></p>
+<p><img src="/2018/03/27/Docker安装教程/yumdone.png" alt="安装完成"></p>
+<p>启动docker:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure></p>
+<p>测试运行 hello-world<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/03/27/Docker安装教程/hello.png" alt="测试运行"></p>
+<p>由于本地没有hello-world这个镜像，所以会下载一个hello-world的镜像，并在容器内运行。</p>
+<h4 id="windows安装"><a href="#windows安装" class="headerlink" title="windows安装"></a>windows安装</h4><p><em><font color="red">注意：win7，8和10的家庭版需要docker toolbox安装</font></em></p>
+<p><a href="https://docs.docker.com/toolbox/toolbox_install_windows/" target="_blank" rel="noopener">点我下载：</a></p>
+<p>安装完成后，桌面会多这三个图标出来。强行给我乔巴照相，哈哈！<br><img src="/2018/03/27/Docker安装教程/winok.png" alt="安装完成"></p>
 
         <p class="article-more-link">
             <a class="dashang" href="javascript:;">小额打赏</a>
@@ -109,7 +118,7 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
 
     </footer>
   </div>
@@ -117,19 +126,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/02/27/Python版Spark牛刀小试/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Python版Spark牛刀小试
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/02/15/新年快乐，祝大家狗年旺旺旺/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/03/23/结合layui流加载实现的瀑布流/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">新年快乐，祝大家狗年旺旺旺</div>
+      <div class="article-nav-title">结合layui流加载实现的瀑布流</div>
     </a>
   
 </nav>
