@@ -95,20 +95,39 @@
         <p>Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。</p>
 <p>Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。</p>
 <p>容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。</p>
+<p>docker官方推荐了两种安装方式:app和toolbox。</p>
+<p>注：app方式对系统版本和配置会有一定要求，Mac版本会自动为你安装好VM（虚拟机），但Windows版本需要你安装微软虚拟化产品Hyper-V，而toolbox方式则需要你额外安装virtualbox来作为docker的VM。</p>
+<p><a href="https://docs.docker.com/docker-for-mac/" target="_blank" rel="noopener">App-mac</a><br><a href="https://docs.docker.com/docker-for-windows/" target="_blank" rel="noopener">App-win</a></p>
+<p><a href="https://www.docker.com/products/docker-toolbox" target="_blank" rel="noopener">Toolbox</a></p>
 <p><img src="/2018/03/27/Docker安装教程/logo.png" alt="Docker"><br><a id="more"></a></p>
 <h4 id="centos-安装"><a href="#centos-安装" class="headerlink" title="centos 安装"></a>centos 安装</h4><p><em><font color="red">注意：docker要求centos在3.0以上</font></em></p>
 <p>可以用 uname -r 查看centos内核：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# uname -r</span><br><span class="line">2.6.32-696.20.1.el6.x86_64</span><br></pre></td></tr></table></figure></p>
-<p>好可惜，我的虚拟机不支持,换台继续装。</p>
+<p>好可惜，我的虚拟机不支持,升级个内核再继续装。</p>
 <p>Docker 软件包和依赖包已经包含在默认的 CentOS-Extras 软件源里，安装命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install docker</span><br></pre></td></tr></table></figure></p>
+<p>如果出现 <font color="red">No package docker available</font><br>yum没有找到docker包，更新epel第三方软件库，运行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure>
+<p>然后再运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install docker-io</span><br></pre></td></tr></table></figure></p>
+<p>安装完就可以愉快地安装了。</p>
 <p><img src="/2018/03/27/Docker安装教程/yum.png" alt="安装"></p>
 <p><img src="/2018/03/27/Docker安装教程/yumdone.png" alt="安装完成"></p>
-<p>启动docker:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure></p>
+<h4 id="docker-启动"><a href="#docker-启动" class="headerlink" title="docker 启动"></a>docker 启动</h4><p>启动docker:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure></p>
 <p>测试运行 hello-world<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2018/03/27/Docker安装教程/hello.png" alt="测试运行"></p>
 <p>由于本地没有hello-world这个镜像，所以会下载一个hello-world的镜像，并在容器内运行。</p>
 <h4 id="windows安装"><a href="#windows安装" class="headerlink" title="windows安装"></a>windows安装</h4><p><em><font color="red">注意：win7，8和10的家庭版需要docker toolbox安装</font></em></p>
 <p><a href="https://docs.docker.com/toolbox/toolbox_install_windows/" target="_blank" rel="noopener">点我下载：</a></p>
 <p>安装完成后，桌面会多这三个图标出来。强行给我乔巴照相，哈哈！<br><img src="/2018/03/27/Docker安装教程/winok.png" alt="安装完成"></p>
+<p>点击 Docker QuickStart 图标来启动 Docker Toolbox 终端。</p>
+<p>如果系统显示 User Account Control 窗口来运行 VirtualBox 修改你的电脑，选择 Yes</p>
+<p><img src="/2018/03/27/Docker安装教程/启动.png" alt="启动"></p>
+<p>输入一下命令调用测试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/03/27/Docker安装教程/hello-win.png" alt="启动测试"></p>
+<h5 id="win10专业版"><a href="#win10专业版" class="headerlink" title="win10专业版"></a>win10专业版</h5><p>win10专业版自带hyper-v,用来装docker更方便。（hyper-v是win系统自带的一个虚拟机工具）<br><img src="/2018/03/27/Docker安装教程/hyper-v.png" alt="hyper-v启用"></p>
+<p>找到程序和功能<br><img src="/2018/03/27/Docker安装教程/程序和功能.png" alt="程序和功能"></p>
+<p>打开启用和关闭功能，然后勾选hyper-v<br><img src="/2018/03/27/Docker安装教程/勾选.png" alt="程序和功能"></p>
+<p>然后下载安装 <a href="https://www.docker.com/get-docker.png" target="_blank" rel="noopener">Toolbox</a></p>
+<p>安装完成后会自动打开，右下角的系统通知栏有个小鲸鱼的图标，这表示docker在运行。<br><img src="/2018/03/27/Docker安装教程/docker.png" alt="🐳"></p>
+<p>到这里就安装好了，更多姿势我们可以在启动器输入 docker 来解锁。</p>
 
         <p class="article-more-link">
             <a class="dashang" href="javascript:;">小额打赏</a>
@@ -125,6 +144,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2018/03/28/CentOS内核升级4-4-12教程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CentOS内核升级4.4.12教程
+        
+      </div>
+    </a>
   
   
     <a href="/2018/03/23/结合layui流加载实现的瀑布流/" id="article-nav-older" class="article-nav-link-wrap">
@@ -165,7 +193,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/测试区/">测试区</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/码不能停/">码不能停</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲言赘语/">闲言赘语</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/测试区/">测试区</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/码不能停/">码不能停</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲言赘语/">闲言赘语</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -175,7 +203,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Layim/">Layim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui/">layui</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/">openssl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swoole/">swoole</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吃吃吃/">吃吃吃</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新年快乐/">新年快乐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲言赘语/">闲言赘语</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Layim/">Layim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui/">layui</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/">openssl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swoole/">swoole</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吃吃吃/">吃吃吃</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新年快乐/">新年快乐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲言赘语/">闲言赘语</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -185,7 +213,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hexo/" style="font-size: 14px;">Hexo</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Layim/" style="font-size: 10px;">Layim</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringCloud/" style="font-size: 18px;">SpringCloud</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/laravel/" style="font-size: 12px;">laravel</a> <a href="/tags/layui/" style="font-size: 14px;">layui</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 16px;">php</a> <a href="/tags/swoole/" style="font-size: 10px;">swoole</a> <a href="/tags/test/" style="font-size: 14px;">test</a> <a href="/tags/吃吃吃/" style="font-size: 10px;">吃吃吃</a> <a href="/tags/新年快乐/" style="font-size: 10px;">新年快乐</a> <a href="/tags/闲言赘语/" style="font-size: 10px;">闲言赘语</a>
+      <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Docker/" style="font-size: 12px;">Docker</a> <a href="/tags/Hexo/" style="font-size: 14px;">Hexo</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Layim/" style="font-size: 10px;">Layim</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringCloud/" style="font-size: 18px;">SpringCloud</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/laravel/" style="font-size: 12px;">laravel</a> <a href="/tags/layui/" style="font-size: 14px;">layui</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 16px;">php</a> <a href="/tags/swoole/" style="font-size: 10px;">swoole</a> <a href="/tags/test/" style="font-size: 14px;">test</a> <a href="/tags/吃吃吃/" style="font-size: 10px;">吃吃吃</a> <a href="/tags/新年快乐/" style="font-size: 10px;">新年快乐</a> <a href="/tags/闲言赘语/" style="font-size: 10px;">闲言赘语</a>
     </div>
   </div>
 
@@ -194,7 +222,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -207,6 +235,14 @@
       <ul>
         
           <li>
+            <a href="/2018/03/28/Docker使用教程-入门/">Docker使用教程-入门</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/28/CentOS内核升级4-4-12教程/">CentOS内核升级4.4.12教程</a>
+          </li>
+        
+          <li>
             <a href="/2018/03/27/Docker安装教程/">Docker安装教程</a>
           </li>
         
@@ -216,14 +252,6 @@
         
           <li>
             <a href="/2018/03/19/SpringCloud入门六/">SpringCloud入门六-消息总线</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/14/Pjax的正确使用/">Pjax的正确使用</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/14/SpringCloud入门五/">SpringCloud入门五-配置中心</a>
           </li>
         
       </ul>
@@ -277,8 +305,8 @@
                 <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="IT行业交流" title="IT行业交流">
             </a>
         </p><br>
-        &copy; 2018 M-finder<br>
-        Powered by <a href="http://www.m-finder.com" target="_blank"> M-finder</a> 
+        &copy; 2018 豫ICP备18011086号 M-finder<br>
+        Powered by <a href="http://www.m-finder.com" target="_blank"> M-finder</a>
     </div>
 </footer>
         </div>
