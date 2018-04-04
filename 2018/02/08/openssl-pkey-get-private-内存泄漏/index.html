@@ -66,7 +66,99 @@
     </div>
 </header>
             <div class="outer">
-                <section id="main"></section>
+                <section id="main"><article id="post-openssl-pkey-get-private-内存泄漏" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/08/openssl-pkey-get-private-内存泄漏/" class="article-date">
+  <time datetime="2018-02-07T23:31:16.000Z" itemprop="datePublished">2018-02-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      openssl_pkey_get_private 内存泄漏
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从前，有一块使用 swoole_process 做多线程处理的程序，这个程序有一个奇怪的问题：每运行一个星期左右都会因为内存爆表而停掉。</p>
+<p>因为爆表的时间关系，开发的小伙伴们都认为是这段使用 swoole_process 的程序有问题，几经更新改版，代码已经趋于完美，平稳的运行了几天后，小伙伴们终于都松了一口气，终于解决了这个问题。</p>
+<p>然而，伴随着百年难遇的血月，这块程序还是在一个意想不到的时间又爆了一次，小伙伴们终于意识到，问题的根本并不在这里，想要找出并改掉这个问题，是何等艰难！但是他们知道，真相只有一个！</p>
+<p>又经过几天的排查，凶手终于浮出水面！</p>
+<p>呐，就是这孙子：openssl_pkey_get_private</p>
+<p>抽出的测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">while(true)&#123;</span><br><span class="line">    $key = file_get_contents(&apos;mock_A.pem&apos;);</span><br><span class="line">	echo $m=memory_get_usage(),PHP_EOL;</span><br><span class="line">	$getkey = openssl_pkey_get_private($key, &apos;&apos;);</span><br><span class="line">	openssl_pkey_free($getkey);</span><br><span class="line">	echo $mm = memory_get_usage(),PHP_EOL;</span><br><span class="line">        echo &quot;Before unset:  &quot;,$mm-$m ,PHP_EOL;</span><br><span class="line">	sleep(3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2018/02/08/openssl-pkey-get-private-内存泄漏/2018-02-08-07-30-12-5a7bfc84465bf.png" alt="运行结果"></p>
+<p>审判结果：该阉的就赶紧阉了吧</p>
+<p>行刑后长相：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$key = file_get_contents(&apos;mock_A.pem&apos;);</span><br><span class="line">$getkey = openssl_pkey_get_private($key, &apos;&apos;);</span><br><span class="line"></span><br><span class="line">while(true)&#123;</span><br><span class="line">	echo $m=memory_get_usage(),PHP_EOL;</span><br><span class="line">	openssl_pkey_free($getkey);</span><br><span class="line">	echo $mm = memory_get_usage(),PHP_EOL;</span><br><span class="line">        echo &quot;Before unset:  &quot;,$mm-$m ,PHP_EOL;</span><br><span class="line">	sleep(3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>前线专家点评：纯属冤案，哪儿特么这么容易泄漏，都是因为自己写的不规范！</p>
+<p>注：生成公私钥是需要消耗内存的，每次脚本执行结束后会释放掉，但是常驻内存的脚本没有释放的机会，所以每次循环调用都会造成内存增加，持续增加到一定量后系统也就崩了。<br>所以解决办法是在循环开始之前就把密钥生成好。</p>
+
+        <p class="article-more-link">
+            <a class="dashang" href="javascript:;">小额打赏</a>
+        </p>   
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openssl/">openssl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swoole/">swoole</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/02/13/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/05/laravel5-4疑难杂症/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">laravel5.4疑难杂症</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="请将此处替换为配置SourceID的语句" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyty1Pt2F'; 
+var conf = 'prod_bab62ce514b78e635471dd0544889c5d'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</section>
+
+
+
+
+
+</section>
                 
                   <aside id="sidebar">
 	<div class="widget-wrap">

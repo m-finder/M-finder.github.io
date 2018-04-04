@@ -66,7 +66,102 @@
     </div>
 </header>
             <div class="outer">
-                <section id="main"></section>
+                <section id="main"><article id="post-laravel5-4疑难杂症" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/05/laravel5-4疑难杂症/" class="article-date">
+  <time datetime="2018-01-04T19:05:12.000Z" itemprop="datePublished">2018-01-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      laravel5.4疑难杂症
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>公司项目最近翻新了页面，把 bootstrap 完全改成了 layui 。</p>
+<p>按照惯例，上线之前先在测试环境跑几天，结果在搭建测试环境的时候，问题就出来了：</p>
+<p>laravel 版本是 5.4.63 ，服务器的 php 版本是 5.6 ，执行 composer install 时，提示我需要 php7.1 。</p>
+<p>吓得我一阵懵逼，难道是什么时候装错扩展了？</p>
+<p>把 composer.json 里没什么用的扩展完全去除后再试，结果还是一样。</p>
+<p>反复折腾无果，想起还有 update 可以用，遂改为执行 composer update ，终于开始安装了。</p>
+<p>小样，还治不了你了！容老夫抽根烟得瑟一下。</p>
+<p>下一秒，一个新的报错又砸我个措手不及：<br><img src="/2018/01/05/laravel5-4疑难杂症/2018-01-05-03-09-35-5a4eec6f23d82.png" alt="错误信息"></p>
+<p>class ‘’ not found !</p>
+<p>虽然不知道这个报错是咋回事，但是潜意识觉得应该是某个 Kernel 文件出错了。</p>
+<p>找到一份之前的备份，一通对比，终于有所发现：<br><img src="/2018/01/05/laravel5-4疑难杂症/2018-01-05-03-03-33-5a4eeb050862d.png" alt="对比结果"></p>
+<p>出错的代码比之前正常的代码多了个 “，”，丫的，太粗糙了！</p>
+<p>去掉，再次执行 update ，果然一路畅通无阻。</p>
+<p>但是那个该死的 install 是再也没回来。</p>
+
+        <p class="article-more-link">
+            <a class="dashang" href="javascript:;">小额打赏</a>
+        </p>   
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/02/08/openssl-pkey-get-private-内存泄漏/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          openssl_pkey_get_private 内存泄漏
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/27/Layim模块化右键菜单/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Layim模块化右键菜单</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="请将此处替换为配置SourceID的语句" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyty1Pt2F'; 
+var conf = 'prod_bab62ce514b78e635471dd0544889c5d'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</section>
+
+
+
+
+
+</section>
                 
                   <aside id="sidebar">
 	<div class="widget-wrap">

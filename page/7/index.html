@@ -68,11 +68,256 @@
             <div class="outer">
                 <section id="main">
   
+    <article id="post-laravel-使用笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/22/laravel-使用笔记/" class="article-date">
+  <time datetime="2017-12-22T01:35:57.000Z" itemprop="datePublished">2017-12-22</time>
+</a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/22/laravel-使用笔记/">laravel 使用笔记</a>
+    </h1>
   
+
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先从最简单的开始</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>laravel 的安装需要借助 composer ，百度一下，安装，然后去 GitHub 下载 laravel</p>
+<p>切换到项目文件夹 ，在不选中任何文件的前提下按住 shift + 鼠标右键，打开 Powershell 或者 cmd</p>
+<p>输入：composer install </p>
+<p>将 .env.example 另存为 .env</p>
+<p>修改数据库配置信息和邮件系统配置信息</p>
+<p>然后在命令行输入：php artisan key:generate 生成密钥</p>
+<p>然后配置一个本地域名指向 public 文件夹，然后，就好了。[哈哈] </p>
+<h3 id="邮件"><a href="#邮件" class="headerlink" title="邮件"></a>邮件</h3><p>邮件系统配置示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MAIL_DRIVER=smtp</span><br><span class="line">MAIL_HOST=smtp.mxhichina.com</span><br><span class="line">MAIL_PORT=25//465</span><br><span class="line">MAIL_USERNAME=m@m-finder</span><br><span class="line">MAIL_PASSWORD=邮箱密码</span><br><span class="line">MAIL_FROM_NAME=M-finder</span><br><span class="line">MAIL_FROM_ADDRESS=m@m-finder</span><br><span class="line">MAIL_ENCRYPTION=null//ssl #如果用465端口的话，需要参数 MAIL_ENCRYPTION=ssl</span><br></pre></td></tr></table></figure></p>
+<p>邮件有 3 种模式（可能更多，暂时只接触到3种）:<br>一种用 Mail::send 方法<br>一种用 Mail::raw<br>另外一种则是官方文档中的，新建一个类，然后发送邮件时实例化这个类。3 种方法实现的功能一样。<br>Mail::send<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Mail::send(&apos;admin.email&apos;, [&apos;orderPrice&apos; =&gt; &apos;laravel&apos;], function ($message) &#123;</span><br><span class="line">    $message-&gt;to(&apos;m@m-finder&apos;);</span><br><span class="line">    $message-&gt;subject(&apos;我是自定义标题&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这个方法第一个参数为视图文件，视图文件的用法等同于普通视图，第二个参数为视图中所用到的数据<br>Mail::raw<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$content = &apos;这是一封来自Laravel的测试邮件.&apos;;</span><br><span class="line">$toMail = &apos;m@m-finder&apos;;</span><br><span class="line">        </span><br><span class="line"> Mail::raw($content, function ($message) use ($toMail) &#123;</span><br><span class="line">	$message-&gt;subject(&apos;[ 测试 ] 测试邮件SendMail - &apos; . date(&apos;Y-m-d H:i:s&apos;));</span><br><span class="line">	$message-&gt;to($toMail);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>基本等同于Mail::send</p>
+<p>第三种方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:controller MailController</span><br><span class="line"></span><br><span class="line">php artisan make:mail OrderShipped</span><br><span class="line"></span><br><span class="line">在 OrderShipped 增加内容</span><br><span class="line"></span><br><span class="line">return $this-&gt;view(&apos;admin.email&apos;)-&gt;with([</span><br><span class="line">            &apos;orderName&apos; =&gt; &apos;test&apos;,</span><br><span class="line">            &apos;orderPrice&apos; =&gt; 1500,</span><br><span class="line"> ]);</span><br></pre></td></tr></table></figure></p>
+<p>然后在要发送邮件的方法中调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mail::to(&apos;m@m-finder&apos;)-&gt;send(new OrderShipped());</span><br></pre></td></tr></table></figure></p>
+<p>开放路由，访问下就可以了。</p>
+<p>如果需要自定义邮件标题，可以试一下以下方法（未测试）：</p>
+<p>在你的类中定义一个subject变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public $subject = &apos;这里是邮件自定义标题&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>或者在你的view后跟一个subject方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view(&apos;emails.activate-user&apos;)-&gt;subject(&apos;这里定义邮件标题&apos;)；</span><br></pre></td></tr></table></figure></p>
+<h3 id="多视图共享数据"><a href="#多视图共享数据" class="headerlink" title="多视图共享数据"></a>多视图共享数据</h3><p>在 app\Providers 文件夹下 boot() 方法中写入要共享的数据即可 , 例如 :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public function boot() &#123;</span><br><span class="line">	$links = Link::orderBy(&apos;id&apos;, &apos;desc&apos;)-&gt;get();</span><br><span class="line">	$web_info = SysConfig::first();</span><br><span class="line">	$menus =  Menu::select(&apos;id&apos;, &apos;name&apos;, &apos;type&apos;, &apos;seo_title&apos;, &apos;seo_describe&apos;, &apos;link&apos;)</span><br><span class="line">        -&gt;where(&apos;pid&apos;, &apos;=&apos;, 0)</span><br><span class="line">        -&gt;where(&apos;is_show&apos;, &apos;=&apos;, &apos;2&apos;)</span><br><span class="line">        -&gt;get();</span><br><span class="line"></span><br><span class="line">	view()-&gt;share(&apos;links&apos;, $links);</span><br><span class="line">	view()-&gt;share(&apos;web_info&apos;, $web_info);</span><br><span class="line">	view()-&gt;share(&apos;menus&apos;, $menus);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样写完以后，你会发现你的 migrate 挂了，哈哈 ，解决办法是使用闭包，即 composer 方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public function boot() &#123;</span><br><span class="line">        Schema::defaultStringLength(191); //解决数据库版本过低无法执行 migrate</span><br><span class="line"></span><br><span class="line">        view()-&gt;composer([&apos;layouts.home&apos;, &apos;layouts.userhome&apos;,&apos;layouts.admin&apos;], function($view) &#123;</span><br><span class="line">            $links = Link::orderBy(&apos;id&apos;, &apos;desc&apos;)-&gt;get();</span><br><span class="line">            $web_info = SysConfig::first();</span><br><span class="line">            $menus = Menu::select(&apos;id&apos;, &apos;name&apos;, &apos;type&apos;, &apos;seo_title&apos;, &apos;seo_describe&apos;, &apos;link&apos;)</span><br><span class="line">            -&gt;where(&apos;pid&apos;, &apos;=&apos;, 0)</span><br><span class="line">            -&gt;where(&apos;is_show&apos;, &apos;=&apos;, &apos;2&apos;)</span><br><span class="line">            -&gt;get();</span><br><span class="line">            $view-&gt;with([&apos;links&apos; =&gt; $links, &apos;web_info&apos; =&gt; $web_info, &apos;menus&apos; =&gt; $menus]);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><p>config 文件夹下有一个 filesystems.php，里边是默认的上传地址，可以根据自己的需要做修改或者添加</p>
+<p>上传的控制器代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if ($file-&gt;isValid()) &#123;</span><br><span class="line">	if ($file-&gt;getClientSize() &gt; 2097152) &#123;</span><br><span class="line">		return $this-&gt;json_response(1, &quot;请上传小于 2 mb 的图片&quot;, 0);</span><br><span class="line">	&#125;</span><br><span class="line">	$ext = $file-&gt;getClientOriginalExtension();</span><br><span class="line">	$realPath = $file-&gt;getRealPath();</span><br><span class="line">	$type = $file-&gt;getClientMimeType();</span><br><span class="line">	$filename = date(&apos;Y-m-d-H-i-s&apos;) . &apos;-&apos; . uniqid() . &apos;.&apos; . $ext;</span><br><span class="line">	$bool = Storage::disk($path)-&gt;put($filename, file_get_contents($realPath));</span><br><span class="line">	$url = Storage::disk($path)-&gt;url($filename);</span><br><span class="line">	if ($filename) &#123;</span><br><span class="line">		return [&apos;code&apos; =&gt; 0, &apos;msg&apos; =&gt; &apos;&apos;, &apos;src&apos; =&gt; $url, </span><br><span class="line">                 &apos;data&apos;=&gt;[&apos;src&apos;=&gt;$url,&apos;title&apos;=&gt;$filename]]; </span><br><span class="line">         //&#123;&quot;code&quot;: 0 ,&quot;msg&quot;: &quot;&quot; ,&quot;data&quot;: &#123;&quot;src&quot;: &quot;图片路径&quot;,&quot;title&quot;: &quot;图片名称&quot;&#125;  layui 图片上传接口</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>访问上传到本地的文件资源，需要先创建一个软连接：php artisan storage:link</p>
+<p>一个页面中，如果有 ajax 调取数据的，可以把 ajax 使用的路由和页面的路由名称定义为同一个，不同的是页面是 get ，ajax 是 post</p>
+<h3 id="自定义404页面"><a href="#自定义404页面" class="headerlink" title="自定义404页面"></a>自定义404页面</h3><p>在 app\Exceptions文件夹下的Hander中有个render方法，改造一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public function render($request, Exception $exception)&#123;</span><br><span class="line"></span><br><span class="line">    if ($exception instanceof ModelNotFoundException) &#123;</span><br><span class="line">        $exception = new NotFoundHttpException($exception-&gt;getMessage(), $exception);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if ( ! config(&apos;app.debug&apos;)) &#123;</span><br><span class="line">        return response()-&gt;view(&apos;errors.500&apos;, [], 500);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return parent::render($request, $exception);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在views文件夹新建error文件夹和对应错误代码的blade文件。</p>
+
+        <p class="article-more-link">
+            <a class="dashang" href="javascript:;">小额打赏</a>
+        </p>   
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-Java-爬坑手册" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/11/Java-爬坑手册/" class="article-date">
+  <time datetime="2017-09-11T01:34:08.000Z" itemprop="datePublished">2017-09-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/11/Java-爬坑手册/">Java 爬坑手册</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>下载 JDK<br>百度下就有下载地址 ， 但是最好还是根据自己的电脑系统位数下载对应版本 。</p>
+<h3 id="配置系统变量"><a href="#配置系统变量" class="headerlink" title="配置系统变量"></a>配置系统变量</h3><p>变量名：JAVA_HOME<br>变量值：C:\Program Files (x86)\Java\jdk1.8.0_91 // 要根据自己的实际路径配置<br>变量名：CLASSPATH<br>变量值：.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar; //记得前面有个”.”<br>变量名：Path<br>变量值：%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</p>
+<p>CLASSPATH 和 Path 需要填写上边 java_home 的实际路径 ， 即 %JAVA_HOME% 的实际路径。</p>
+<h3 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h3><p>NetBeans 8.2 or IntelliJ IDEA 2017.2.3</p>
+<p>IDEA 激活listen地址 : <a href="http://intellij.mandroid.cn/" target="_blank" rel="noopener">http://intellij.mandroid.cn/ </a></p>
+<p>NetBeans 8.2 无法创建 javaweb 项目 </p>
+<p>在 NetBeans 安装目录下 , 例如 : C:\Program Files\NetBeans 8.2\etc 文件夹下</p>
+<p>netbeans.conf 文件中 , 搜索 jdkhome , 然后修改为当前安装的 jdk 路径 , 保存 , 重启编辑器即可。</p>
+<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><p>tomcat or jetty</p>
+<p>netbeans 安装时可以指定服务器</p>
+<p>需要注意的是 tomcat 的配置文件会有两个，因此改配置时需要改编辑器文件夹下的文件才能生效</p>
+<p>jetty 用于 IDEA，单独安装 ，在运行的小箭头后边可以添加使用</p>
+<p>运行测试  – 以 netbeans 为例<br>新建项目 – &gt; 选择 java web , 然后填写项目信息 ， 然后选择 服务器和框架<br><img src="/2017/09/11/Java-爬坑手册/2017-09-11-06-47-49-59b6319546a9d.png" alt="新建项目"><br><img src="/2017/09/11/Java-爬坑手册/2017-09-11-06-47-57-59b6319d00ec4.png" alt="勾选框架"></p>
+<p>在 src / java 下新建包 net.controller ,然后新建类 HelloWorld </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> net.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> javax.annotation.Resource;</span><br><span class="line"><span class="keyword">import</span> net.model.Users;</span><br><span class="line"><span class="keyword">import</span> net.service.UsersService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> UsersService usersService;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        List user= usersService.findAll();</span><br><span class="line">        Users name = usersService.findById(<span class="number">1</span>);</span><br><span class="line">        modelAndView.getModel().put(<span class="string">"name"</span>, name);</span><br><span class="line">        modelAndView.addObject(<span class="string">"userlist"</span>, user);</span><br><span class="line">        </span><br><span class="line">        Boolean dele = usersService.deleteUserById(<span class="number">2</span>);</span><br><span class="line">        modelAndView.getModel().put(<span class="string">"delete"</span>, dele);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在 dispatcher-servlet 里添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-package=&quot;net.controller,net.model,net.mapper,net.service&quot;&gt; //动态装载</span><br><span class="line">    &lt;mvc:annotation-driven&gt; //mvc支持</span><br><span class="line">    </span><br><span class="line">    &lt;bean id=&quot;dataSource&quot; class=&quot;org.springframework.jdbc.datasource.DriverManagerDataSource&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/mblog&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;username&quot; value=&quot;root&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;password&quot; value=&quot;root&quot;&gt;</span><br><span class="line">    &lt;/property&gt;&lt;/property&gt;&lt;/property&gt;&lt;/property&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;</span><br><span class="line">        &lt;property name=&quot;configLocation&quot; value=&quot;/WEB-INF/mybatis-config.xml&quot;&gt;</span><br><span class="line">    &lt;/property&gt;&lt;/bean&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;basePackage&quot; value=&quot;net.mapper&quot;&gt;&lt;/property&gt;</span><br><span class="line">        &lt;property name=&quot;sqlSessionFactory&quot; ref=&quot;sqlSessionFactory&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h3><p>新建 – 通过数据库生成实体类<br><img src="/2017/09/11/Java-爬坑手册/2017-09-12-01-32-30-59b7392e52218.png" alt="生成实体类"></p>
+<p>需要配置一下数据库连接<br><img src="/2017/09/11/Java-爬坑手册/2017-09-12-01-32-47-59b7393fcc99e.png" alt="数据库连接"><br><img src="/2017/09/11/Java-爬坑手册/2017-09-12-01-32-54-59b7394666f0a.png" alt="数据库连接"><br><img src="/2017/09/11/Java-爬坑手册/2017-09-12-01-33-59-59b739876ffd1.png" alt="数据库连接"></p>
+<h3 id="新建mapper"><a href="#新建mapper" class="headerlink" title="新建mapper"></a>新建mapper</h3><p>在net包下边新建mapper包，然后新建 UsersMapper.java 和 usersMapper.xml </p>
+<p>UserMapper.java:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package net.mapper;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line">import net.model.Users;</span><br><span class="line"></span><br><span class="line">public interface UsersMapper &#123;</span><br><span class="line"></span><br><span class="line">    Users findById(int id);</span><br><span class="line"></span><br><span class="line">    List findAll();</span><br><span class="line">    </span><br><span class="line">    Boolean deleteUserById(int id);</span><br><span class="line">    </span><br><span class="line">    Boolean updateUserById(Users User);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>usersMapper.xml :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?--&gt;   </span><br><span class="line">&lt;mapper namespace=&quot;net.mapper.UsersMapper&quot;&gt;</span><br><span class="line">   </span><br><span class="line">    &lt;select id=&quot;findById&quot; parametertype=&quot;int&quot; resulttype=&quot;Users&quot;&gt;</span><br><span class="line">        select * from users where id = #&#123;id&#125;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;select id=&quot;findAll&quot; resulttype=&quot;Users&quot;&gt;</span><br><span class="line">        select * from users</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;delete id=&quot;deleteUserById&quot; parametertype=&quot;int&quot;&gt;</span><br><span class="line">        delete from users where id = #&#123;id&#125;</span><br><span class="line">    &lt;/delete&gt;</span><br><span class="line"></span><br><span class="line">    &lt;update id=&quot;updateUserById&quot; parametertype=&quot;User&quot;&gt;  </span><br><span class="line">        update users set name=#&#123;name&#125; where id=#&#123;id&#125;</span><br><span class="line">    &lt;/update&gt;  </span><br><span class="line">    </span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="新建service"><a href="#新建service" class="headerlink" title="新建service"></a>新建service</h3><p>新建UsersService.java 和 UsersServiceImpl.java</p>
+<p>UsersService.java：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package net.service;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line">import net.model.Users;</span><br><span class="line"></span><br><span class="line">public interface UsersService &#123;</span><br><span class="line">    public Users findById(int id);</span><br><span class="line">    </span><br><span class="line">    public List findAll();</span><br><span class="line">    </span><br><span class="line">    public Boolean deleteUserById(int id);</span><br><span class="line">    </span><br><span class="line">    public Boolean updateUserById(Users User);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>UsersServiceImpl.java:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package net.service;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line">import net.mapper.UsersMapper;</span><br><span class="line">import net.model.Users;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line">@Service</span><br><span class="line">public class UsersServiceImpl implements UsersService&#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private UsersMapper usersMapper;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public Users findById(int id) &#123;</span><br><span class="line">        return usersMapper.findById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public List findAll() &#123;</span><br><span class="line">        return usersMapper.findAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Boolean deleteUserById(int id) &#123;</span><br><span class="line">        return usersMapper.deleteUserById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Boolean updateUserById(Users User) &#123;</span><br><span class="line">        return usersMapper.updateUserById(User);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再新建配置文件 mybatis-config.xml ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?--&gt;  </span><br><span class="line">  </span><br><span class="line">&lt;configuration&gt;  </span><br><span class="line">  </span><br><span class="line">    &lt;typealiases&gt;  </span><br><span class="line">        &lt;typealias alias=&quot;Users&quot; type=&quot;net.model.Users&quot;&gt;  </span><br><span class="line">    &lt;/typealias&gt;&lt;/typealiases&gt;  </span><br><span class="line">    &lt;mappers&gt;  </span><br><span class="line">        &lt;mapper resource=&quot;net/mapper/usersMapper.xml&quot;&gt;  </span><br><span class="line">    &lt;/mapper&gt;&lt;/mappers&gt;  </span><br><span class="line">  </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后hello.jsp 中调用数据 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@page contentType=&quot;text/html&quot; pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Welcome to Spring Web MVC project&lt;/title&gt;</span><br><span class="line">&lt;p&gt;Hello! $&#123;name&#125;.&lt;/p&gt;</span><br><span class="line">&lt;p&gt;$&#123;delete&#125;&lt;/p&gt;</span><br><span class="line">&lt;h1&gt;Hello $&#123;name.getName()&#125;!&lt;/h1&gt;</span><br><span class="line">&lt;c:foreach items=&quot;$&#123;userlist&#125;&quot; var=&quot;node&quot;&gt;</span><br><span class="line">    &lt;c:out value=&quot;$&#123;node.getName()&#125;&quot;&gt;&lt;/c:out&gt;&lt;br&gt;</span><br><span class="line">&lt;/c:foreach&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2017/9/14 14：21 –  更新张截图，最后成功时所引入的包<br><img src="/2017/09/11/Java-爬坑手册/2017-09-14-06-22-41-59ba2031b01c2.png" alt="包"></p>
+<p>如果出现 Could not get JDBC Connection; nested exception is com.mysql.jdbc.exceptions 这个报错<br>请检查你的 mysql 是否能够正常连接</p>
+
+        <p class="article-more-link">
+            <a class="dashang" href="javascript:;">小额打赏</a>
+        </p>   
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-吃货就该走到哪儿吃到哪儿" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/28/吃货就该走到哪儿吃到哪儿/" class="article-date">
+  <time datetime="2017-03-28T01:24:55.000Z" itemprop="datePublished">2017-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/闲言赘语/">闲言赘语</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/28/吃货就该走到哪儿吃到哪儿/">吃货就该走到哪儿吃到哪儿</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1号去4号回，哈哈哈~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以下内容写自武汉游回来。2017年04月08</span><br></pre></td></tr></table></figure>
+<p>从4年前开始，就一直怀揣着一个梦，想要多出去走走。</p>
+<p>年轻嘛，心里难免躁动</p>
+<p>在准备了一年多后，终于开始了第一次出行，和我好基友逗斌，目标拉萨。</p>
+<p>说是准备，其实也就是看看攻略，心里大概有了点儿都要去哪儿玩，需要准备什么东西的逼数。</p>
+<p>到了要去了，又发现我做的准备根本就行不通，因为时间只有一周，而我之前看的全是徒步。</p>
+<p>这也有点儿太逗逼了，而且那时美团也不会用，住房什么的也不会定，最后还是斌子在贴吧上找的，出行计划也是斌子做的。</p>
+<p>而我，又简单的扒拉了两篇攻略，凭着一股子250 plus的愣劲儿，就硬生生的窃取并享受了斌子的劳动成果。<br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/黑线.gif" alt="黑线"> </p>
+<p>38小时的硬座和不断增高的海拔简直是种折磨，好在沿途的风景真的很美，咬咬牙也就撑过去了。</p>
+<p>那时候没什么钱，（现在也没什么钱）也不会拍照，更重要的一点是还不会玩！</p>
+<p>现在想想，有点儿对不住去一趟的折腾。</p>
+<p>去的这几天，尝了尝藏面、青稞面、酥油茶，去的都是不起眼的藏族小馆子，应该挺正宗。</p>
+<p>还在布宫前边吃了冻奶还是啥的，不过挺坑爹，就是个小雪糕。</p>
+<p>玩的地方不多，去了趟布宫，因为没提前订票，也就在外边广场转转，然后跑去八廓街逛了逛，买了串散的菩提珠子，又跟去时遇到的冲哥燕姐一起去玛吉阿米西餐厅奢侈了一把，喝了壶青稞酒，吃了好多带点儿藏族色彩的“西餐”。当时好像有个什么展览在博物馆，所以就走过去看了看。</p>
+<p>哦，还有拉萨河，当时其实想去西藏大学来着，被门卫拦了。</p>
+<p>回来的前一天晚上，琢磨着不能就这么走了呀，又打车去了趟布宫，沿着布宫走了一圈，一边走一边聊理想、聊未来，也乐在其中。当时还遇到个弹吉他的胖哥哥，斌子录了视频在微博，好听极了。</p>
+<p>可能我就是从那儿回来后，开始喜欢听民谣的。</p>
+<p>当年录的视频地址：<a href="http://t.cn/RhkI899/" target="_blank" rel="noopener">This link</a></p>
+<p>回来的火车上，围着我和斌子一圈都是老乡，两女一男，再加上我们俩。</p>
+<p>那老哥30来岁，一路狂飚装逼模式，说他爬了珠峰，带下来一桶珠峰雪水，去了阿里转了山、请了愿等等等等。</p>
+<p>期间对我和斌子冷嘲热讽，我琢磨着他这么不遗余力可能是因为两点，一是想在俩妹子面前显摆，因为他一直说要不是结婚了，非要把其中一个妹子给收了不成，二是见我们俩才20出头，啥都没有就敢去西藏，而他却等到30才敢动身，嫉妒！</p>
+<p>被人冷嘲热讽了一路，我照单全收了，因为我觉得多听听人家怎么玩的也算是种成长吧，现在想想，也确实是种成长。</p>
+<p>这两张是我拍的，并不懂构图什么的，只能瞎拍着玩玩。<br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/cloud.jpg" alt="藏区的白云"><br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/mou.jpg" alt="牦牛"></p>
+<p>这张是逗斌拍的，美不胜收，但是绝对是瞎猫碰上死耗子！<br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/秋水长天.jpg" alt="秋水长天"></p>
+<p>回来前一夜拍的布宫夜景。<br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/布宫夜景1.jpg" alt="布宫夜景"><br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/布宫夜景2.jpg" alt="布宫夜景"></p>
+<p>去布宫是带着使命去的，大学两年了，觉得自己一无是处，整天浑浑噩噩，什么也学不会，什么也都不想学，都说去拉萨是趟净化心灵之旅，我信了。</p>
+<p>可能也真的管用了吧。因为后来的两年大学生活也算是没有白费。</p>
+<p>在学校时，去了好多趟吴江，都是学校组织的暑假打工和实习。</p>
+<p>吴江有个同里古镇，离厂区不远。</p>
+<p>但是去了几趟吴江，一直都没过去，人太懒，也觉得这么多人都起着哄过去，俗不俗啊，哥可是去拉萨的人。</p>
+<p>最后一年实习，逗斌坐不住了，去了这么多趟，江苏有名的白鱼白虾和银鱼是啥味儿还没尝过，这边这么多好吃的也都不知道什么味儿呢。</p>
+<p>这实习过就要毕业了，以后再来可不知道是哪一年。</p>
+<p>就这么在斌子的“敦促”下，大家伙一商量，去了，晚上在同里吃了个“夜市”吧，还挺有感觉。</p>
+<p>再加上吃货女朋友的“调教”，我心里就开始琢磨着，既然想要多出去转转，那为啥不能去一个地方，就先把那地方好吃的都给尝尝呢。</p>
+<p>吃货的种子就是这么根深蒂固的。</p>
+<p>那天晚上的氛围很美，我想我应该会记到老。<br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/西瓜.jpg" alt="西瓜"></p>
+<p>后来女朋友考到新乡，先是偷偷摸摸的查了查，发现也没什么特别好吃的，也就没怎么注意。</p>
+<p>去万仙山爬山时啥也没吃到，倒是在她们学校门口吃了不少好吃的，遗憾的是都是外来的，没有新乡特色。</p>
+<p>清明节计划着去武汉，提前查了查都有什么好吃的，以及有哪些出名的小吃街，因为时间关系，最后就决定去趟户部巷就行了，有什么好吃的应该也能吃个遍了。</p>
+<p>想不到的是，到户部巷一去就收不住了，仅着没吃过的，从早上10点吃到中午有俩小时吧，晚上要去长江大桥看看夜景，结果到了发现走错了，爬到了大桥上，去江边要从户部巷穿过去，然后理所当然的又吃了一次。</p>
+<p>不得不说，好吃的太多了，要不是钱不够，我非得一样不落地从街头吃到街尾。<br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/排骨.jpg" alt="排骨"><br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/还是排骨.jpg" alt="还是排骨"></p>
+<p>最后一天要回来时，买的武昌站晚上的车票，中午过去就去辛亥革命纪念馆转了转，但是一个没忍住，3刷了户部巷。</p>
+<p>我现在深深的后悔没去昙华林啊吉庆街啊什么的！</p>
+<p>烧卖，那家店的招牌上写的是烧梅。<br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/烧卖.jpg" alt="烧卖"></p>
+<p>吃到一半才想起来要拍照的猪蹄，好吃极了，我以后会爱上吃猪蹄。<br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/猪蹄.jpg" alt="猪蹄"></p>
+<p>长沙的臭豆腐，我也搞不懂为啥这里卖的也这么多，还有很多照片，就不放了，一张张的看过去对我太残忍……<br><img src="/2017/03/28/吃货就该走到哪儿吃到哪儿/臭豆腐.jpg" alt="臭豆腐"></p>
+<p>我也算是在吃的路上一去不返了，刚才跟另一个好基友聊天，说等我去上海了请我吃拉面（在吴江打工的期间，我喜欢上了吃拉面），我说我要先去逛吃逛吃逛吃，基友给我发了下边的表情，白眼可不可以收起来嘛……</p>
+<p>年轻人就该多转转，年轻的吃货更应该走到哪儿吃到哪儿！</p>
+
+        <p class="article-more-link">
+            <a class="dashang" href="javascript:;">小额打赏</a>
+        </p>   
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/吃吃吃/">吃吃吃</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
 
 
