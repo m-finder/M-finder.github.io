@@ -58,7 +58,7 @@
             <div id="search-form-wrap" class="">
                 <form action="//baidu.com/s" method="get" accept-charset="UTF-8" class="search-form">
                     <input type="search" name="wd" class="search-form-input" placeholder="Search">
-                    <input type="hidden" name="site:" value="http://www.m-finder.com">
+                    <input type="hidden" name="site:" value="https://www.m-finder.com">
                     <button type="submit" class="search-form-submit">&#xF002;</button>
                 </form>
             </div>
@@ -71,7 +71,7 @@
     <a href="/2018/02/08/openssl-pkey-get-private-内存泄漏/" class="article-date">
   <time datetime="2018-02-07T23:31:16.000Z" itemprop="datePublished">2018-02-08</time>
 </a>
-    
+      
   <div class="article-category">
     <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
   </div>
@@ -79,20 +79,20 @@
   </div>
   <div class="article-inner">
     
-    
-      <header class="article-header">
-        
+      
+        <header class="article-header">
+          
   
     <h1 class="article-title" itemprop="name">
       openssl_pkey_get_private 内存泄漏
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>从前，有一块使用 swoole_process 做多线程处理的程序，这个程序有一个奇怪的问题：每运行一个星期左右都会因为内存爆表而停掉。</p>
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>从前，有一块使用 swoole_process 做多线程处理的程序，这个程序有一个奇怪的问题：每运行一个星期左右都会因为内存爆表而停掉。</p>
 <p>因为爆表的时间关系，开发的小伙伴们都认为是这段使用 swoole_process 的程序有问题，几经更新改版，代码已经趋于完美，平稳的运行了几天后，小伙伴们终于都松了一口气，终于解决了这个问题。</p>
 <p>然而，伴随着百年难遇的血月，这块程序还是在一个意想不到的时间又爆了一次，小伙伴们终于意识到，问题的根本并不在这里，想要找出并改掉这个问题，是何等艰难！但是他们知道，真相只有一个！</p>
 <p>又经过几天的排查，凶手终于浮出水面！</p>
@@ -104,17 +104,17 @@
 <p>前线专家点评：纯属冤案，哪儿特么这么容易泄漏，都是因为自己写的不规范！</p>
 <p>注：生成公私钥是需要消耗内存的，每次脚本执行结束后会释放掉，但是常驻内存的脚本没有释放的机会，所以每次循环调用都会造成内存增加，持续增加到一定量后系统也就崩了。<br>所以解决办法是在循环开始之前就把密钥生成好。</p>
 
-        <p class="article-more-link">
-            <a class="dashang" href="javascript:;">小额打赏</a>
-        </p>   
-      
-    </div>
-    <footer class="article-footer">
-      
-      
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+            
+                
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openssl/">openssl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swoole/">swoole</a></li></ul>
 
-    </footer>
+          </footer>
   </div>
   
     
@@ -137,15 +137,21 @@
   
 </nav>
 
-  
+      
 </article>
 
 
-
-
-
-
-</section>
+  <section id="comments">
+    <div id="SOHUCS" sid="请将此处替换为配置SourceID的语句"></div>
+    <script type="text/javascript"> 
+      (function () {
+        var appid = 'cyty1Pt2F';
+        var conf = 'prod_bab62ce514b78e635471dd0544889c5d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) { window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs = function (d, a) { var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement; var b = document.createElement("script"); b.setAttribute("type", "text/javascript"); b.setAttribute("charset", "UTF-8"); b.setAttribute("src", d); if (typeof a === "function") { if (window.attachEvent) { b.onreadystatechange = function () { var e = b.readyState; if (e === "loaded" || e === "complete") { b.onreadystatechange = null; a() } } } else { b.onload = a } } c.appendChild(b) }; loadJs("http://changyan.sohu.com/upload/changyan.js", function () { window.changyan.api.config({ appid: appid, conf: conf }) }); }
+      })(); </script>
+    
+  </section></section>
                 
                   <aside id="sidebar">
 	<div class="widget-wrap">

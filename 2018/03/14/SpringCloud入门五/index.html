@@ -58,7 +58,7 @@
             <div id="search-form-wrap" class="">
                 <form action="//baidu.com/s" method="get" accept-charset="UTF-8" class="search-form">
                     <input type="search" name="wd" class="search-form-input" placeholder="Search">
-                    <input type="hidden" name="site:" value="http://www.m-finder.com">
+                    <input type="hidden" name="site:" value="https://www.m-finder.com">
                     <button type="submit" class="search-form-submit">&#xF002;</button>
                 </form>
             </div>
@@ -71,7 +71,7 @@
     <a href="/2018/03/14/SpringCloud入门五/" class="article-date">
   <time datetime="2018-03-14T02:45:39.000Z" itemprop="datePublished">2018-03-14</time>
 </a>
-    
+      
   <div class="article-category">
     <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
   </div>
@@ -79,20 +79,20 @@
   </div>
   <div class="article-inner">
     
-    
-      <header class="article-header">
-        
+      
+        <header class="article-header">
+          
   
     <h1 class="article-title" itemprop="name">
       SpringCloud入门五-配置中心
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Spring Cloud Config 用来为分布式系统中的基础设施和微服务应用提供集中化的外部配置支持，分为服务端和客户端两个部分。<br>其中服务端也成为分布式配置中心，是一个独立的微服务应用，用来连接配置仓库并为客户端提供配置信息、加解密等访问接口；客户端则是微服务架构中的各个微服务应用或基础设施，通过指定的配置中心来管理应用资源与业务相关的配置内容，并在启动的时候从配置中心获取和加载配置信息。</p>
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>Spring Cloud Config 用来为分布式系统中的基础设施和微服务应用提供集中化的外部配置支持，分为服务端和客户端两个部分。<br>其中服务端也成为分布式配置中心，是一个独立的微服务应用，用来连接配置仓库并为客户端提供配置信息、加解密等访问接口；客户端则是微服务架构中的各个微服务应用或基础设施，通过指定的配置中心来管理应用资源与业务相关的配置内容，并在启动的时候从配置中心获取和加载配置信息。</p>
 <a id="more"></a>
 <h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>比较简单，直接创建新项目，勾选config组件。<br><img src="/2018/03/14/SpringCloud入门五/创建.png" alt="创建"></p>
 <p>在入口类加入注解：@EnableConfigServer</p>
@@ -128,17 +128,17 @@
 <p><img src="/2018/03/14/SpringCloud入门五/注册client.png" alt="注册client"></p>
 <p><img src="/2018/03/14/SpringCloud入门五/运行结果.png" alt="运行结果"></p>
 
-        <p class="article-more-link">
-            <a class="dashang" href="javascript:;">小额打赏</a>
-        </p>   
-      
-    </div>
-    <footer class="article-footer">
-      
-      
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+            
+                
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
 
-    </footer>
+          </footer>
   </div>
   
     
@@ -161,15 +161,21 @@
   
 </nav>
 
-  
+      
 </article>
 
 
-
-
-
-
-</section>
+  <section id="comments">
+    <div id="SOHUCS" sid="请将此处替换为配置SourceID的语句"></div>
+    <script type="text/javascript"> 
+      (function () {
+        var appid = 'cyty1Pt2F';
+        var conf = 'prod_bab62ce514b78e635471dd0544889c5d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) { window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs = function (d, a) { var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement; var b = document.createElement("script"); b.setAttribute("type", "text/javascript"); b.setAttribute("charset", "UTF-8"); b.setAttribute("src", d); if (typeof a === "function") { if (window.attachEvent) { b.onreadystatechange = function () { var e = b.readyState; if (e === "loaded" || e === "complete") { b.onreadystatechange = null; a() } } } else { b.onload = a } } c.appendChild(b) }; loadJs("http://changyan.sohu.com/upload/changyan.js", function () { window.changyan.api.config({ appid: appid, conf: conf }) }); }
+      })(); </script>
+    
+  </section></section>
                 
                   <aside id="sidebar">
 	<div class="widget-wrap">
