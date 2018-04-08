@@ -66,7 +66,149 @@
     </div>
 </header>
             <div class="outer">
-                <section id="main"></section>
+                <section id="main"><article id="post-SpringCloud入门五" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/14/SpringCloud入门五/" class="article-date">
+  <time datetime="2018-03-14T02:45:39.000Z" itemprop="datePublished">2018-03-14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      SpringCloud入门五-配置中心
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>Spring Cloud Config 用来为分布式系统中的基础设施和微服务应用提供集中化的外部配置支持，分为服务端和客户端两个部分。<br>其中服务端也成为分布式配置中心，是一个独立的微服务应用，用来连接配置仓库并为客户端提供配置信息、加解密等访问接口；客户端则是微服务架构中的各个微服务应用或基础设施，通过指定的配置中心来管理应用资源与业务相关的配置内容，并在启动的时候从配置中心获取和加载配置信息。</p>
+<a id="more"></a>
+<h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>比较简单，直接创建新项目，勾选config组件。<br><img src="/2018/03/14/SpringCloud入门五/创建.png" alt="创建"></p>
+<p>在入口类加入注解：@EnableConfigServer</p>
+<p>然后填写配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=Config-server</span><br><span class="line">server.port=8087</span><br><span class="line"></span><br><span class="line">spring.cloud.config.server.git.uri=https://github.com/M-finder/Spring-Cloud-demo</span><br><span class="line">spring.cloud.config.server.git.searchPaths=config</span><br><span class="line">spring.cloud.config.label=master</span><br><span class="line">spring.cloud.config.server.git.username= your name</span><br><span class="line">spring.cloud.config.server.git.password= your password</span><br></pre></td></tr></table></figure></p>
+<p>spring.cloud.config.server.git.uri 是指配置文件在git存放的仓库地址<br>spring.cloud.config.server.git.searchPaths是指配置文件存放的路径</p>
+<p>配置信息写好以后去git仓库创建好对应文件夹，然后在文件夹中创建几个.properties文件，<br><img src="/2018/03/14/SpringCloud入门五/didispace.png" alt="properties文件"></p>
+<p>分别写入内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from=git-default-1.0</span><br><span class="line">from=git-dev-1.0</span><br><span class="line">from=git-prod-1.0</span><br><span class="line">from=git-test-1.0</span><br></pre></td></tr></table></figure></p>
+<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>打开浏览器，访问 loclahost:8087/didispace/test/master，会看到如下结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;name&quot;: &quot;didispace&quot;,</span><br><span class="line">	&quot;profiles&quot;: [&quot;test&quot;],</span><br><span class="line">	&quot;label&quot;: &quot;master&quot;,</span><br><span class="line">	&quot;version&quot;: &quot;08c7404292ea951981e9430e49f923b4d8530f78&quot;,</span><br><span class="line">	&quot;state&quot;: null,</span><br><span class="line">	&quot;propertySources&quot;: [&#123;</span><br><span class="line">		&quot;name&quot;: &quot;https://github.com/M-finder/Spring-Cloud-demo/config/didispace-test.properties&quot;,</span><br><span class="line">		&quot;source&quot;: &#123;</span><br><span class="line">			&quot;from&quot;: &quot;git-test-1.0&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		&quot;name&quot;: &quot;https://github.com/M-finder/Spring-Cloud-demo/config/didispace.properties&quot;,</span><br><span class="line">		&quot;source&quot;: &#123;</span><br><span class="line">			&quot;from&quot;: &quot;git-default-1.0&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><em><font color="red">注：访问的url对应以下格式</font></em></p>
+<ul>
+<li>/{application}/{profile}[/{label}]</li>
+<li>/{application}-{profile}.yml</li>
+<li>/{application}-{profile}.properties</li>
+<li>/{lable}/{application}-{profile}.properties</li>
+</ul>
+<p>配置服务器从git拿到配置信息以后，会在本地缓存一份，当git仓库故障时也可以加载到配置信息。</p>
+<h4 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h4><p>创建一个新的config-client项目，新建一个Controller：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class ConfigClientController &#123;</span><br><span class="line">    @Value(&quot;$&#123;from&#125;&quot;)</span><br><span class="line">    private String from;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(&quot;/from&quot;)</span><br><span class="line">    public String from() &#123;</span><br><span class="line">        return this.from;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>新建配置文件bootstrap.properties：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=didispace</span><br><span class="line">spring.application.config.profile=dev</span><br><span class="line">spring.application.config.label=master</span><br><span class="line">spring.application.config.uri=http://localhost:8087</span><br><span class="line">setver.port=8088</span><br></pre></td></tr></table></figure></p>
+<p>启动服务查看效果：<br><img src="/2018/03/14/SpringCloud入门五/结果.png" alt="结果"></p>
+<p>这里会有很多坑，Could not resolve placeholder ‘from’ in value “${from}” 什么什么的。<br>第一，请先确认git端的文件名是否和配置文件中的spring.application.name一致;<br>第二，确认git端文件返回的数据名字是否为from;<br>第三，确认配置文件是否名为bootstrap；<br>第四，确认是否把高可用的配置掺进来了。</p>
+<h4 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h4><p>像服务注册中心一样，配置中心也可以通过负载均衡来实现高可用，高可用的实现主要有两种方式：</p>
+<ul>
+<li>传统模式<br>  将所有server都指向同一个git库，客户端指定server位置时，只需要配置server上层的负载均衡的设备地址即可。</li>
+<li>服务模式<br>  将server作为一个普通的微服务应用，纳入服务注册中心的管理，这样就可以通过配置中心的服务名来获取配置信息，比传统模式更利于维护。</li>
+</ul>
+<p><img src="/2018/03/14/SpringCloud入门五/高可用.png" alt="传统模式的高可用配置"></p>
+<h4 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h4><p>指定服务中心的方式就相当于上边的例子，那么再来试一下服务模式吧：</p>
+<p>在server 和 client 的配置文件中加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>server的配置文件中添加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eureka.client.serviceUrl.defaultZone=http://localhost:8081/eureka/</span><br></pre></td></tr></table></figure></p>
+<p>这个时候重启的话，可以看到服务中心已经注册了配置中心的服务：<br><img src="/2018/03/14/SpringCloud入门五/注册配置中心.png" alt="注册配置中心"></p>
+<p>client的配置文件改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=didispace</span><br><span class="line">spring.cloud.config.label=master</span><br><span class="line">spring.cloud.config.profile=dev</span><br><span class="line"></span><br><span class="line">eureka.client.serviceUrl.defaultZone=http://localhost:8081/eureka/</span><br><span class="line">spring.cloud.config.discovery.enabled=true</span><br><span class="line">spring.cloud.config.discovery.serviceId=Config-server</span><br><span class="line">server.port=8088</span><br></pre></td></tr></table></figure></p>
+<p>重启，刷新，ok。</p>
+<p><img src="/2018/03/14/SpringCloud入门五/注册client.png" alt="注册client"></p>
+<p><img src="/2018/03/14/SpringCloud入门五/运行结果.png" alt="运行结果"></p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+            
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
+
+          </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/14/Pjax的正确使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Pjax的正确使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/12/SpringCloud入门四/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SpringCloud入门四-路由</div>
+    </a>
+  
+</nav>
+
+      
+</article>
+
+
+  <section id="comments">
+    <!--PC和WAP自适应版-->
+    <div id="SOHUCS"></div>
+    <script>
+      (function() {
+     var appid = 'cyty1Pt2F';
+     var conf = 'prod_bab62ce514b78e635471dd0544889c5d';
+     var width = window.innerWidth || document.documentElement.clientWidth;
+     if (width < 960) {
+       window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+     } else {
+       var loadJs = function(d, a) {
+         var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+         var b = document.createElement("script");
+         b.setAttribute("type", "text/javascript");
+         b.setAttribute("charset", "UTF-8");
+         b.setAttribute("src", d);
+         if (typeof a === "function") {
+           if (window.attachEvent) {
+             b.onreadystatechange = function() {
+               var e = b.readyState;
+               if (e === "loaded" || e === "complete") {
+                 b.onreadystatechange = null;
+                 a()
+               }
+             }
+           } else {
+             b.onload = a
+           }
+         }
+         c.appendChild(b)
+       };
+       loadJs("https://changyan.sohu.com/upload/changyan.js",
+       function() {
+         window.changyan.api.config({
+           appid: appid,
+           conf: conf
+         })
+       });
+     }
+   })();
+   </script>
+  </section>
+</section>
                 
                   <aside id="sidebar">
 	<div class="widget-wrap">
