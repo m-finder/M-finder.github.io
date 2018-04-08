@@ -264,20 +264,20 @@
         ,version: false
     }).extend({
         index: 'index'
-        ,pjax: 'pjax'
-    }).use(['pjax','index'],function (){
-        var $ = layui.jquery;
-            $(function () {
-                $(document).pjax('a', '#main',{fragment:'#main'});
-                $(document).on('pjax:start', function () {
-                    NProgress.start();
-                });
-                $(document).on('pjax:end', function () {
-                    NProgress.done();
-                });
+    }).use(['index']);
+    // ,function (){
+    //     var $ = layui.jquery;
+    //         $(function () {
+    //             $(document).pjax('a', '#main',{fragment:'#main'});
+    //             $(document).on('pjax:start', function () {
+    //                 NProgress.start();
+    //             });
+    //             $(document).on('pjax:end', function () {
+    //                 NProgress.done();
+    //             });
                 
-            });
-    });
+    //         });
+    // }
 </script>
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
