@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+
+        
+        <title>SpringCloud入门四-路由 | M-finder</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+            <meta name="keywords" content="SpringCloud入门四-路由 | M-finder" />
+        
+        
+            <meta name="description" content="M-finder - 删繁就简，发现更多">
+            <meta name="searchtitle" content="M-finder - 删繁就简，发现更多" />
+        
+        
+          <link rel="icon" href="/images/favicon.ico">
+        
+        <link rel="stylesheet" href="/css/css.css">
+        <link rel="stylesheet" href="/js/layui/css/layui.css">
+    </head>
+
+<body>
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+              <a href="/" id="logo">M-finder</a>
+            </h1>
+            
+                <h2 id="subtitle-wrap">删繁就简，发现更多</h2>
+            
+      </div>
+      <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <a class="main-nav-link" href="/">博客首页</a>
+                
+                    <a class="main-nav-link" href="/categories/码不能停">码不能停</a>
+                
+                    <a class="main-nav-link" href="/categories/测试区">测试区</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                <a id="nav-search-btn" class="nav-icon" title="搜索" style="display:none"></a>
+            </nav>
+            <div id="search-form-wrap" class="">
+                <form action="//baidu.com/s" method="get" accept-charset="UTF-8" class="search-form">
+                    <input type="search" name="wd" class="search-form-input" placeholder="Search">
+                    <input type="hidden" name="site:" value="https://www.m-finder.com">
+                    <button type="submit" class="search-form-submit">&#xF002;</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+            <div class="outer">
+                <section id="main"><article id="post-SpringCloud入门四" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/12/SpringCloud入门四/" class="article-date">
+  <time datetime="2018-03-12T01:59:25.000Z" itemprop="datePublished">2018-03-12</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      SpringCloud入门四-路由
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>前边几篇介绍的都是spring cloud netflix 下的核心组件，通过这几个组件已经可以构建起一个简单的微服务架构系统，虽然用这套架构实现系统功能已经完全没问题，但还是存在一些问题会使运维和开发感到痛苦。比如路由规则。</p>
+<p>为了解决这个问题，API网关的概念应运而生。</p>
+<p>它的存在就像是整个微服务架构系统的门面一样，所有外部客户端的访问都需要经过它的过滤和筛选。在spring大礼包中，它的存在就是API网关组件——Spring Cloud Zuul。</p>
+<a id="more"></a>
+<h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>新建项目，勾选server和zuul组件，然后在主类添加注解：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableZuulProxy</span><br><span class="line">public class ZuulApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(ZuulApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>添加配置内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=Zuul-service</span><br><span class="line">server.port=8086</span><br><span class="line">eureka.instance.hostname=localhost</span><br><span class="line">eureka.client.serviceUrl.defaultZone=http://$&#123;eureka.instance.hostname&#125;:8081/eureka/</span><br><span class="line"></span><br><span class="line">#定义路由转发</span><br><span class="line">zuul.routes.api-a.path=/api-a/**</span><br><span class="line">zuul.routes.api-a.url=http://localhost:8082/</span><br></pre></td></tr></table></figure></p>
+<p><em><font color="red">注：</font></em><br>定义路由转发一定不要忘了后边的两个**，否则就会出现下边的画面：<br><img src="/2018/03/12/SpringCloud入门四/errorpage.png" alt="404"></p>
+<h4 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h4><p>很明显，上边的路由配置对我们来说并不友好，同样需要我们花费大量事件去维护各个路由的path和url的关系，所以下边就把它改为面向服务的配置方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zuul.routes.api-a.path=/api-a/**</span><br><span class="line">zuul.routes.api-a.serviceId=Client-service</span><br><span class="line"></span><br><span class="line">zuul.routes.api-b.path=/api-b/**</span><br><span class="line">zuul.routes.api-b.serviceId=Feign-service</span><br></pre></td></tr></table></figure></p>
+<p>重启完直接访问 localhost:8086/api-b/hi?name=wu，刷新页面，会看到在两个端口上自动切换。我们的目的也就达到了。</p>
+<h4 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h4><p>请求路由功能实现以后，所有的请求都会毫无保留的转发个具体的应用并返回结果，安全起见，我们需要对请求进行检查。</p>
+<p>创建新类 zuulFilter:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class zuulFilter extends ZuulFilter &#123;</span><br><span class="line"></span><br><span class="line">    private static org.slf4j.Logger log = LoggerFactory.getLogger(zuulFilter.class);</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String filterType()&#123;</span><br><span class="line">        return &quot;pre&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int filterOrder()&#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean shouldFilter() &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public Object run() &#123;</span><br><span class="line">        RequestContext ctx = RequestContext.getCurrentContext();</span><br><span class="line">        HttpServletRequest request = ctx.getRequest();</span><br><span class="line"></span><br><span class="line">        Object accessToken = request.getParameter(&quot;token&quot;);</span><br><span class="line"></span><br><span class="line">        if(accessToken == null) &#123;</span><br><span class="line">            ctx.setSendZuulResponse(false);</span><br><span class="line">            ctx.setResponseStatusCode(401);</span><br><span class="line">            ctx.setResponseBody(&quot;your token is empty&quot;);</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        log.info(&quot;token is ok&quot;);</span><br><span class="line">        log.info(accessToken.toString());</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>filterType：过滤器的类型，决定了过滤器在请求的哪个声明周期执行。这里定义为pre表示请求被路由执行之前执行。</li>
+<li>filterOrder：过滤器的执行顺序。需要执行多个过滤器时使用。</li>
+<li>shouldFilter：判断过滤器是否需要被执行。这里直接返回true，对所有请求生效。</li>
+<li>run：过滤器的具体逻辑。</li>
+</ul>
+<p><img src="/2018/03/12/SpringCloud入门四/gif.gif" alt="执行结果"></p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+            
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
+
+          </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/14/SpringCloud入门五/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SpringCloud入门五-配置中心
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/11/LNMP环境搭建教程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CentOS 7.2 64位安装LNMP php7+Mysql 5.7搭建教程</div>
+    </a>
+  
+</nav>
+
+      
+</article>
+
+
+  <section id="comments">
+    <!--PC和WAP自适应版-->
+    <div id="SOHUCS"></div>
+    <script>
+      (function() {
+     var appid = 'cyty1Pt2F';
+     var conf = 'prod_bab62ce514b78e635471dd0544889c5d';
+     var width = window.innerWidth || document.documentElement.clientWidth;
+     if (width < 960) {
+       window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+     } else {
+       var loadJs = function(d, a) {
+         var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+         var b = document.createElement("script");
+         b.setAttribute("type", "text/javascript");
+         b.setAttribute("charset", "UTF-8");
+         b.setAttribute("src", d);
+         if (typeof a === "function") {
+           if (window.attachEvent) {
+             b.onreadystatechange = function() {
+               var e = b.readyState;
+               if (e === "loaded" || e === "complete") {
+                 b.onreadystatechange = null;
+                 a()
+               }
+             }
+           } else {
+             b.onload = a
+           }
+         }
+         c.appendChild(b)
+       };
+       loadJs("https://changyan.sohu.com/upload/changyan.js",
+       function() {
+         window.changyan.api.config({
+           appid: appid,
+           conf: conf
+         })
+       });
+     }
+   })();
+   </script>
+  </section>
+</section>
+                
+                  <aside id="sidebar">
+	<div class="widget-wrap">
+		<h3 class="widget-title">广告位</h3>
+		<div class="widget" >
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- M-finder -->
+			<ins class="adsbygoogle"
+				 style="display:block"
+				 data-ad-client="ca-pub-3280933721783945"
+				 data-ad-slot="2496953790"
+				 data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	</div>    
+	
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/测试区/">测试区</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/码不能停/">码不能停</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲言赘语/">闲言赘语</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Layim/">Layim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui/">layui</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/">openssl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swoole/">swoole</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吃吃吃/">吃吃吃</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新年快乐/">新年快乐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲言赘语/">闲言赘语</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Docker/" style="font-size: 12px;">Docker</a> <a href="/tags/Hexo/" style="font-size: 14px;">Hexo</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Layim/" style="font-size: 10px;">Layim</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringCloud/" style="font-size: 18px;">SpringCloud</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/laravel/" style="font-size: 12px;">laravel</a> <a href="/tags/layui/" style="font-size: 14px;">layui</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 16px;">php</a> <a href="/tags/swoole/" style="font-size: 10px;">swoole</a> <a href="/tags/test/" style="font-size: 14px;">test</a> <a href="/tags/吃吃吃/" style="font-size: 10px;">吃吃吃</a> <a href="/tags/新年快乐/" style="font-size: 10px;">新年快乐</a> <a href="/tags/闲言赘语/" style="font-size: 10px;">闲言赘语</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/28/Docker使用教程-入门/">Docker使用教程-入门</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/28/CentOS内核升级4-4-12教程/">CentOS内核升级4.4.12教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/27/Docker安装教程/">Docker安装教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/23/结合layui流加载实现的瀑布流/">结合layui流加载实现的瀑布流</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/19/SpringCloud入门六/">SpringCloud入门六-消息总线</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+
+    
+        <div class="widget-wrap">
+            <h3 class="widget-title">友情链接</h3>
+            <div class="widget" >
+                <ul>
+                    
+                        <li>
+                            <a href="http://www.aprilblank.com" title="AprilBlank" target="_blank" rel="noopener">AprilBlank</a>
+                        </li>
+                    
+                        <li>
+                            <a href="http://blog.csdn.net/qq_27948659" title="大白" target="_blank" rel="noopener">大白</a>
+                        </li>
+                    
+                        <li>
+                            <a href="https://www.yyblogs.net/" title="大槐树" target="_blank" rel="noopener">大槐树</a>
+                        </li>
+                    
+                        <li>
+                            <a href="http://www.sgclzqq.com/" title="Sgclzqq" target="_blank" rel="noopener">Sgclzqq</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    
+</aside>
+                
+            </div>
+            <footer class="footer">
+    
+
+    <div class="footavatar site-footer clearfix u-textAlignCenter">
+        <img src="/images/logo.gif">
+        <ul class="footinfo">
+            <p class="fname"><a>M-finder</a></p>
+            <p class="finfo">南瓜不说话，默默地成长着</p>
+        </ul>
+    </div>
+    <div class="Copyright">
+        <br><p>
+            <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=c4f068d3baefa9f0e31f6271d9bebe70e542830dd6e713d7689fd2a084a952e7">
+                <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="IT行业交流" title="IT行业交流">
+            </a>
+        </p><br>
+        &copy; 2018  M-finder 豫ICP备18011086号<br>
+        Powered by <a href="http://www.m-finder.com" target="_blank"> M-finder</a>
+    </div>
+</footer>
+        </div>
+
+        <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">博客首页</a>
+  
+    <a href="/categories/码不能停" class="mobile-nav-link">码不能停</a>
+  
+    <a href="/categories/测试区" class="mobile-nav-link">测试区</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+        <script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/layui/layui.js"></script>
+<script src="/js/nprogress.js"></script>
+<script type="text/javascript">
+    layui.config({
+        base: '/js/'
+        ,version: false
+    }).extend({
+        index: 'index'
+        ,pjax: 'pjax'
+    }).use(['pjax','index'],function (){
+        var $ = layui.jquery;
+            $(function () {
+                $(document).pjax('a', '#main',{fragment:'#main'});
+                $(document).on('pjax:start', function () {
+                    NProgress.start();
+                });
+                $(document).on('pjax:end', function () {
+                    NProgress.done();
+                });
+                
+            });
+    });
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+</body>
+</html>
