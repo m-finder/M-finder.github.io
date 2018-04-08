@@ -1447,3 +1447,8 @@ pre .javascript .function {
     margin-right: 5px;
     display: inline-block;
 }
+.cy_cmt_count{
+    float: left;
+    color: #999;
+    text-decoration: none;
+}
