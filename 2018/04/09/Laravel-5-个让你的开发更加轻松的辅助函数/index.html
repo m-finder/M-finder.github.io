@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+
+        
+        <title>Laravel 5 个让你的开发更加轻松的辅助函数 | M-finder</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+            <meta name="keywords" content="Laravel 5 个让你的开发更加轻松的辅助函数 | M-finder" />
+        
+        
+            <meta name="description" content="M-finder - 删繁就简，发现更多">
+            <meta name="searchtitle" content="M-finder - 删繁就简，发现更多" />
+        
+        
+          <link rel="icon" href="/images/favicon.ico">
+        
+        <link rel="stylesheet" href="/css/css.css">
+        <link rel="stylesheet" href="/js/layui/css/layui.css">
+    </head>
+
+<body>
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+              <a href="/" id="logo">M-finder</a>
+            </h1>
+            
+                <h2 id="subtitle-wrap">删繁就简，发现更多</h2>
+            
+      </div>
+      <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <a class="main-nav-link" href="/">博客首页</a>
+                
+                    <a class="main-nav-link" href="/categories/码不能停">码不能停</a>
+                
+                    <a class="main-nav-link" href="/categories/闲言赘语">闲言赘语</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                <a id="nav-search-btn" class="nav-icon" title="搜索" style="display:none"></a>
+            </nav>
+            <div id="search-form-wrap" class="">
+                <form action="//baidu.com/s" method="get" accept-charset="UTF-8" class="search-form">
+                    <input type="search" name="wd" class="search-form-input" placeholder="Search">
+                    <input type="hidden" name="site:" value="https://www.m-finder.com">
+                    <button type="submit" class="search-form-submit">&#xF002;</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+            <div class="outer">
+                <section id="main"><article id="post-Laravel-5-个让你的开发更加轻松的辅助函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/09/Laravel-5-个让你的开发更加轻松的辅助函数/" class="article-date">
+  <time datetime="2018-04-09T08:58:01.000Z" itemprop="datePublished">2018-04-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      Laravel 5 个让你的开发更加轻松的辅助函数
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <h4 id="data-get"><a href="#data-get" class="headerlink" title="data_get()"></a>data_get()</h4><hr>
+<p><em>data_get()</em> 辅助方法能够让你更轻松的获取数组或者对象中的值。如果数组或者对象的key不存在的话，这个方法的第三个可选参数设置一个默认值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#数组</span><br><span class="line">$array = [&apos;albums&apos; =&gt; [&apos;rock&apos; =&gt; [&apos;count&apos; =&gt; 75 ]]];</span><br><span class="line">$count = data_get($array, &apos;albums.rock.count&apos;); #75</span><br><span class="line">$avgCost = data_get($array, &apos;albums.rock.avg_cost&apos;, 0); #0</span><br><span class="line"></span><br><span class="line">#对象</span><br><span class="line">$object-&gt;albums-&gt;rock-&gt;count = 75;</span><br><span class="line">$count = data_get($object, &apos;albums.rock.count&apos;);#75</span><br><span class="line">$avgCost = data_get($object, &apos;albums.rock.avg_cost&apos;, 0); #0</span><br></pre></td></tr></table></figure>
+<p>返回一个数组：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$array = [<span class="string">'albums'</span> =&gt; [<span class="string">'rock'</span> =&gt; [<span class="string">'count'</span> =&gt; <span class="number">75</span>], <span class="string">'punk'</span> =&gt; [<span class="string">'count'</span> =&gt; <span class="number">12</span>]]];</span><br><span class="line">$counts = data_get($array, <span class="string">'albums.*.count'</span>); <span class="comment">#[75, 12]</span></span><br></pre></td></tr></table></figure></p>
+<p><em>data_get()</em> 辅助方法能够让你轻松的再数组或者对象中使用相同的语法来查找数据。<br>这样你就不必检查你之前使用的变量是什么类型了。</p>
+<h4 id="str-plural"><a href="#str-plural" class="headerlink" title="str_plural()"></a>str_plural()</h4><hr>
+<p><em>str_plural()</em> 是将字符串变成对应的复数形式，只对英文的单词有效，第二个可选的参数能够让开发者来自己决定返回单数还是复数。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">str_plural(<span class="string">'dog'</span>); <span class="comment">#dogs</span></span><br><span class="line">str_plural(<span class="string">'cat'</span>); <span class="comment">#cats</span></span><br><span class="line"></span><br><span class="line">str_plural(<span class="string">'dog'</span>, <span class="number">2</span>); <span class="comment">#dogs</span></span><br><span class="line">str_plural(<span class="string">'cat'</span>, <span class="number">1</span>); <span class="comment">#cat</span></span><br></pre></td></tr></table></figure>
+<h4 id="route"><a href="#route" class="headerlink" title="route()"></a>route()</h4><hr>
+<p><em>route()</em> 方法能够生成已经命名的路由，可选的第二个参数将会传递给路由的参数。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Route::get(<span class="string">'burgers'</span>, <span class="string">'BurgersController@index'</span>)-&gt;name(<span class="string">'burgers'</span>);</span><br><span class="line">route(<span class="string">'burgers'</span>); <span class="comment">#http://example.com/burgers</span></span><br><span class="line">route(<span class="string">'burgers'</span>, [<span class="string">'order_by'</span> =&gt; <span class="string">'price'</span>]); <span class="comment">#http://example.com/burgers?order_by=price</span></span><br><span class="line"></span><br><span class="line">Route::get(<span class="string">'burgers/&#123;id&#125;'</span>, <span class="string">'BurgersController@show'</span>)-&gt;name(<span class="string">'burgers.show'</span>);</span><br><span class="line">route(<span class="string">'burgers.show'</span>, <span class="number">1</span>); <span class="comment">#http://example.com/burgers/1</span></span><br><span class="line">route(<span class="string">'burgers.show'</span>, [<span class="string">'id'</span> =&gt; <span class="number">1</span>]); <span class="comment">#http://example.com/burgers/1</span></span><br><span class="line"></span><br><span class="line">Route::get(<span class="string">'employees/&#123;id&#125;/&#123;name&#125;'</span>, <span class="string">'EmployeesController@show'</span>)-&gt;name(<span class="string">'employees.show'</span>);</span><br><span class="line">route(<span class="string">'employees.show'</span>, [<span class="number">5</span>, <span class="string">'chris'</span>]);<span class="comment">#http://example.com/employees/5/chris</span></span><br><span class="line">route(<span class="string">'employees.show'</span>, [<span class="string">'id'</span> =&gt; <span class="number">5</span>, <span class="string">'name'</span> =&gt; <span class="string">'chris'</span>]);<span class="comment">#http://example.com/employees/5/chris</span></span><br><span class="line">route(<span class="string">'employees.show'</span>, [<span class="string">'id'</span> =&gt; <span class="number">5</span>, <span class="string">'name'</span> =&gt; <span class="string">'chris'</span>, <span class="string">'hide'</span> =&gt; <span class="string">'email'</span>]);<span class="comment">#http://example.com/employees/5/chris?hide=email</span></span><br></pre></td></tr></table></figure>
+<p>如果将第三个可选参数设为false的话，那么将会返回一个相对地址而不是一个绝对地址</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route(<span class="string">'burgers.show'</span>, <span class="number">1</span>, <span class="keyword">false</span>); <span class="comment">#/burgers/1</span></span><br></pre></td></tr></table></figure>
+<p>设置了子域名的也是同样的道理， 并且你也可以将Eloquent模型传参给route()方法。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Route::domain(<span class="string">'&#123;location&#125;.example.com'</span>)-&gt;group(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    Route::get(<span class="string">'employees/&#123;id&#125;/&#123;name&#125;'</span>, <span class="string">'EmployeesController@show'</span>)-&gt;name(<span class="string">'employees.show'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">route(<span class="string">'employees.show'</span>, [<span class="string">'location'</span> =&gt; <span class="string">'raleigh'</span>, <span class="string">'id'</span> =&gt; <span class="number">5</span>, <span class="string">'name'</span> =&gt; <span class="string">'chris'</span>]); </span><br><span class="line"></span><br><span class="line">route(<span class="string">'burgers.show'</span>, Burger::find(<span class="number">1</span>)); <span class="comment">#http://example.com/burgers/1</span></span><br></pre></td></tr></table></figure>
+<h4 id="abort-if"><a href="#abort-if" class="headerlink" title="abort_if()"></a>abort_if()</h4><hr>
+<p><em>abort_if()</em> 这个辅助方法将会抛出一个异常如果符合满足的要求。第三个可选参数为抛出异常的消息，第四个为header数组。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">abort_if(! Auth::user()-&gt;isAdmin(), <span class="number">403</span>);</span><br><span class="line">abort_if(! Auth::user()-&gt;isAdmin(), <span class="number">403</span>, <span class="string">'Sorry, you are not an admin'</span>);</span><br><span class="line">abort_if(Auth::user()-&gt;isCustomer(), <span class="number">403</span>);</span><br></pre></td></tr></table></figure>
+<p>这个方法最主要的用处就是精简类似下面的代码，通过使用 abort_if() 能够只用一行代码实现同样的功能。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (! Auth::user()-&gt;isAdmin()) &#123;</span><br><span class="line">        abort(<span class="number">403</span>, <span class="string">'Sorry, you are not an admin'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#better</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</span><br><span class="line">    abort_if(! Auth::user()-&gt;isAdmin(), <span class="number">403</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="optional"><a href="#optional" class="headerlink" title="optional()"></a>optional()</h4><hr>
+<p><em>optional()</em> 这个方法允许你来获取对象的属性或者调用方法。如果该对象为null，那么属性或者方法也会返回null而不是引起一个错误。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$user1 = User::find(<span class="number">1</span>);</span><br><span class="line">$accountId = $user1-&gt;account-&gt;id;<span class="comment">#123</span></span><br><span class="line">$accountId = $user2-&gt;account-&gt;id ?? <span class="keyword">null</span>; <span class="comment">#null</span></span><br><span class="line"></span><br><span class="line">$accountId = optional($user2-&gt;account)-&gt;id;<span class="comment">#null</span></span><br></pre></td></tr></table></figure>
+<p>这几个方法是不是很有用呢，快点试试熟悉一下吧</p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+          </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/28/Docker使用教程-入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker使用教程-入门</div>
+    </a>
+  
+</nav>
+
+      
+</article>
+
+
+  <section id="comments">
+    <!--PC和WAP自适应版-->
+    <div id="SOHUCS"></div>
+    <script>
+      (function () {
+        var appid = 'cyty1Pt2F';
+        var conf = 'prod_bab62ce514b78e635471dd0544889c5d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+          window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+        } else {
+          var loadJs = function (d, a) {
+            var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+            var b = document.createElement("script");
+            b.setAttribute("type", "text/javascript");
+            b.setAttribute("charset", "UTF-8");
+            b.setAttribute("src", d);
+            if (typeof a === "function") {
+              if (window.attachEvent) {
+                b.onreadystatechange = function () {
+                  var e = b.readyState;
+                  if (e === "loaded" || e === "complete") {
+                    b.onreadystatechange = null;
+                    a()
+                  }
+                }
+              } else {
+                b.onload = a
+              }
+            }
+            c.appendChild(b)
+          };
+          loadJs("https://changyan.sohu.com/upload/changyan.js",
+            function () {
+              window.changyan.api.config({
+                appid: appid,
+                conf: conf
+              })
+            });
+        }
+      })();
+    </script>
+  </section>
+  </section>
+                
+                  <aside id="sidebar">
+	<div class="widget-wrap">
+		<h3 class="widget-title">广告位</h3>
+		<div class="widget" >
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- M-finder -->
+			<ins class="adsbygoogle"
+				 style="display:block"
+				 data-ad-client="ca-pub-3280933721783945"
+				 data-ad-slot="2496953790"
+				 data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	</div>    
+	
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/测试区/">测试区</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/码不能停/">码不能停</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲言赘语/">闲言赘语</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Layim/">Layim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui/">layui</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/">openssl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swoole/">swoole</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吃吃吃/">吃吃吃</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新年快乐/">新年快乐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲言赘语/">闲言赘语</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Docker/" style="font-size: 12px;">Docker</a> <a href="/tags/Hexo/" style="font-size: 14px;">Hexo</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Layim/" style="font-size: 10px;">Layim</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringCloud/" style="font-size: 18px;">SpringCloud</a> <a href="/tags/js/" style="font-size: 16px;">js</a> <a href="/tags/laravel/" style="font-size: 14px;">laravel</a> <a href="/tags/layui/" style="font-size: 14px;">layui</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 16px;">php</a> <a href="/tags/swoole/" style="font-size: 10px;">swoole</a> <a href="/tags/test/" style="font-size: 14px;">test</a> <a href="/tags/吃吃吃/" style="font-size: 10px;">吃吃吃</a> <a href="/tags/新年快乐/" style="font-size: 10px;">新年快乐</a> <a href="/tags/闲言赘语/" style="font-size: 10px;">闲言赘语</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/09/Laravel-5-个让你的开发更加轻松的辅助函数/">Laravel 5 个让你的开发更加轻松的辅助函数</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/28/Docker使用教程-入门/">Docker使用教程-入门</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/28/CentOS内核升级4-4-12教程/">CentOS内核升级4.4.12教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/27/Docker安装教程/">Docker安装教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/23/结合layui流加载实现的瀑布流/">结合layui流加载实现的瀑布流</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+
+    
+        <div class="widget-wrap">
+            <h3 class="widget-title">友情链接</h3>
+            <div class="widget" >
+                <ul>
+                    
+                        <li>
+                            <a href="http://www.aprilblank.com" title="AprilBlank" target="_blank" rel="noopener">AprilBlank</a>
+                        </li>
+                    
+                        <li>
+                            <a href="http://blog.csdn.net/qq_27948659" title="大白" target="_blank" rel="noopener">大白</a>
+                        </li>
+                    
+                        <li>
+                            <a href="https://www.yyblogs.net/" title="大槐树" target="_blank" rel="noopener">大槐树</a>
+                        </li>
+                    
+                        <li>
+                            <a href="http://www.sgclzqq.com/" title="Sgclzqq" target="_blank" rel="noopener">Sgclzqq</a>
+                        </li>
+                    
+                        <li>
+                            <a href="https://93xiaosi.github.io/" title="Wait" target="_blank" rel="noopener">Wait</a>
+                        </li>
+                    
+                        <li>
+                            <a href="http:2k.m-finder.com" title="艾克教程网" target="_blank" rel="noopener">艾克教程网</a>
+                        </li>
+                    
+                        <li>
+                            <a href="https://thekingstyle.github.io/" title="Wang WeiQiang" target="_blank" rel="noopener">Wang WeiQiang</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    
+</aside>
+                
+            </div>
+            <footer class="footer">
+    
+
+    <div class="footavatar site-footer clearfix u-textAlignCenter">
+        <img src="/images/logo.gif">
+        <ul class="footinfo">
+            <p class="fname"><a>M-finder</a></p>
+            <p class="finfo">南瓜不说话，默默地成长着</p>
+        </ul>
+    </div>
+    <div class="Copyright">
+        <br><p>
+            <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=c4f068d3baefa9f0e31f6271d9bebe70e542830dd6e713d7689fd2a084a952e7">
+                <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="IT行业交流" title="IT行业交流">
+            </a>
+        </p><br>
+        &copy; 2018  M-finder 豫ICP备18011086号<br>
+        Powered by <a href="http://www.m-finder.com" target="_blank"> M-finder</a>
+    </div>
+</footer>
+        </div>
+
+        <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">博客首页</a>
+  
+    <a href="/categories/码不能停" class="mobile-nav-link">码不能停</a>
+  
+    <a href="/categories/闲言赘语" class="mobile-nav-link">闲言赘语</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+        <script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/layui/layui.js"></script>
+<script src="/js/nprogress.js"></script>
+<script type="text/javascript">
+    layui.config({
+        base: '/js/'
+        ,version: false
+    }).extend({
+        index: 'index'
+    }).use(['index']);
+    // ,function (){
+    //     var $ = layui.jquery;
+    //         $(function () {
+    //             $(document).pjax('a', '#main',{fragment:'#main'});
+    //             $(document).on('pjax:start', function () {
+    //                 NProgress.start();
+    //             });
+    //             $(document).on('pjax:end', function () {
+    //                 NProgress.done();
+    //             });
+                
+    //         });
+    // }
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+</body>
+</html>
