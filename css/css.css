@@ -1447,8 +1447,16 @@ pre .javascript .function {
     margin-right: 5px;
     display: inline-block;
 }
-.cy_cmt_count{
+.article-commont-count{
+    float: right;
+}
+.article-commont-count li {
     float: left;
+    margin-right: 10px;
+}
+.comments-count{
     color: #999;
-    text-decoration: none;
+}
+.cy_cmt_count{
+    color: #999;
 }
