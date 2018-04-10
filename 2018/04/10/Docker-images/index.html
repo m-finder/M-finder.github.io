@@ -103,7 +103,7 @@
 <p>这条命令会用 nginx 镜像启动一个容器，该容器命名为 webserver，并且映射了宿主机的 80 端口，这样我们就可以在宿主机用浏览器去访问这个 nginx 服务器。<br>docker的启动画面中有当前容器的 ip，例如：192.168.99.100，打开浏览器直接访问该 ip 就能看到默认的 Nginx 欢迎页面。</p>
 <p>现在，我们来做点尝试，修改下nginx的欢迎页面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it webserver bash</span><br><span class="line">root@bcd5b7c85e68:/# echo &apos;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&apos; &gt; /usr/share/nginx/html/index.html</span><br><span class="line">root@bcd5b7c85e68:/# exit</span><br><span class="line">exit</span><br></pre></td></tr></table></figure></p>
 <p>我们以交互式终端方式进入 webserver 容器，并执行了 bash 命令，也就是获得一个可操作的 Shell。</p>
-<p>然后，我们用 </p><h1>Hello, Docker!</h1> 覆盖了 /usr/share/nginx/html/index.html 的内容。<p></p>
+<p>然后，我们用 Hello, Docker! 覆盖了 /usr/share/nginx/html/index.html 的内容。</p>
 <p>现在我们再刷新浏览器的话，会发现内容被改变了。<br><img src="/2018/04/10/Docker-images/nginx.png" alt="Nginx"></p>
 <p>我们修改了容器的文件，也就是改动了容器的存储层。要保存这些修改，可以使用 docker 提供的 docker commit 命令，可以将存储层保存下来成为新的镜像。也就是说，是在原有镜像的基础上，再叠加上改动了的存储层并构成新的镜像。</p>
 <p>这意味着每一次修改都会让存储层叠加，而且你所删除的上一层的东西并不会丢失，会一直如影随形的跟着这个镜像，即使根本无法访问到。</p>
