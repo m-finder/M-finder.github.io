@@ -97,6 +97,7 @@
 <p>将所有服务放在一个容器内的模式有个形象的非官方称呼：Fat Container。与之相对的是将服务分拆到容器的模式。从Docker的设计可以看到，构建镜像的过程中可以指定唯一一个容器启动的指令，因此Docker天然适合一个容器只运行一种服务，而这也是官方更推崇的。</p>
 </blockquote>
 <p>好吧，我不闹了。</p>
+<a id="more"></a>
 <p>那就先用最简单的方式搭建一遍试试：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name php-fpm -v /docker/www:/var/www/html:ro php:7.2-fpm</span><br></pre></td></tr></table></figure>
 <p>先启动 php ，并把容器命名为 php-fpm ,本地不存在 php 镜像的话会自动下载。</p>

@@ -94,31 +94,19 @@
         
           <div class="article-entry" itemprop="articleBody">
             
-                      <p>一直想在一个容器内把 php 的环境搭建好，直到我看到了一句话：</p>
+              <p>一直想在一个容器内把 php 的环境搭建好，直到我看到了一句话：</p>
 <blockquote>
 <p>将所有服务放在一个容器内的模式有个形象的非官方称呼：Fat Container。与之相对的是将服务分拆到容器的模式。从Docker的设计可以看到，构建镜像的过程中可以指定唯一一个容器启动的指令，因此Docker天然适合一个容器只运行一种服务，而这也是官方更推崇的。</p>
 </blockquote>
 <p>好吧，我不闹了。</p>
-<p>那就先用最简单的方式搭建一遍试试：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name php-fpm -v /docker/www:/var/www/html:ro php:7.2-fpm</span><br></pre></td></tr></table></figure>
-<p>先启动 php ，并把容器命名为 php-fpm ,本地不存在 php 镜像的话会自动下载。</p>
-<p>因为是在 windows 上跑，还特么是 win10 家庭版，所以只有打开 VirtualBox 来设置下共享文件夹：</p>
-<p><img src="/2018/04/12/Docker-link-images/set.png" alt="设置共享文件夹"><br>ok，重启虚拟机。</p>
-<p>然后再执行下边命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name nginx-server -p 80:80 --link php-fpm:php-fpm -v  /docker/nginx/html:/usr/share/nginx/html:rw -v /docker/nginx/conf.d:/etc/nginx/conf.d:rw nginx</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>第一个 -v 是挂载本地目录</li>
-<li>第二个是挂载配置文件</li>
-</ul>
-<p>除了要在 html 里创建一个 index.html外，还需要一个 default.conf 文件</p>
-<p>打开浏览器：192.168.99.100：<br><img src="/2018/04/12/Docker-link-images/hello.png" alt="ok"></p>
-<p>最后，docker 文件夹的结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">C:\DOCKER</span><br><span class="line">├─nginx</span><br><span class="line">│  └─conf.d</span><br><span class="line">│          default.conf</span><br><span class="line">│</span><br><span class="line">└─www</span><br><span class="line">        index.html</span><br><span class="line">        index.php</span><br></pre></td></tr></table></figure></p>
-<p>default.conf 是 nginx 的配置文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_pass   php-fpm:9000;</span><br><span class="line">        fastcgi_index  index.php;</span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME  /var/www/html/$fastcgi_script_name;</span><br><span class="line">        include        fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>最重要的是 /var/www/html这里是 php 文件的存储路径，不是 nginx 的项目根目录，一定要对，否则死的很惨。</p>
-
-                        <p class="article-more-link">
-                          <a class="dashang" href="javascript:;">小额打赏</a>
-                        </p>
-                        
+                
+                  <p class="article-more-link">
+                    <a href="/2018/04/12/Docker-link-images/#more">
+                      阅读全文
+                    </a>
+                  </p>
+                  
+                    
           </div>
           <footer class="article-footer">
                 
