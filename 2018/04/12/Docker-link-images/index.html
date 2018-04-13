@@ -5,11 +5,11 @@
         
 
         
-        <title>归档: 2017/12 | M-finder</title>
+        <title>Docker使用教程-连接容器-php-nginx | M-finder</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
-            <meta name="keywords" content="归档: 2017/12 | M-finder" />
+            <meta name="keywords" content="Docker使用教程-连接容器-php-nginx | M-finder" />
         
         
             <meta name="description" content="M-finder - 删繁就简，发现更多">
@@ -66,99 +66,124 @@
     </div>
 </header>
             <div class="outer">
-                <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/12/27/Layim模块化右键菜单/" class="archive-article-date">
-  <time datetime="2017-12-27T01:40:33.000Z" itemprop="datePublished">12月 27</time>
+                <section id="main"><article id="post-Docker-link-images" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/12/Docker-link-images/" class="article-date">
+  <time datetime="2018-04-12T07:12:21.000Z" itemprop="datePublished">2018-04-12</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/27/Layim模块化右键菜单/">Layim模块化右键菜单</a>
+    <h1 class="article-title" itemprop="name">
+      Docker使用教程-连接容器-php-nginx
     </h1>
   
 
-    </header>
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>一直想在一个容器内把 php 的环境搭建好，直到我看到了一句话：</p>
+<blockquote>
+<p>将所有服务放在一个容器内的模式有个形象的非官方称呼：Fat Container。与之相对的是将服务分拆到容器的模式。从Docker的设计可以看到，构建镜像的过程中可以指定唯一一个容器启动的指令，因此Docker天然适合一个容器只运行一种服务，而这也是官方更推崇的。</p>
+</blockquote>
+<p>好吧，我不闹了。</p>
+<p>那就先用最简单的方式搭建一遍试试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name php-fpm -v /docker/www:/var/www/html:ro php:7.2-fpm</span><br></pre></td></tr></table></figure>
+<p>先启动 php ，并把容器命名为 php-fpm ,本地不存在 php 镜像的话会自动下载。</p>
+<p>因为是在 windows 上跑，还特么是 win10 家庭版，所以只有打开 VirtualBox 来设置下共享文件夹：</p>
+<p><img src="/2018/04/12/Docker-link-images/set.png" alt="设置共享文件夹"><br>ok，重启虚拟机。</p>
+<p>然后再执行下边命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name nginx-server -p 80:80 --link php-fpm:php-fpm -v  /docker/nginx/html:/usr/share/nginx/html:rw -v /docker/nginx/conf.d:/etc/nginx/conf.d:rw nginx</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>第一个 -v 是挂载本地目录</li>
+<li>第二个是挂载配置文件</li>
+</ul>
+<p>除了要在 html 里创建一个 index.html外，还需要一个 default.conf 文件</p>
+<p>打开浏览器：192.168.99.100：<br><img src="/2018/04/12/Docker-link-images/hello.png" alt="ok"></p>
+<p>最后，docker 文件夹的结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">C:\DOCKER</span><br><span class="line">├─nginx</span><br><span class="line">│  └─conf.d</span><br><span class="line">│          default.conf</span><br><span class="line">│</span><br><span class="line">└─www</span><br><span class="line">        index.html</span><br><span class="line">        index.php</span><br></pre></td></tr></table></figure></p>
+<p>default.conf 是 nginx 的配置文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_pass   php-fpm:9000;</span><br><span class="line">        fastcgi_index  index.php;</span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME  /var/www/html/$fastcgi_script_name;</span><br><span class="line">        include        fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最重要的是 /var/www/html这里是 php 文件的存储路径，不是 nginx 的项目根目录，一定要对，否则死的很惨。</p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+
+          </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/12/22/Layui使用备忘/" class="archive-article-date">
-  <time datetime="2017-12-22T01:39:12.000Z" itemprop="datePublished">12月 22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/10/Docker-images/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker使用教程-以Dockerfile定制镜像</div>
+    </a>
+  
+</nav>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/22/Layui使用备忘/">Layui使用备忘</a>
-    </h1>
-  
-
-    </header>
-  </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/12/22/代码备忘录/" class="archive-article-date">
-  <time datetime="2017-12-22T01:38:12.000Z" itemprop="datePublished">12月 22</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/22/代码备忘录/">代码备忘录</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/12/22/laravel-使用笔记/" class="archive-article-date">
-  <time datetime="2017-12-22T01:35:57.000Z" itemprop="datePublished">12月 22</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/22/laravel-使用笔记/">laravel 使用笔记</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
 
-</section>
+  <section id="comments">
+    <!--PC和WAP自适应版-->
+    <div id="SOHUCS"></div>
+    <script>
+      (function () {
+        var appid = 'cyty1Pt2F';
+        var conf = 'prod_bab62ce514b78e635471dd0544889c5d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+          window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+        } else {
+          var loadJs = function (d, a) {
+            var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+            var b = document.createElement("script");
+            b.setAttribute("type", "text/javascript");
+            b.setAttribute("charset", "UTF-8");
+            b.setAttribute("src", d);
+            if (typeof a === "function") {
+              if (window.attachEvent) {
+                b.onreadystatechange = function () {
+                  var e = b.readyState;
+                  if (e === "loaded" || e === "complete") {
+                    b.onreadystatechange = null;
+                    a()
+                  }
+                }
+              } else {
+                b.onload = a
+              }
+            }
+            c.appendChild(b)
+          };
+          loadJs("https://changyan.sohu.com/upload/changyan.js",
+            function () {
+              window.changyan.api.config({
+                appid: appid,
+                conf: conf
+              })
+            });
+        }
+      })();
+    </script>
+  </section>
+  </section>
                 
                   <aside id="sidebar">
 	<div class="widget-wrap">
