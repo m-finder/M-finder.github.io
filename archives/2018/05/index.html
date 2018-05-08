@@ -5,11 +5,11 @@
         
 
         
-        <title>SpringCloud入门-服务注册中心 | M-finder</title>
+        <title>归档: 2018/5 | M-finder</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
-            <meta name="keywords" content="SpringCloud入门-服务注册中心 | M-finder" />
+            <meta name="keywords" content="归档: 2018/5 | M-finder" />
         
         
             <meta name="description" content="M-finder - 删繁就简，发现更多">
@@ -66,137 +66,42 @@
     </div>
 </header>
             <div class="outer">
-                <section id="main"><article id="post-SpringCloud入门" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/07/SpringCloud入门/" class="article-date">
-  <time datetime="2018-03-07T02:28:00.000Z" itemprop="datePublished">2018-03-07</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+                <section id="main">
+  
+  
+    
     
       
-        <header class="article-header">
-          
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2018/05/08/Laravel-time-change/" class="archive-article-date">
+  <time datetime="2018-05-08T08:37:28.000Z" itemprop="datePublished">5月 8</time>
+</a>
+      
   
-    <h1 class="article-title" itemprop="name">
-      SpringCloud入门-服务注册中心
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/05/08/Laravel-time-change/">Laravel转换时间为xx分钟前</a>
     </h1>
   
 
-        </header>
-        
-          <div class="article-entry" itemprop="articleBody">
-            
-                      <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>我领导，亮哥，昨天让我们看下微服务架构，接下来准备把手里的项目整合下。<br>推荐给我们的有 Spring Cloud 和 Dubbo。考虑到 Dubbo 有突然停止维护的前科，还是选用前者吧。<br>就这样，跟 Spring Cloud 开始了第一次握手。</p>
-<a id="more"></a>
-<h4 id="初次见面"><a href="#初次见面" class="headerlink" title="初次见面"></a>初次见面</h4><p>初次见面，先介绍一下：</p>
-<blockquote>
-<p>Spring Cloud是一系列框架的有序集合。它利用Spring Boot的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用Spring Boot的开发风格做到一键启动和部署。<br>Spring并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过Spring Boot风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
-</blockquote>
-<p>Spring 是一个全面、模块化的设计层面框架，Spring Boot 是 Spring 的一套快速配置脚手架，简化了基于 Spring 的应用开发，而 Spring Cloud 利用 Spring Boot 的开发便利性巧妙地简化了分布式系统基础设施的开发，是一系列框架的有序集合。</p>
-<p>Spring Cloud大礼包包含很多组件，Spring Cloud Eureka 是 Spring Cloud Netflix 微服务套件中的一部分，它基于Netflix Eureka 做了二次封装，主要负责完成微服务架构中的服务治理功能。<br>相当于大管家，主管各项服务的注册与发现，这里先拿它下刀子好了。</p>
-<h4 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">编辑器：IDEA</span><br><span class="line">Spring Cloud版本：Finchley M7 （版本号以伦敦的地铁站命名）</span><br></pre></td></tr></table></figure>
-<h5 id="新建项目："><a href="#新建项目：" class="headerlink" title="新建项目："></a>新建项目：</h5><p>file-&gt;new project-&gt;srping initializr<br><img src="/2018/03/07/SpringCloud入门/新建项目.png" alt="新建项目"></p>
-<h5 id="填写项目信息："><a href="#填写项目信息：" class="headerlink" title="填写项目信息："></a>填写项目信息：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Group: com.mztech #自定义包名</span><br><span class="line">Artifact: demo #项目名</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/03/07/SpringCloud入门/填写信息.png" alt="填写信息"></p>
-<h5 id="选择服务："><a href="#选择服务：" class="headerlink" title="选择服务："></a>选择服务：</h5><p>Cloud Discovery-&gt;Eureka Server</p>
-<p>next-&gt;finish，创建完成</p>
-<p>然后在src\main\resources\application.properties中添加配置信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=eureka-server</span><br><span class="line">server.port=8081</span><br><span class="line">#设置hostname</span><br><span class="line">eureka.instance.hostname=localhost</span><br><span class="line"></span><br><span class="line">#防止注册中心自我注册</span><br><span class="line">eureka.client.register-with-eureka=false</span><br><span class="line">eureka.client.fetch-registry=false</span><br><span class="line"></span><br><span class="line">#注册地址</span><br><span class="line">eureka.client.serviceUrl.defaultZone=http://$&#123;eureka.instance.hostname&#125;:8081/eureka/</span><br></pre></td></tr></table></figure></p>
-<h5 id="添加注解："><a href="#添加注解：" class="headerlink" title="添加注解："></a>添加注解：</h5><p>在src\main\java\com\mztech\test\TestApplication.java中添加注解: @EnableEurekaServer<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@EnableEurekaServer</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class TestApplication &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(TestApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h5><p>运行，然后浏览器访问:localhost:8081<br><img src="/2018/03/07/SpringCloud入门/结果.png" alt="结果"></p>
-<h5 id="创建第一个服务："><a href="#创建第一个服务：" class="headerlink" title="创建第一个服务："></a>创建第一个服务：</h5><p>新建一个项目，创建步骤同上，然后spring-cloud-client-test\src\main\java\com\mztech\client\ClientApplication.java的代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableEurekaClient</span><br><span class="line">@RestController</span><br><span class="line">public class ClientApplication &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(ClientApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;server.port&#125;&quot;)</span><br><span class="line">    String port;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(&quot;/hi&quot;)</span><br><span class="line">    public String home(@RequestParam String name) &#123;</span><br><span class="line">        return &quot;hi &quot; + name + &quot;,i am from port:&quot; + port;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>spring-cloud-client-test\src\main\resources\application.properties内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=Client-service</span><br><span class="line">server.port=8082</span><br><span class="line">eureka.instance.hostname=localhost</span><br><span class="line">eureka.client.serviceUrl.defaultZone=http://$&#123;eureka.instance.hostname&#125;:8081/eureka/</span><br></pre></td></tr></table></figure></p>
-<p>启动，刷新页面，可以看到服务已经被监听到了。<br><img src="/2018/03/07/SpringCloud入门/服务注册.png" alt="结果"></p>
-<p><em><font color="red">* 注：</font></em></p>
-<p>如果出现红字，说明是服务进入了自我保护模式。<br>查到信息说可以用 eureka.server.enable-self-preservation = false禁用自我保护模式，但是用了以后又智障一样出来一行红字提示我模式已关闭，好吧，你赢了。</p>
-<h5 id="访问服务："><a href="#访问服务：" class="headerlink" title="访问服务："></a>访问服务：</h5><p>localhost:8082/hi?name=wu<br><img src="/2018/03/07/SpringCloud入门/访问服务.png" alt="结果"></p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>坑不多，也不难。有点折腾，都是因为对java的熟悉度不高。</p>
-
-                        <p class="article-more-link">
-                          <a class="dashang" href="javascript:;">小额打赏</a>
-                        </p>
-                        
-          </div>
-          <footer class="article-footer">
-                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
-
-          </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/03/08/SpringCloud入门二/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          SpringCloud入门二-负载均衡
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/03/05/人穷志短/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">人穷志短</div>
-    </a>
-  
-</nav>
-
-      
 </article>
+  
+  
+    </div></section>
+  
 
 
-  <section id="comments">
-    <!--PC和WAP自适应版-->
-    <div id="SOHUCS"></div>
-    <script>
-      (function () {
-        var appid = 'cyty1Pt2F';
-        var conf = 'prod_bab62ce514b78e635471dd0544889c5d';
-        var width = window.innerWidth || document.documentElement.clientWidth;
-        if (width < 960) {
-          window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
-        } else {
-          var loadJs = function (d, a) {
-            var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
-            var b = document.createElement("script");
-            b.setAttribute("type", "text/javascript");
-            b.setAttribute("charset", "UTF-8");
-            b.setAttribute("src", d);
-            if (typeof a === "function") {
-              if (window.attachEvent) {
-                b.onreadystatechange = function () {
-                  var e = b.readyState;
-                  if (e === "loaded" || e === "complete") {
-                    b.onreadystatechange = null;
-                    a()
-                  }
-                }
-              } else {
-                b.onload = a
-              }
-            }
-            c.appendChild(b)
-          };
-          loadJs("https://changyan.sohu.com/upload/changyan.js",
-            function () {
-              window.changyan.api.config({
-                appid: appid,
-                conf: conf
-              })
-            });
-        }
-      })();
-    </script>
-  </section>
-  </section>
+</section>
                 
                   <aside id="sidebar">
 	<div class="widget-wrap">
