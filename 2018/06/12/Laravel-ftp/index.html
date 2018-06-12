@@ -5,11 +5,11 @@
         
 
         
-        <title>Tag: openssl | M-finder</title>
+        <title>Laravel使用ftp传输文件时报错ftp_put() No data connection的解决 | M-finder</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
-            <meta name="keywords" content="Tag: openssl | M-finder" />
+            <meta name="keywords" content="Laravel使用ftp传输文件时报错ftp_put() No data connection的解决 | M-finder" />
         
         
             <meta name="description" content="M-finder - 删繁就简，发现更多">
@@ -66,42 +66,106 @@
     </div>
 </header>
             <div class="outer">
-                <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/02/08/openssl-pkey-get-private-内存泄漏/" class="archive-article-date">
-  <time datetime="2018-02-07T23:31:16.000Z" itemprop="datePublished">2月 8</time>
+                <section id="main"><article id="post-Laravel-ftp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/12/Laravel-ftp/" class="article-date">
+  <time datetime="2018-06-12T09:00:50.000Z" itemprop="datePublished">2018-06-12</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/08/openssl-pkey-get-private-内存泄漏/">openssl_pkey_get_private 内存泄漏</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel使用ftp传输文件时报错ftp_put() No data connection的解决
     </h1>
   
 
-    </header>
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$file = &quot;test.dat&quot;;</span><br><span class="line"></span><br><span class="line">$ftp_server=&quot;ftp.server.com&quot;;</span><br><span class="line">$ftp_user = &quot;myname&quot;;</span><br><span class="line">$ftp_pass = &quot;mypass&quot;;</span><br><span class="line">$destination_file = &quot;test.dat&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$cid=ftp_connect($ftp_server);</span><br><span class="line">if(!$cid) &#123;</span><br><span class="line">    exit(&quot;Could not connect to server: $ftp_server\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$login_result = ftp_login($cid, $ftp_user, $ftp_pass);</span><br><span class="line">if (!$login_result) &#123;</span><br><span class="line">    echo &quot;FTP connection has failed!&quot;;</span><br><span class="line">    echo &quot;Attempted to connect to $ftp_server for user $ftp_user&quot;;</span><br><span class="line">    exit;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">echo &quot;Connected to $ftp_server, for user $ftp_user&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$upload = ftp_put($cid, $destination_file, $file, FTP_BINARY);</span><br><span class="line">if (!$upload) &#123;</span><br><span class="line">    echo &quot;Failed upload for $source_file to $ftp_server as $destination_file&lt;br&gt;&quot;;</span><br><span class="line">    echo &quot;FTP upload has failed!&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;Uploaded $source_file to $ftp_server as $destination_file&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ftp_close($cid);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>原因是没有定义ftp的主被动模式，true是被动模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp_pasv($cid, true);</span><br></pre></td></tr></table></figure></p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+          </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/25/Spring-Cloud-Mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SpringCloud入门七-使用Mybatis连接调用Mysql</div>
+    </a>
+  
+</nav>
+
+      
 </article>
-  
-  
-    </div></section>
-  
 
 
-</section>
+  <section id="comments">
+    <!--PC和WAP自适应版-->
+    <div id="SOHUCS"></div>
+    <script>
+      (function () {
+        var appid = 'cyty1Pt2F';
+        var conf = 'prod_bab62ce514b78e635471dd0544889c5d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+          window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+        } else {
+          var loadJs = function (d, a) {
+            var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+            var b = document.createElement("script");
+            b.setAttribute("type", "text/javascript");
+            b.setAttribute("charset", "UTF-8");
+            b.setAttribute("src", d);
+            if (typeof a === "function") {
+              if (window.attachEvent) {
+                b.onreadystatechange = function () {
+                  var e = b.readyState;
+                  if (e === "loaded" || e === "complete") {
+                    b.onreadystatechange = null;
+                    a()
+                  }
+                }
+              } else {
+                b.onload = a
+              }
+            }
+            c.appendChild(b)
+          };
+          loadJs("https://changyan.sohu.com/upload/changyan.js",
+            function () {
+              window.changyan.api.config({
+                appid: appid,
+                conf: conf
+              })
+            });
+        }
+      })();
+    </script>
+  </section>
+  </section>
                 
                   <aside id="sidebar">
 	<div class="widget-wrap">
