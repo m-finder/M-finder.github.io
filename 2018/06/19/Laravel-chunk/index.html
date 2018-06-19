@@ -5,11 +5,11 @@
         
 
         
-        <title>M-finder</title>
+        <title>Laravel使用chunk自更新有误的原因 | M-finder</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
-            <meta name="keywords" content="M-finder" />
+            <meta name="keywords" content="Laravel使用chunk自更新有误的原因 | M-finder" />
         
         
             <meta name="description" content="M-finder - 删繁就简，发现更多">
@@ -66,12 +66,10 @@
     </div>
 </header>
             <div class="outer">
-                <section id="main">
-  
-    <article id="post-SpringCloud入门四" class="article article-type-post" itemscope itemprop="blogPost">
+                <section id="main"><article id="post-Laravel-chunk" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/03/12/SpringCloud入门四/" class="article-date">
-  <time datetime="2018-03-12T01:59:25.000Z" itemprop="datePublished">2018-03-12</time>
+    <a href="/2018/06/19/Laravel-chunk/" class="article-date">
+  <time datetime="2018-06-19T08:20:45.000Z" itemprop="datePublished">2018-06-19</time>
 </a>
       
   <div class="article-category">
@@ -85,8 +83,8 @@
         <header class="article-header">
           
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/12/SpringCloud入门四/">SpringCloud入门四-路由</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel使用chunk自更新有误的原因
     </h1>
   
 
@@ -94,182 +92,82 @@
         
           <div class="article-entry" itemprop="articleBody">
             
-              <p>前边几篇介绍的都是spring cloud netflix 下的核心组件，通过这几个组件已经可以构建起一个简单的微服务架构系统，虽然用这套架构实现系统功能已经完全没问题，但还是存在一些问题会使运维和开发感到痛苦。比如路由规则。</p>
-<p>为了解决这个问题，API网关的概念应运而生。</p>
-<p>它的存在就像是整个微服务架构系统的门面一样，所有外部客户端的访问都需要经过它的过滤和筛选。在spring大礼包中，它的存在就是API网关组件——Spring Cloud Zuul。</p>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/03/12/SpringCloud入门四/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
+                      <p>Laravel 的 chunk 在查询大量数据时非常好用，但是在用某个字段做为检索条件，并且在程序内部有更新这个字段的时候，就会有一部分数据丢失。</p>
+<p>原因是这样的，比如有7条数据，每次取2条，那么这7条数据就会被分为2，2，2，1这样几块，第一次调用时，取得第一页，也就是第一个2的数据块，更新完后再取数据，原来的第二页就变成了第一页，但是这时候取的还是第二页，所以这时候取的是第三个数据块，到了第次调用的时候，原来的第二页变成了第一页，原来的第四页变成了第二页，第三页就变成了空的，所以第三页就什么都取不到了。</p>
+<p>解决方法：<br>可以使用 laravel 的游标 cursor()</p>
+<p><img src="/2018/06/19/Laravel-chunk/chunk.png" alt="图"></p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
           </div>
           <footer class="article-footer">
                 
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
 
           </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/12/Laravel-ftp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Laravel使用ftp传输文件时报错ftp_put() No data connection的解决</div>
+    </a>
+  
+</nav>
+
+      
 </article>
 
 
-  
-    <article id="post-LNMP环境搭建教程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/11/LNMP环境搭建教程/" class="article-date">
-  <time datetime="2018-03-10T16:51:45.000Z" itemprop="datePublished">2018-03-11</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-      
-        <header class="article-header">
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/11/LNMP环境搭建教程/">CentOS 7.2 64位安装LNMP php7+Mysql 5.7搭建教程</a>
-    </h1>
-  
-
-        </header>
-        
-          <div class="article-entry" itemprop="articleBody">
-            
-              <p>前前后后搭建过无数次环境，大大小小的坑也差不多都踩了，今天趁着腾讯搞活动，120块买了台16个月的服务器，想着晚上把环境搭建下吧，结果把之前的文档掏出来发现是没更新的，最新版在公司……</p>
-<p>算了，老子再搞一遍，放在网上随便看。</p>
-<p><img src="/2018/03/11/LNMP环境搭建教程/1.jpg" alt=""><br></p>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/03/11/LNMP环境搭建教程/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
-          </div>
-          <footer class="article-footer">
-                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-
-          </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SpringCloud入门三" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/09/SpringCloud入门三/" class="article-date">
-  <time datetime="2018-03-09T02:54:25.000Z" itemprop="datePublished">2018-03-09</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-      
-        <header class="article-header">
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/09/SpringCloud入门三/">SpringCloud入门三-断路器</a>
-    </h1>
-  
-
-        </header>
-        
-          <div class="article-entry" itemprop="articleBody">
-            
-              <p>在入门第二篇里已经搞定了两个负载均衡的组件，但是如果多台服务中某个或多个服务出现问题而无法及时反映，那么调用这个服务的线程就会出现阻塞，对微服务造成很大的影响。就个时候，就需要新的组件来支持了，这个组件就是断路器Hystrix。</p>
-<p><img src="/2018/03/09/SpringCloud入门三/Fallback.png" alt="回退防止联级故障"><br></p>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/03/09/SpringCloud入门三/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
-          </div>
-          <footer class="article-footer">
-                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
-
-          </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SpringCloud入门二" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/08/SpringCloud入门二/" class="article-date">
-  <time datetime="2018-03-08T06:28:19.000Z" itemprop="datePublished">2018-03-08</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-      
-        <header class="article-header">
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/08/SpringCloud入门二/">SpringCloud入门二-负载均衡</a>
-    </h1>
-  
-
-        </header>
-        
-          <div class="article-entry" itemprop="articleBody">
-            
-              <p>上一篇搞了服务的注册和发现，对Spring Cloud 也有了一定的了解，那么再来做下负载均衡 Ribbon 和 Feign。</p>
-<p>这两个是两种形式的负载均衡的实现组件，二者选一即可，不过学习的话还是都看看，做下比较，也方便自己选择使用哪一个。<br></p>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/03/08/SpringCloud入门二/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
-          </div>
-          <footer class="article-footer">
-                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
-
-          </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">下一页 &raquo;</a>
-  </nav>
-
-</section>
+  <section id="comments">
+    <!--PC和WAP自适应版-->
+    <div id="SOHUCS"></div>
+    <script>
+      (function () {
+        var appid = 'cyty1Pt2F';
+        var conf = 'prod_bab62ce514b78e635471dd0544889c5d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+          window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+        } else {
+          var loadJs = function (d, a) {
+            var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+            var b = document.createElement("script");
+            b.setAttribute("type", "text/javascript");
+            b.setAttribute("charset", "UTF-8");
+            b.setAttribute("src", d);
+            if (typeof a === "function") {
+              if (window.attachEvent) {
+                b.onreadystatechange = function () {
+                  var e = b.readyState;
+                  if (e === "loaded" || e === "complete") {
+                    b.onreadystatechange = null;
+                    a()
+                  }
+                }
+              } else {
+                b.onload = a
+              }
+            }
+            c.appendChild(b)
+          };
+          loadJs("https://changyan.sohu.com/upload/changyan.js",
+            function () {
+              window.changyan.api.config({
+                appid: appid,
+                conf: conf
+              })
+            });
+        }
+      })();
+    </script>
+  </section>
+  </section>
                 
                   <aside id="sidebar">
 	<div class="widget-wrap">
