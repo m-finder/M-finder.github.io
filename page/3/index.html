@@ -70,6 +70,158 @@
             <div class="outer">
                 <section id="main">
   
+    <article id="post-Laravel-ftp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/12/Laravel-ftp/" class="article-date">
+  <time datetime="2018-06-12T09:00:50.000Z" itemprop="datePublished">2018-06-12</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/12/Laravel-ftp/">Laravel使用ftp传输文件时报错ftp_put() No data connection的解决</a>
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$file = &quot;test.dat&quot;;</span><br><span class="line"></span><br><span class="line">$ftp_server=&quot;ftp.server.com&quot;;</span><br><span class="line">$ftp_user = &quot;myname&quot;;</span><br><span class="line">$ftp_pass = &quot;mypass&quot;;</span><br><span class="line">$destination_file = &quot;test.dat&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$cid=ftp_connect($ftp_server);</span><br><span class="line">if(!$cid) &#123;</span><br><span class="line">    exit(&quot;Could not connect to server: $ftp_server\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$login_result = ftp_login($cid, $ftp_user, $ftp_pass);</span><br><span class="line">if (!$login_result) &#123;</span><br><span class="line">    echo &quot;FTP connection has failed!&quot;;</span><br><span class="line">    echo &quot;Attempted to connect to $ftp_server for user $ftp_user&quot;;</span><br><span class="line">    exit;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">echo &quot;Connected to $ftp_server, for user $ftp_user&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$upload = ftp_put($cid, $destination_file, $file, FTP_BINARY);</span><br><span class="line">if (!$upload) &#123;</span><br><span class="line">    echo &quot;Failed upload for $source_file to $ftp_server as $destination_file&lt;br&gt;&quot;;</span><br><span class="line">    echo &quot;FTP upload has failed!&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;Uploaded $source_file to $ftp_server as $destination_file&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ftp_close($cid);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>原因是没有定义ftp的主被动模式，true是被动模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp_pasv($cid, true);</span><br></pre></td></tr></table></figure></p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+          </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Spring-Cloud-Mysql" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/25/Spring-Cloud-Mysql/" class="article-date">
+  <time datetime="2018-05-25T01:04:48.000Z" itemprop="datePublished">2018-05-25</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/25/Spring-Cloud-Mysql/">SpringCloud入门七-使用Mybatis连接调用Mysql</a>
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+              <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>这两天开始尝试用 spring cloud 来重构公司的应用，所以就一边摸索一边做个记录，预防以后再次踩坑。<br><img src="/2018/05/25/Spring-Cloud-Mysql/springcloud.png" alt="Spring Cloud"><br></p>
+                
+                  <p class="article-more-link">
+                    <a href="/2018/05/25/Spring-Cloud-Mysql/#more">
+                      阅读全文
+                    </a>
+                  </p>
+                  
+                    
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
+
+          </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-money-to-house" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/24/money-to-house/" class="article-date">
+  <time datetime="2018-05-24T00:33:33.000Z" itemprop="datePublished">2018-05-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/闲言赘语/">闲言赘语</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/24/money-to-house/">做个记录</a>
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>前天晚上回了趟郑州，昨天为了办理按揭满城跑，顶着硕大的太阳，晒得我睁不开眼睛…</p>
+<p>累，但是还是做下记录吧。</p>
+<ol>
+<li>一年以上的劳务合同</li>
+<li>收入证明，公司盖章</li>
+<li>非郑户籍购房申请表，两份，第二页公司盖章</li>
+<li>公司营业执照副本复印件加公司盖章</li>
+<li>在职证明，公司盖章</li>
+<li>无房证明，房管局自助办理</li>
+<li>贷款银行的银行卡及卡主档</li>
+<li>学士证、学位证复印件</li>
+<li>学信网学籍、学历验证信息复印件</li>
+<li>个人信用报告</li>
+<li>银行流水记录</li>
+<li>购房转账记录</li>
+<li>跟银行客户经理合影–不知道为什么会有这一项但是确实是有</li>
+</ol>
+<p>这是办理按揭，还需要再回去一趟签些文件……</p>
+<p>各种手续办理完成的两个月后开始还房贷。</p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+          </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Laravel-time-change" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/08/Laravel-time-change/" class="article-date">
@@ -117,156 +269,6 @@
 
 
   
-    <article id="post-my-hobbies" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/18/my-hobbies/" class="article-date">
-  <time datetime="2018-04-18T07:20:08.000Z" itemprop="datePublished">2018-04-18</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/闲言赘语/">闲言赘语</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-      
-        <header class="article-header">
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/my-hobbies/">为爱好充值</a>
-    </h1>
-  
-
-        </header>
-        
-          <div class="article-entry" itemprop="articleBody">
-            
-              <p>那个周末，阳光明媚。</p>
-<p>我光着脚坐在窗台前伺候多肉，看它们一个个憨态可掬，咔咔几张照片并随手发到了群里。</p>
-<p>然后，同样喜欢花花草草的姑姑就被炸了出来，我俩兴致勃勃的聊起了心得。</p>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/04/18/my-hobbies/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
-          </div>
-          <footer class="article-footer">
-                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闲言赘语/">闲言赘语</a></li></ul>
-
-          </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Docker-link-images" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/12/Docker-link-images/" class="article-date">
-  <time datetime="2018-04-12T07:12:21.000Z" itemprop="datePublished">2018-04-12</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-      
-        <header class="article-header">
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/12/Docker-link-images/">Docker使用教程-连接容器-php-nginx</a>
-    </h1>
-  
-
-        </header>
-        
-          <div class="article-entry" itemprop="articleBody">
-            
-              <p>一直想在一个容器内把 php 的环境搭建好，直到我看到了一句话：</p>
-<blockquote>
-<p>将所有服务放在一个容器内的模式有个形象的非官方称呼：Fat Container。与之相对的是将服务分拆到容器的模式。从Docker的设计可以看到，构建镜像的过程中可以指定唯一一个容器启动的指令，因此Docker天然适合一个容器只运行一种服务，而这也是官方更推崇的。</p>
-</blockquote>
-<p>好吧，我不闹了。</p>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/04/12/Docker-link-images/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
-          </div>
-          <footer class="article-footer">
-                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
-
-          </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Docker-images" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/10/Docker-images/" class="article-date">
-  <time datetime="2018-04-10T02:48:33.000Z" itemprop="datePublished">2018-04-10</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-      
-        <header class="article-header">
-          
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/10/Docker-images/">Docker使用教程-以Dockerfile定制镜像</a>
-    </h1>
-  
-
-        </header>
-        
-          <div class="article-entry" itemprop="articleBody">
-            
-              <p>我们都知道，操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。</p>
-<p>而 Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:16.04 就包含了完整的一套 Ubuntu 16.04 最小系统的 root 文件系统。</p>
-<p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
-<p><img src="/2018/04/10/Docker-images/docker.jpg" alt="Docker"></p>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/04/10/Docker-images/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
-          </div>
-          <footer class="article-footer">
-                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
-
-          </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -297,7 +299,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/测试区/">测试区</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/码不能停/">码不能停</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲言赘语/">闲言赘语</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/测试区/">测试区</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/码不能停/">码不能停</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲言赘语/">闲言赘语</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -307,7 +309,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Layim/">Layim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui/">layui</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/">openssl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swoole/">swoole</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吃吃吃/">吃吃吃</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新年快乐/">新年快乐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲言赘语/">闲言赘语</a><span class="tag-list-count">5</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Layim/">Layim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui/">layui</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/">openssl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swoole/">swoole</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吃吃吃/">吃吃吃</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新年快乐/">新年快乐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲言赘语/">闲言赘语</a><span class="tag-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -317,7 +319,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Layim/" style="font-size: 10px;">Layim</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringCloud/" style="font-size: 18.33px;">SpringCloud</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/laravel/" style="font-size: 16.67px;">laravel</a> <a href="/tags/layui/" style="font-size: 11.67px;">layui</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 18.33px;">php</a> <a href="/tags/swoole/" style="font-size: 10px;">swoole</a> <a href="/tags/test/" style="font-size: 13.33px;">test</a> <a href="/tags/吃吃吃/" style="font-size: 10px;">吃吃吃</a> <a href="/tags/新年快乐/" style="font-size: 10px;">新年快乐</a> <a href="/tags/闲言赘语/" style="font-size: 15px;">闲言赘语</a>
+      <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Layim/" style="font-size: 10px;">Layim</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringCloud/" style="font-size: 18.33px;">SpringCloud</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/laravel/" style="font-size: 16.67px;">laravel</a> <a href="/tags/layui/" style="font-size: 11.67px;">layui</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 18.33px;">php</a> <a href="/tags/swoole/" style="font-size: 10px;">swoole</a> <a href="/tags/test/" style="font-size: 15px;">test</a> <a href="/tags/吃吃吃/" style="font-size: 10px;">吃吃吃</a> <a href="/tags/新年快乐/" style="font-size: 10px;">新年快乐</a> <a href="/tags/闲言赘语/" style="font-size: 15px;">闲言赘语</a>
     </div>
   </div>
 
@@ -326,7 +328,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -339,6 +341,14 @@
       <ul>
         
           <li>
+            <a href="/2018/08/31/web-tool/">常用工具合计</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/30/about-web-view/">前端之路多坎坷 - hexo主题开发历程</a>
+          </li>
+        
+          <li>
             <a href="/2018/08/28/Idea-2018-2-lombok/">Idea 2018.2 lombok插件失效的解决办法</a>
           </li>
         
@@ -347,15 +357,7 @@
           </li>
         
           <li>
-            <a href="/2018/08/13/happy-birthday/">Happy Birthday</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/19/nothing-to-say/">nothing to say,just hope</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/19/Laravel-chunk/">Laravel使用chunk自更新有误的原因</a>
+            <a href="/2018/08/25/today-is-saturday/">这个周末有点湿</a>
           </li>
         
       </ul>

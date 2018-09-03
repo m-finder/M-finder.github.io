@@ -5,7 +5,7 @@
         
 
         
-        <title>Happy Birthday | M-finder</title>
+        <title>前端之路多坎坷 - hexo主题开发历程 | M-finder</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
@@ -68,14 +68,14 @@
     </div>
 </header>
             <div class="outer">
-                <section id="main"><article id="post-happy-birthday" class="article article-type-post" itemscope itemprop="blogPost">
+                <section id="main"><article id="post-about-web-view" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/08/13/happy-birthday/" class="article-date">
-  <time datetime="2018-08-13T01:35:38.000Z" itemprop="datePublished">2018-08-13</time>
+    <a href="/2018/08/30/about-web-view/" class="article-date">
+  <time datetime="2018-08-30T05:06:35.000Z" itemprop="datePublished">2018-08-30</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/闲言赘语/">闲言赘语</a>
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
   </div>
 
   </div>
@@ -86,7 +86,7 @@
           
   
     <h1 class="article-title" itemprop="name">
-      Happy Birthday
+      前端之路多坎坷 - hexo主题开发历程
     </h1>
   
 
@@ -94,12 +94,30 @@
         
           <div class="article-entry" itemprop="articleBody">
             
-                      <p>昨天我爹生日，我竟然可耻的忘了……</p>
-<p>晚上看到我姑姑们在群里发红包祝福，吓得我赶紧打电话表示慰问。</p>
-<p>结果接通电话我妈也忘了。</p>
-<p>心疼我爹。</p>
-<p>Happy Birthday!</p>
-<p><img src="/2018/08/13/happy-birthday/1.jpg" alt=""></p>
+                      <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>今天突然觉得，应该给博客升下级。</p>
+<p>2月份把博客迁移到hexo时，嫌官方模板太丑，好看的模板又被用的烂了大街，当时苦于对hexo的力量一无所知，只是简单地拿官方模板改了一下就直接用了，改完还在博客立下flag：“以后打死不再折腾博客了”，</p>
+<p>后来，我把那句话删了，带着脸上一阵阵的疼，又给博客偷偷改了些东西，就这么将就着一直到了今天，不完美突然变得无比刺眼，看着这个博客，总有丝嫌弃在心里翻滚。</p>
+<p>还是再改一次吧！最喜欢脸疼的感觉了，折腾不死就该继续坚持…</p>
+<h4 id="一束光，突然照亮"><a href="#一束光，突然照亮" class="headerlink" title="一束光，突然照亮"></a>一束光，突然照亮</h4><p>今天查找资料时，看到一句直击内心的话<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当你看到你用的主题出现在两个以上的博客的时候，那你就要考虑自己写一个了。</span><br></pre></td></tr></table></figure></p>
+<p>这一瞬间，突然觉得所有的折腾都是值得的。我并不是唯一的“强迫症患者”，有这么一群人，也在跟我一样忍受着同样的折磨而做着同样的事情，真好。</p>
+<p>就像一束光，照亮了身边的黑暗。</p>
+<h4 id="那么，开始吧"><a href="#那么，开始吧" class="headerlink" title="那么，开始吧"></a>那么，开始吧</h4><h6 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h6><p>这一步参考以及一些基础操作请参考hexo官方的文档。</p>
+<p>吐槽下官方文档实在是坑，想开发个主题愣是没找到可用资料，国内关于hexo的资料虽然多但大多重复，嫌弃脸。</p>
+<h6 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h6><p>hexo内建了swig模板引擎，也可以下载插件使用ejs、haml和jade，四个里边ejs我最熟悉，所以这次继续使用，有机会再研究下另外几个组件。 </p>
+<h6 id="css预处理器"><a href="#css预处理器" class="headerlink" title="css预处理器"></a>css预处理器</h6><p>按需使用。这里我准备用less，刚学会，多用几次加深掌握程度。</p>
+<h4 id="主题搭建"><a href="#主题搭建" class="headerlink" title="主题搭建"></a>主题搭建</h4><h6 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h6><p>一般来说，一个主题内有两层文件夹，一个layout用来放置视图文件，一个source用来放相关的静态资源，</p>
+<h6 id="环境搭建-1"><a href="#环境搭建-1" class="headerlink" title="环境搭建"></a>环境搭建</h6><p>正常情况下载本地预览博客，需要在命令行跑hexo server，但是频繁更新主题文件后，需要多次重启，非常麻烦，有幸见到大神推荐的两个插件 hexo-server和hexo-browsersync避免了这些尴尬。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-server hexo-browsersync --save-dev</span><br></pre></td></tr></table></figure>
+<p>先安装，用法后边再说。</p>
+<h4 id="yeoman生成主题结构"><a href="#yeoman生成主题结构" class="headerlink" title="yeoman生成主题结构"></a>yeoman生成主题结构</h4><p>yeoman是一个生成主题目录结构的脚手架工具，为了偷懒，来吧。先安装<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install yo  -g</span><br><span class="line">npm install generator-hexo-theme -g</span><br></pre></td></tr></table></figure></p>
+<p>进入刚才创建好的hexo项目的themes文件夹，执行<br><figure class="highlight plain"><figcaption><span>hexo-theme ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">，根据提示选择自己的配置。</span><br></pre></td></tr></table></figure></p>
+<p>C:\www\hexo-themes-build\themes\hexo-theme-fox&gt;yo hexo-theme<br>–=[ generator-hexo-theme ]=–<br>? What is the theme name? hexo theme fox<br>? Which template language to use? ejs<br>? Which stylesheet language to use? less<br>? Other technical features<br>   create layout\archive.ejs<br>   create layout\category.ejs<br>   create layout\index.ejs<br>   create layout\layout.ejs<br>   create layout\page.ejs<br>   create layout\partials\recent-posts.ejs<br>   create layout\post.ejs<br>   create layout\tag.ejs<br>   create source\favicon.ico<br>   create source\css\hexo theme fox.less<br>   create source\js\hexo theme fox.js<br>   create _config.yml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">运行完以后，目录下会创建出新的主题文件，so easy。把站点配置文件中的主题切换到新主题，这时候用hexo s 运行一下，可以看到一个完全没有css样式的博客，当然这些就需要我们自己来做了。</span><br><span class="line"></span><br><span class="line">重点来了：</span><br><span class="line">hexo s 很烦，装完hexo-server以后，找到项目根目录的package.json，在下边添上一行：</span><br></pre></td></tr></table></figure></p>
+<p>“scripts”: {<br>    “dev”: “hexo s -p 4000”<br>}<br><code>`</code><br>好像，package.json俗称为npm scripts。写好以后，编辑器配下npm run就好了。</p>
+<h4 id="页面书写"><a href="#页面书写" class="headerlink" title="页面书写"></a>页面书写</h4><p>页面主要结构是已经生成好了的，充分发挥你的想象力吧。</p>
+<h4 id="插件引入"><a href="#插件引入" class="headerlink" title="插件引入"></a>插件引入</h4><ul>
+<li>字数统计 &gt; npm i –save hexo-wordcount</li>
+<li>站内查询 &gt; npm i –save hexo-generator-search</li>
+</ul>
 
                         <p class="article-more-link">
                           <a class="dashang" href="javascript:;">小额打赏</a>
@@ -108,7 +126,7 @@
           </div>
           <footer class="article-footer">
                 
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闲言赘语/">闲言赘语</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
 
           </footer>
   </div>
@@ -116,19 +134,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/08/25/today-is-saturday/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/31/web-tool/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          这个周末有点湿
+          常用工具合计
         
       </div>
     </a>
   
   
-    <a href="/2018/07/19/nothing-to-say/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/08/28/Idea-2018-2-lombok/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">nothing to say,just hope</div>
+      <div class="article-nav-title">Idea 2018.2 lombok插件失效的解决办法</div>
     </a>
   
 </nav>
