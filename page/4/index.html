@@ -70,10 +70,110 @@
             <div class="outer">
                 <section id="main">
   
-    <article id="post-my-hobbies" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Python版Spark牛刀小试" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/18/my-hobbies/" class="article-date">
-  <time datetime="2018-04-18T07:20:08.000Z" itemprop="datePublished">2018-04-18</time>
+    <a href="/2018/02/27/Python版Spark牛刀小试/" class="article-date">
+  <time datetime="2018-02-27T02:00:00.000Z" itemprop="datePublished">2018-02-27</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/27/Python版Spark牛刀小试/">Python版Spark牛刀小试</a>
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+              <p>想在搭建个环境试试spark，看到有人说在windows系统搭建纯粹属于浪费时间……</p>
+<p>但是虚拟机搭建了别的环境，怕冲突，也嫌麻烦，就先在windos系统搭建下试试吧，鼓捣鼓捣也顺便把过程记录下来。</p>
+<p>顺手记一下，方便你我他。</p>
+                
+                  <p class="article-more-link">
+                    <a href="/2018/02/27/Python版Spark牛刀小试/#more">
+                      阅读全文
+                    </a>
+                  </p>
+                  
+                    
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
+
+          </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hexo多设备支持" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/26/hexo多设备支持/" class="article-date">
+  <time datetime="2018-02-26T06:35:02.000Z" itemprop="datePublished">2018-02-26</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/26/hexo多设备支持/">hexo多设备支持</a>
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>测试时未知原因，markdown格式的图片标签无法识别，只能用下边hexo推荐的标签。<br>各种尝试，最后推掉重来，好了。</p>
+<p>mmp，可能是中间有什么步骤没做好。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% img [class names] /path/to/image [width] [height] [title text [alt text]] %&#125;</span><br></pre></td></tr></table></figure>
+<p>多设备什么的把源码丢在.io的分支上就好了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init   #初始化本地仓库</span><br><span class="line">git add .  #添加文件</span><br><span class="line">git commit -m &quot;Blog Source Hexo&quot;</span><br><span class="line">git branch hexo  #新建hexo分支</span><br><span class="line">git checkout hexo  #切换到hexo分支上</span><br><span class="line">git remote add origin git@github.com:yourname/yourname.github.io.git  #将本地与Github项目对接</span><br><span class="line">git push origin hexo  #push到Github项目的hexo分支上</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/02/26/hexo多设备支持/截图.png" alt="效果图"></p>
+<p>别的设备只需要拉下代码，然后切换下分支，再执行下 “npm install” 就可以愉快的玩耍了。</p>
+<p>后来测试下把源码放在码云也可以的，为了安全起见，把源码放在码云的私有项目去了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">新建私有仓库</span><br><span class="line">克隆到本地</span><br><span class="line">然后把博客源文件丢进去</span><br><span class="line">提交</span><br><span class="line">搞定</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/02/26/hexo多设备支持/x.gif" alt="test"></p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+          </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-新年快乐，祝大家狗年旺旺旺" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/15/新年快乐，祝大家狗年旺旺旺/" class="article-date">
+  <time datetime="2018-02-15T04:29:25.000Z" itemprop="datePublished">2018-02-15</time>
 </a>
       
   <div class="article-category">
@@ -88,7 +188,7 @@
           
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/my-hobbies/">为爱好充值</a>
+      <a class="article-title" href="/2018/02/15/新年快乐，祝大家狗年旺旺旺/">新年快乐，祝大家狗年旺旺旺</a>
     </h1>
   
 
@@ -96,21 +196,24 @@
         
           <div class="article-entry" itemprop="articleBody">
             
-              <p>那个周末，阳光明媚。</p>
-<p>我光着脚坐在窗台前伺候多肉，看它们一个个憨态可掬，咔咔几张照片并随手发到了群里。</p>
-<p>然后，同样喜欢花花草草的姑姑就被炸了出来，我俩兴致勃勃的聊起了心得。</p>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/04/18/my-hobbies/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
+                      <p>一晚上的火车，再加上3个小时的大巴，总算是在年前赶回了家。</p>
+<p>看着周围熟悉的环境，听着亲切万分的乡音，瞬间觉得，这一路的折腾也没什么大不了的。</p>
+<p>可能这就是“家”所赋予“年”的特殊力量吧。</p>
+<p>忐忐忑忑的本命年，终于在今天画上了句号。</p>
+<p>回头想想，又特么一如既往地穷了一年。不过，这些在今天看来，似乎都不太重要了，重要的是老子畏畏缩缩的过了本命年，明天又可以继续开始浪~</p>
+<p>哈哈哈哈哈……</p>
+<p>2017”鸡”将结束，2018”犬”力以赴！！</p>
+<p>祝大家新年快乐，狗年好合，哦不，狗年大吉，狗年旺旺旺！</p>
+<p><img src="/2018/02/15/新年快乐，祝大家狗年旺旺旺/2018.jpg" alt="大吉大利，今晚吃鸡"></p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
           </div>
           <footer class="article-footer">
                 
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闲言赘语/">闲言赘语</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/新年快乐/">新年快乐</a></li></ul>
 
           </footer>
   </div>
@@ -119,10 +222,113 @@
 
 
   
-    <article id="post-Docker-link-images" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-新博客写作测试" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/12/Docker-link-images/" class="article-date">
-  <time datetime="2018-04-12T07:12:21.000Z" itemprop="datePublished">2018-04-12</time>
+    <a href="/2018/02/13/新博客写作测试/" class="article-date">
+  <time datetime="2018-02-13T13:44:28.000Z" itemprop="datePublished">2018-02-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/测试区/">测试区</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/13/新博客写作测试/">新博客写作测试</a>
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>折腾了一天，终于把博客搬家了，之前的服务器马上到期，刚好赶上。</p>
+<p>php 版本的源码继续维护，有问题的话请在群里问我或者在 github 和码云上提交。</p>
+<p>顺便来几发测试。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">'hello world!'</span>;</span><br></pre></td></tr></table></figure>
+<p>よし，tag 会显示在页面下边。</p>
+<h2 id="图片插件"><a href="#图片插件" class="headerlink" title="图片插件"></a>图片插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<p>运行以后，在配置文件中修改 post_asset_folder 为 true，然后重启服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">'article title'</span></span><br></pre></td></tr></table></figure>
+<p>创建新文章以后，md 文件夹中会自动创建相应的文件夹，把图片放进去，然后在 md 文件中插入一下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![图片添加测试](新博客写作测试/logo.jpg)</span><br></pre></td></tr></table></figure></p>
+<p>执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></p>
+<p>刷新页面，图片出来了。<br><img src="/2018/02/13/新博客写作测试/logo.jpg" alt="图片添加测试"></p>
+<p>抽时间把评论也弄上去了，不过是国外的，需要翻墙，改天再找找有没有国内的插件吧，本来想用畅言的，结果发现需要网站备案，备你奶奶个腿儿呀！</p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
+
+          </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/13/hello-world/" class="article-date">
+  <time datetime="2018-02-13T10:44:28.000Z" itemprop="datePublished">2018-02-13</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/13/hello-world/">Hello World</a>
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
+
+          </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-openssl-pkey-get-private-内存泄漏" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/08/openssl-pkey-get-private-内存泄漏/" class="article-date">
+  <time datetime="2018-02-07T23:31:16.000Z" itemprop="datePublished">2018-02-08</time>
 </a>
       
   <div class="article-category">
@@ -137,7 +343,7 @@
           
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/12/Docker-link-images/">Docker使用教程-连接容器-php-nginx</a>
+      <a class="article-title" href="/2018/02/08/openssl-pkey-get-private-内存泄漏/">openssl_pkey_get_private 内存泄漏</a>
     </h1>
   
 
@@ -145,23 +351,26 @@
         
           <div class="article-entry" itemprop="articleBody">
             
-              <p>一直想在一个容器内把 php 的环境搭建好，直到我看到了一句话：</p>
-<blockquote>
-<p>将所有服务放在一个容器内的模式有个形象的非官方称呼：Fat Container。与之相对的是将服务分拆到容器的模式。从Docker的设计可以看到，构建镜像的过程中可以指定唯一一个容器启动的指令，因此Docker天然适合一个容器只运行一种服务，而这也是官方更推崇的。</p>
-</blockquote>
-<p>好吧，我不闹了。</p>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/04/12/Docker-link-images/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
+                      <p>从前，有一块使用 swoole_process 做多线程处理的程序，这个程序有一个奇怪的问题：每运行一个星期左右都会因为内存爆表而停掉。</p>
+<p>因为爆表的时间关系，开发的小伙伴们都认为是这段使用 swoole_process 的程序有问题，几经更新改版，代码已经趋于完美，平稳的运行了几天后，小伙伴们终于都松了一口气，终于解决了这个问题。</p>
+<p>然而，伴随着百年难遇的血月，这块程序还是在一个意想不到的时间又爆了一次，小伙伴们终于意识到，问题的根本并不在这里，想要找出并改掉这个问题，是何等艰难！但是他们知道，真相只有一个！</p>
+<p>又经过几天的排查，凶手终于浮出水面！</p>
+<p>呐，就是这孙子：openssl_pkey_get_private</p>
+<p>抽出的测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">while(true)&#123;</span><br><span class="line">    $key = file_get_contents(&apos;mock_A.pem&apos;);</span><br><span class="line">	echo $m=memory_get_usage(),PHP_EOL;</span><br><span class="line">	$getkey = openssl_pkey_get_private($key, &apos;&apos;);</span><br><span class="line">	openssl_pkey_free($getkey);</span><br><span class="line">	echo $mm = memory_get_usage(),PHP_EOL;</span><br><span class="line">        echo &quot;Before unset:  &quot;,$mm-$m ,PHP_EOL;</span><br><span class="line">	sleep(3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="/2018/02/08/openssl-pkey-get-private-内存泄漏/2018-02-08-07-30-12-5a7bfc84465bf.png" alt="运行结果"></p>
+<p>审判结果：该阉的就赶紧阉了吧</p>
+<p>行刑后长相：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$key = file_get_contents(&apos;mock_A.pem&apos;);</span><br><span class="line">$getkey = openssl_pkey_get_private($key, &apos;&apos;);</span><br><span class="line"></span><br><span class="line">while(true)&#123;</span><br><span class="line">	echo $m=memory_get_usage(),PHP_EOL;</span><br><span class="line">	openssl_pkey_free($getkey);</span><br><span class="line">	echo $mm = memory_get_usage(),PHP_EOL;</span><br><span class="line">        echo &quot;Before unset:  &quot;,$mm-$m ,PHP_EOL;</span><br><span class="line">	sleep(3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>前线专家点评：纯属冤案，哪儿特么这么容易泄漏，都是因为自己写的不规范！</p>
+<p>注：生成公私钥是需要消耗内存的，每次脚本执行结束后会释放掉，但是常驻内存的脚本没有释放的机会，所以每次循环调用都会造成内存增加，持续增加到一定量后系统也就崩了。<br>所以解决办法是在循环开始之前就把密钥生成好。</p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
           </div>
           <footer class="article-footer">
                 
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openssl/">openssl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swoole/">swoole</a></li></ul>
 
           </footer>
   </div>
@@ -170,10 +379,10 @@
 
 
   
-    <article id="post-Docker-images" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-laravel5-4疑难杂症" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/10/Docker-images/" class="article-date">
-  <time datetime="2018-04-10T02:48:33.000Z" itemprop="datePublished">2018-04-10</time>
+    <a href="/2018/01/05/laravel5-4疑难杂症/" class="article-date">
+  <time datetime="2018-01-04T19:05:12.000Z" itemprop="datePublished">2018-01-05</time>
 </a>
       
   <div class="article-category">
@@ -188,7 +397,7 @@
           
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/10/Docker-images/">Docker使用教程-以Dockerfile定制镜像</a>
+      <a class="article-title" href="/2018/01/05/laravel5-4疑难杂症/">laravel5.4疑难杂症</a>
     </h1>
   
 
@@ -196,22 +405,29 @@
         
           <div class="article-entry" itemprop="articleBody">
             
-              <p>我们都知道，操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。</p>
-<p>而 Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:16.04 就包含了完整的一套 Ubuntu 16.04 最小系统的 root 文件系统。</p>
-<p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
-<p><img src="/2018/04/10/Docker-images/docker.jpg" alt="Docker"></p>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/04/10/Docker-images/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
+                      <p>公司项目最近翻新了页面，把 bootstrap 完全改成了 layui 。</p>
+<p>按照惯例，上线之前先在测试环境跑几天，结果在搭建测试环境的时候，问题就出来了：</p>
+<p>laravel 版本是 5.4.63 ，服务器的 php 版本是 5.6 ，执行 composer install 时，提示我需要 php7.1 。</p>
+<p>吓得我一阵懵逼，难道是什么时候装错扩展了？</p>
+<p>把 composer.json 里没什么用的扩展完全去除后再试，结果还是一样。</p>
+<p>反复折腾无果，想起还有 update 可以用，遂改为执行 composer update ，终于开始安装了。</p>
+<p>小样，还治不了你了！容老夫抽根烟得瑟一下。</p>
+<p>下一秒，一个新的报错又砸我个措手不及：<br><img src="/2018/01/05/laravel5-4疑难杂症/error.png" alt="错误信息"></p>
+<p>class ‘’ not found !</p>
+<p>虽然不知道这个报错是咋回事，但是潜意识觉得应该是某个 Kernel 文件出错了。</p>
+<p>找到一份之前的备份，一通对比，终于有所发现：<br><img src="/2018/01/05/laravel5-4疑难杂症/2018-01-05-03-03-33-5a4eeb050862d.png" alt="对比结果"></p>
+<p>出错的代码比之前正常的代码多了个 “，”，丫的，太粗糙了！</p>
+<p>去掉，再次执行 update ，果然一路畅通无阻。</p>
+<p>但是那个该死的 install 是再也没回来。</p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
           </div>
           <footer class="article-footer">
                 
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
 
           </footer>
   </div>
@@ -220,10 +436,10 @@
 
 
   
-    <article id="post-Laravel-5-个让你的开发更加轻松的辅助函数" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Layim模块化右键菜单" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/09/Laravel-5-个让你的开发更加轻松的辅助函数/" class="article-date">
-  <time datetime="2018-04-09T08:58:01.000Z" itemprop="datePublished">2018-04-09</time>
+    <a href="/2017/12/27/Layim模块化右键菜单/" class="article-date">
+  <time datetime="2017-12-27T01:40:33.000Z" itemprop="datePublished">2017-12-27</time>
 </a>
       
   <div class="article-category">
@@ -238,7 +454,7 @@
           
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/09/Laravel-5-个让你的开发更加轻松的辅助函数/">Laravel 5 个让你的开发更加轻松的辅助函数</a>
+      <a class="article-title" href="/2017/12/27/Layim模块化右键菜单/">Layim模块化右键菜单</a>
     </h1>
   
 
@@ -246,21 +462,136 @@
         
           <div class="article-entry" itemprop="articleBody">
             
-              <h4 id="data-get"><a href="#data-get" class="headerlink" title="data_get()"></a>data_get()</h4><hr>
-<p><em>data_get()</em> 辅助方法能够让你更轻松的获取数组或者对象中的值。如果数组或者对象的key不存在的话，这个方法的第三个可选参数设置一个默认值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#数组</span><br><span class="line">$array = [&apos;albums&apos; =&gt; [&apos;rock&apos; =&gt; [&apos;count&apos; =&gt; 75 ]]];</span><br><span class="line">$count = data_get($array, &apos;albums.rock.count&apos;); #75</span><br><span class="line">$avgCost = data_get($array, &apos;albums.rock.avg_cost&apos;, 0); #0</span><br><span class="line"></span><br><span class="line">#对象</span><br><span class="line">$object-&gt;albums-&gt;rock-&gt;count = 75;</span><br><span class="line">$count = data_get($object, &apos;albums.rock.count&apos;);#75</span><br><span class="line">$avgCost = data_get($object, &apos;albums.rock.avg_cost&apos;, 0); #0</span><br></pre></td></tr></table></figure>
-                
-                  <p class="article-more-link">
-                    <a href="/2018/04/09/Laravel-5-个让你的开发更加轻松的辅助函数/#more">
-                      阅读全文
-                    </a>
-                  </p>
-                  
-                    
+                      <p>一直觉得社区那群“先驱”搞的右键菜单要么太丑，要么风格不统一，很难受。</p>
+<p>这两天仔细看了看心姐的源码，把历史消息里的右键菜单揪出来改了一把，感觉很良好。</p>
+<p>演示地址已挂，请在本地搭建后测试。</p>
+<p>调用方法，先引用上边暴露出来的方法，然后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">layim.on(&apos;ready&apos;, function (options) &#123;</span><br><span class="line">    $(&quot;.layim-list-friend &gt;li &gt; ul &gt; li&quot;).menu(&#123;</span><br><span class="line">        menu: [&#123;</span><br><span class="line">                text: &quot;新增&quot;,</span><br><span class="line">                callback: function () &#123;</span><br><span class="line">                    alert(&quot;新增&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                text: &quot;复制&quot;,</span><br><span class="line">                callback: function () &#123;</span><br><span class="line">                    alert(&quot;复制&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                text: &quot;粘贴&quot;,</span><br><span class="line">                callback: function () &#123;</span><br><span class="line">                    alert(&quot;粘贴&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                text: &quot;删除&quot;,</span><br><span class="line">                callback: function () &#123;</span><br><span class="line">                    alert(&quot;删除&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>代码下载地址：<br><a href="https://gitee.com/M-finder/Layim-contextmenu" target="_blank" rel="noopener">码云</a><br><a href="https://github.com/M-finder/Layim-contextmenu" target="_blank" rel="noopener">Github</a></p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
           </div>
           <footer class="article-footer">
                 
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Layim/">Layim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui/">layui</a></li></ul>
+
+          </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Layui使用备忘" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/22/Layui使用备忘/" class="article-date">
+  <time datetime="2017-12-22T01:39:12.000Z" itemprop="datePublished">2017-12-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/22/Layui使用备忘/">Layui使用备忘</a>
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <h3 id="需求"><a href="#需求" class="headerlink" title="需求 :"></a>需求 :</h3><p>项目中需要做一个带参导入功能 , 画面效果如下图:<br><img src="/2017/12/22/Layui使用备忘/2017-11-16-10-48-47-5a0cfc8febf33.png" alt="效果图"></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题 :"></a>遇到的问题 :</h3><ol>
+<li>弹窗中 select 不显示</li>
+<li>select 显示后 , 选中某项时无法把值传入后台</li>
+</ol>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法 :"></a>解决办法 :</h3><ol>
+<li>在弹窗的 success 中使用 form.render(‘select’) 重新渲染select</li>
+<li>在弹窗的 success 中增加 select 切换事件监听 , 然后使用变量 uploader 承接 upload.render , 在监听到 select 切换时 , 使用 uploader.config.data = {‘asset_type’: data.value} 来更新 upload 中的 data 参数 , 最后再给 upload 增加 before 参数 , 来接收不切换 select 时的 data 值 .</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码 :"></a>代码 :</h3><p>html :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;script id=&quot;importTpl&quot; type=&quot;text/html&quot;&gt;</span><br><span class="line">    &lt;form class=&quot;layui-form layui-form-pane &quot; method=&quot;POST&quot;  onsubmit=&quot;return false&quot; &gt;</span><br><span class="line">        &lt;div style=&quot;padding: 15px;width:400px;margin:0 auto;&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;layui-form-item&quot; &gt;</span><br><span class="line">                &lt;label class=&quot;layui-form-label&quot;&gt;导入文件类型&lt;/label&gt;</span><br><span class="line">                &lt;div class=&quot;layui-input-block&quot;&gt;</span><br><span class="line">                    &lt;select name=&quot;asset_type&quot; id=&apos;asset_type&apos; lay-filter=&quot;asset_type&quot;&gt;</span><br><span class="line">                        &lt;option value=&quot;1&quot; selected&gt;个人贷款&lt;/option&gt;</span><br><span class="line">                        &lt;option value=&quot;4&quot;&gt;票据&lt;/option&gt;</span><br><span class="line">                    &lt;/select&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;layui-form-item&quot; &gt;</span><br><span class="line">                &lt;button type=&quot;button&quot; class=&quot;layui-btn layui-btn-primary&quot; id=&quot;import&quot;&gt;</span><br><span class="line">                    &lt;i class=&quot;layui-icon&quot;&gt;&lt;/i&gt;</span><br><span class="line">                    选择文件</span><br><span class="line">                &lt;/button&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">            &lt;div class=&quot;layui-row&quot; &gt;</span><br><span class="line">                &lt;button class=&quot;layui-btn do-import layui-btn-danger &quot; type=&quot;button&quot;&gt;</span><br><span class="line">                    确定导入</span><br><span class="line">                &lt;/button&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>javascript :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#asset-import&apos;).click(function () &#123;</span><br><span class="line">    layer.open(&#123;</span><br><span class="line">        area: [&apos;450px&apos;, &apos;250px&apos;],</span><br><span class="line">        title: &apos;项目导入&apos;,</span><br><span class="line">        type: 1,</span><br><span class="line">        content: $(&apos;#importTpl&apos;).html(),</span><br><span class="line">        success: function (layero, index) &#123;</span><br><span class="line">            form.render(&apos;select&apos;);</span><br><span class="line"></span><br><span class="line">            form.on(&apos;select&apos;, function (data) &#123;</span><br><span class="line">                uploader.config.data = &#123;&apos;asset_type&apos;: data.value&#125;;</span><br><span class="line">            &#125;);</span><br><span class="line">            var uploader = upload.render(&#123;</span><br><span class="line">                url: &apos;/reg/asset-import&apos;</span><br><span class="line">                , elem: &apos;#import&apos;</span><br><span class="line">                , accept: &apos;file&apos;</span><br><span class="line">                , auto: false</span><br><span class="line">                , bindAction: &apos;.do-import&apos;</span><br><span class="line">                , before: function (obj) &#123;</span><br><span class="line">                        uploader.config.data = &#123;&apos;asset_type&apos;: $(&apos;#asset_type&apos;).val()&#125;;</span><br><span class="line">                &#125;</span><br><span class="line">                , done: function (res) &#123;</span><br><span class="line">                    layer.close(index);</span><br><span class="line">                    if (res.code == 0) &#123;</span><br><span class="line">                        layer.msg(res.msg, &#123;icon: 1&#125;);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        layer.alert(res.msg, &#123;icon: 2&#125;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui/">layui</a></li></ul>
+
+          </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-代码备忘录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/22/代码备忘录/" class="article-date">
+  <time datetime="2017-12-22T01:38:12.000Z" itemprop="datePublished">2017-12-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/22/代码备忘录/">代码备忘录</a>
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <h3 id="计算两个日期的差值"><a href="#计算两个日期的差值" class="headerlink" title="计算两个日期的差值"></a>计算两个日期的差值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$datetime1 = new DateTime(&apos;2009-10-11&apos;);  </span><br><span class="line">//new DateTime = date_create , 在某些框架中用 new DateTime 需要加 &apos;\&apos; ;</span><br><span class="line">$datetime2 = new DateTime(&apos;2009-10-13&apos;);  </span><br><span class="line">$interval = $datetime1-&gt;diff($datetime2);  </span><br><span class="line">echo $interval-&gt;format(&apos;%R%a days&apos;);</span><br></pre></td></tr></table></figure>
+<h3 id="新建文件夹"><a href="#新建文件夹" class="headerlink" title="新建文件夹"></a>新建文件夹</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$dir = iconv(&quot;UTF-8&quot;, &quot;GBK&quot;, &quot;C:/www/report/&quot;); //linux下可不转码</span><br><span class="line">if (!file_exists($dir))&#123;</span><br><span class="line">      mkdir ($dir,0755,true);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Ascii-码转换"><a href="#Ascii-码转换" class="headerlink" title="Ascii 码转换"></a>Ascii 码转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function stringFromColumnIndex($pColumnIndex = 0) &#123;</span><br><span class="line">    static $_indexCache = array();</span><br><span class="line">    if (!isset($_indexCache[$pColumnIndex])) &#123;</span><br><span class="line">        // Determine column string</span><br><span class="line">        if ($pColumnIndex &lt; 26) &#123;</span><br><span class="line">            $_indexCache[$pColumnIndex] = chr(65 + $pColumnIndex);</span><br><span class="line">        &#125; elseif ($pColumnIndex &lt; 702) &#123;</span><br><span class="line">            $_indexCache[$pColumnIndex] = chr(64 + ($pColumnIndex / 26)) .</span><br><span class="line">                    chr(65 + $pColumnIndex % 26);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $_indexCache[$pColumnIndex] = chr(64 + (($pColumnIndex - 26) / 676)) . chr(65 + ((($pColumnIndex - 26) % 676) / 26)) . chr(65 + $pColumnIndex % 26);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return $_indexCache[$pColumnIndex];</span><br><span class="line">&#125;</span><br><span class="line">echo stringFromColumnIndex(37);</span><br></pre></td></tr></table></figure>
+<h3 id="计算时间过去了多久-天-时-分-秒"><a href="#计算时间过去了多久-天-时-分-秒" class="headerlink" title="计算时间过去了多久 天\时\分\秒"></a>计算时间过去了多久 天\时\分\秒</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function secsToStr($secs) &#123;</span><br><span class="line">    $r = &apos;&apos;;</span><br><span class="line">    if ($secs &gt;= 86400) &#123;</span><br><span class="line">        $days = floor($secs / 86400);</span><br><span class="line">        $secs = $secs % 86400;</span><br><span class="line">        $r = $days . &apos; 天&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    if ($secs &gt;= 3600) &#123;</span><br><span class="line">        $hours = floor($secs / 3600);</span><br><span class="line">        $secs = $secs % 3600;</span><br><span class="line">        $r .= $hours . &apos; 小时&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    if ($secs &gt;= 60) &#123;</span><br><span class="line">        $minutes = floor($secs / 60);</span><br><span class="line">        $secs = $secs % 60;</span><br><span class="line">        $r .= $minutes . &apos; 分钟&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    $r .= $secs . &apos; 秒&apos;;</span><br><span class="line">    return $r;</span><br><span class="line">&#125;</span><br><span class="line">echo secsToStr(545517.1111111111);</span><br></pre></td></tr></table></figure>
+<h3 id="win10-配置-pthreads-多线程扩展"><a href="#win10-配置-pthreads-多线程扩展" class="headerlink" title="win10 配置 pthreads 多线程扩展"></a>win10 配置 pthreads 多线程扩展</h3><p>pthreads 只支持 ts 版本的 php , 即线程安全版</p>
+<p>phpstudy 自定义版本时总在报错 , 所以换了 xmapp</p>
+<p>pthreads 下载地址 : <a href="http://windows.php.net/downloads/pecl/releases/pthreads/" target="_blank" rel="noopener">没错，点我</a></p>
+<p>要对应版本号和位数  位数以 php 的为准</p>
+<p>下载解压后 , 把 php_pthreads.dll 和  pthreadVC2.dll 复制到 php\ext 下边</p>
+<p>php.ini 最后边新增 : extension=php_pthreads.dll</p>
+<p>然后再复制一个 pthreadVC2.dll 到系统目录</p>
+<p>系统为 32 位的就复制进 C:\Windows\System32</p>
+<p>64 位的就复制进 C:\Windows\SysWOW64</p>
+<p>重启 xmapp , 新建一个 test.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class AsyncOperation extends \Thread &#123;</span><br><span class="line">    public function __construct($arg)&#123;</span><br><span class="line">        $this-&gt;arg = $arg;</span><br><span class="line">    &#125;</span><br><span class="line">    public function run()&#123;</span><br><span class="line">        if($this-&gt;arg)&#123;</span><br><span class="line">            printf(&quot;Hello %s\n&quot;, $this-&gt;arg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$thread = new AsyncOperation(&quot;World&quot;);</span><br><span class="line"></span><br><span class="line">if($thread-&gt;start())&#123;</span><br><span class="line">    $thread-&gt;join();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过 url 访问 test 文件 , 出现 Hello World 就成功了</p>
+<p>或者查看 phpinfo 里边有没有 pthreads 扩展</p>
+<h3 id="Js调用系统桌面通知"><a href="#Js调用系统桌面通知" class="headerlink" title="Js调用系统桌面通知:"></a>Js调用系统桌面通知:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (window.Notification &amp;&amp; Notification.permission !== &quot;denied&quot;) &#123;</span><br><span class="line">	Notification.requestPermission(function (status) &#123;</span><br><span class="line">		var n = new Notification(&quot;sir, you got a message&quot;, &#123;</span><br><span class="line">			icon: &apos;/img/logo.png&apos;,</span><br><span class="line">			body: &apos;you will have a meeting 5 minutes later.&apos;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="js声音提醒"><a href="#js声音提醒" class="headerlink" title="js声音提醒"></a>js声音提醒</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">audioElementHovertree = document.createElement(&apos;audio&apos;);  </span><br><span class="line">audioElementHovertree.setAttribute(&apos;src&apos;, &apos;http://w.qq.com/audio/classic.mp3&apos;);  </span><br><span class="line">audioElementHovertree.setAttribute(&apos;autoplay&apos;, &apos;autoplay&apos;);</span><br></pre></td></tr></table></figure>
+<h3 id="数据分配："><a href="#数据分配：" class="headerlink" title="数据分配："></a>数据分配：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$max_worker_num = 30;</span><br><span class="line">$data_num = 74;</span><br><span class="line"></span><br><span class="line">if ($data_num == 0) &#123;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for ($i = 0; $i &lt; $data_num; $i++) &#123;</span><br><span class="line">	$data[$i] = $i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$min_worker_num = min($data_num, $max_worker_num);</span><br><span class="line"></span><br><span class="line">$data_arr = array_chunk($data, ceil($data_num / $min_worker_num), true);</span><br><span class="line"></span><br><span class="line">$worker_num = ceil($data_num / ceil($data_num / $min_worker_num));</span><br></pre></td></tr></table></figure>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
 
           </footer>
   </div>
@@ -273,7 +604,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
   </nav>
 
 </section>
