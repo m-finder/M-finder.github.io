@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+
+        
+        <title>poi导出excel效率优化 | M-finder</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+            <meta name="keywords" content="M-finder博客，个人博客，系统开发，网站开发" />
+        
+        
+            <meta name="description" content="M-finder博客，一个强迫症患者的个人博客，长期分享技术知识与个人生活感悟。">
+            <meta name="searchtitle" content="M-finder博客，一个强迫症患者的个人博客，长期分享技术知识与个人生活感悟。" />
+        
+        
+          <link rel="icon" href="/images/favicon.ico">
+        
+        <link rel="stylesheet" href="/css/css.css">
+        <link rel="stylesheet" href="/js/layui/css/layui.css">
+    </head>
+
+<body>
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+              <a href="/" id="logo">M-finder</a>
+            </h1>
+            
+                <h2 id="subtitle-wrap">删繁就简，发现更多</h2>
+            
+      </div>
+      <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <a class="main-nav-link" href="/">博客首页</a>
+                
+                    <a class="main-nav-link" href="/categories/码不能停">码不能停</a>
+                
+                    <a class="main-nav-link" href="/categories/闲言赘语">闲言赘语</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+                    <a class="main-nav-link" href="/reward">打赏记录</a>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                <a id="nav-search-btn" class="nav-icon" title="搜索" style="display:none"></a>
+            </nav>
+            <div id="search-form-wrap" class="">
+                <form action="//baidu.com/s" method="get" accept-charset="UTF-8" class="search-form">
+                    <input type="search" name="wd" class="search-form-input" placeholder="Search">
+                    <input type="hidden" name="site:" value="https://www.m-finder.com">
+                    <button type="submit" class="search-form-submit">&#xF002;</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+            <div class="outer">
+                <section id="main"><article id="post-poi-excel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/13/poi-excel/" class="article-date">
+  <time datetime="2018-11-13T02:18:32.000Z" itemprop="datePublished">2018-11-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/码不能停/">码不能停</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      poi导出excel效率优化
+    </h1>
+  
+
+        </header>
+        
+          <div class="article-entry" itemprop="articleBody">
+            
+                      <p>最近抄了个poi的数据导出，500条数据跑了将近50秒，wtf???</p>
+<p>一番百度，发现是设置列宽写成了设置格宽，本来20列的数据，只需要设置20次就够了，但是现在就要跑20*500次，而设置宽度本身又是个比较消耗资源的操作，好死不死的是我还做了中文宽度适配，so…fuck the dogs</p>
+<p><img src="/2018/11/13/poi-excel/cover.JPEG" alt="cover"><br><a id="more"></a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExcelUtil</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> HSSFWorkbook <span class="title">export</span><span class="params">(String sheetName, String[] title, String[] fields, List data,</span></span></span><br><span class="line"><span class="function"><span class="params">            HSSFWorkbook wb)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个HSSFWorkbook，对应一个Excel文件</span></span><br><span class="line">        <span class="keyword">if</span> (wb == <span class="keyword">null</span>) &#123;</span><br><span class="line">            wb = <span class="keyword">new</span> HSSFWorkbook();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 在workbook中添加一个sheet,对应Excel文件中的sheet</span></span><br><span class="line">        HSSFSheet sheet = wb.createSheet(sheetName);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制</span></span><br><span class="line">        HSSFRow row = sheet.createRow(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建单元格，并设置值表头 设置表头居中</span></span><br><span class="line">        HSSFCellStyle style = wb.createCellStyle();</span><br><span class="line">        style.setAlignment(HorizontalAlignment.CENTER);</span><br><span class="line">        <span class="comment">// 声明列对象</span></span><br><span class="line">        HSSFCell cell = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建标题</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; title.length; i++) &#123;</span><br><span class="line">            cell = row.createCell(i);</span><br><span class="line">            cell.setCellValue(title[i]);</span><br><span class="line">            cell.setCellStyle(style);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        HSSFCell contentCell = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.size(); i++) &#123;</span><br><span class="line">            <span class="comment">// 数据集</span></span><br><span class="line">            Object obj = data.get(i);</span><br><span class="line">            <span class="comment">// 创建行</span></span><br><span class="line">            row = sheet.createRow(i + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; fields.length; k++) &#123;</span><br><span class="line">                Method method = obj.getClass().getMethod(<span class="string">"get"</span> + fields[k], <span class="keyword">new</span> Class[] &#123;&#125;);</span><br><span class="line">                Object value = method.invoke(obj, <span class="keyword">new</span> Object[] &#123;&#125;);</span><br><span class="line">                contentCell = row.createCell(k);</span><br><span class="line">                <span class="keyword">if</span> (value <span class="keyword">instanceof</span> Date) &#123;</span><br><span class="line">                    Date date = (Date) value;</span><br><span class="line">                    SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">                    contentCell.setCellValue(sdf.format(date));</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value <span class="keyword">instanceof</span> BigDecimal) &#123;</span><br><span class="line">                    HSSFCellStyle cellStyle = wb.createCellStyle();</span><br><span class="line">                    HSSFDataFormat format = wb.createDataFormat();</span><br><span class="line">                    contentCell.setCellValue(((BigDecimal) value).doubleValue());</span><br><span class="line">                    cellStyle.setDataFormat(format.getFormat(<span class="string">"¥#,##0.00"</span>));</span><br><span class="line">                    contentCell.setCellStyle(cellStyle);</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(value == <span class="keyword">null</span> || value ==<span class="string">""</span>)&#123;</span><br><span class="line">                    contentCell.setCellValue(<span class="string">"--"</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    contentCell.setCellValue(value.toString());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        设置列宽自适应</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>; l &lt; fields.length; l++) &#123;</span><br><span class="line">            sheet.autoSizeColumn(l + <span class="number">1</span>, <span class="keyword">true</span>);</span><br><span class="line">            <span class="keyword">int</span> columnWidth = sheet.getColumnWidth(l) / <span class="number">256</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> rowNum = <span class="number">0</span>; rowNum &lt; sheet.getLastRowNum(); rowNum++) &#123;</span><br><span class="line">                HSSFRow currentRow;</span><br><span class="line">                <span class="comment">// 当前行未被使用过</span></span><br><span class="line">                <span class="keyword">if</span> (sheet.getRow(rowNum) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    currentRow = sheet.createRow(rowNum);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    currentRow = sheet.getRow(rowNum);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (currentRow.getCell(l) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    HSSFCell currentCell = currentRow.getCell(l);</span><br><span class="line">                    <span class="keyword">if</span> (currentCell.getCellType().toString() == <span class="string">"STRING"</span>) &#123;</span><br><span class="line">                        <span class="keyword">int</span> length = currentCell.getStringCellValue().getBytes().length;</span><br><span class="line">                        <span class="keyword">if</span> (columnWidth &lt; length) &#123;</span><br><span class="line">                            columnWidth = length;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            sheet.setColumnWidth(l, columnWidth * <span class="number">256</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> wb;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">ExcelUtil excelUtil = <span class="keyword">new</span> ExcelUtil();</span><br><span class="line"><span class="comment">// 列名</span></span><br><span class="line">String[] rowsName = <span class="keyword">new</span> String[] &#123;<span class="string">"序号"</span>, <span class="string">"签约流水号"</span>, <span class="string">"订单编号"</span>, <span class="string">"通道"</span>, <span class="string">"公司"</span>, <span class="string">"业务员"</span>, <span class="string">"客户姓名"</span>, <span class="string">"交易金额"</span>,</span><br><span class="line">        <span class="string">"手续费"</span>, <span class="string">"订单状态"</span>, <span class="string">"状态说明"</span>, <span class="string">"众签状态"</span>, <span class="string">"绑卡状态"</span>, <span class="string">"交易时间"</span>, <span class="string">"处理时间"</span>&#125;;</span><br><span class="line"><span class="comment">// 字段名</span></span><br><span class="line">String[] rowsTitle = <span class="keyword">new</span> String[] &#123;<span class="string">"Id"</span>, <span class="string">"ContractNo"</span>, <span class="string">"OrderNo"</span>, <span class="string">"ChannelName"</span>,</span><br><span class="line">        <span class="string">"CompanyName"</span>, <span class="string">"BaseUserName"</span>, <span class="string">"BankAccountName"</span>, <span class="string">"Money"</span>, <span class="string">"InMoney"</span>,</span><br><span class="line">        <span class="string">"OrderStatusForRead"</span>, <span class="string">"RetDesc"</span>, <span class="string">"OrderZQSignedStatusForRead"</span>,</span><br><span class="line">        <span class="string">"OrderSignedStatusForRead"</span>, <span class="string">"TradeTime"</span>, <span class="string">"ProcessDate"</span>&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">List&lt;OrderPageVO&gt; list =</span><br><span class="line">        orderMapper.listByCondition(contractNo, orderNo, userName, baseUserName, channelId,</span><br><span class="line">                companyId, orderStatus, signed, tradeType, processDateBegin, processDateEnd);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">HSSFWorkbook workbook = excelUtil.export(<span class="string">"订单记录"</span>, rowsName, rowsTitle, list, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下载</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    String filename = <span class="string">"订单记录"</span> + System.currentTimeMillis() + <span class="string">".xls"</span>;</span><br><span class="line">    filename = <span class="keyword">new</span> String(filename.getBytes(), <span class="string">"ISO8859-1"</span>);</span><br><span class="line">    response.setContentType(<span class="string">"application/octet-stream;charset=ISO8859-1"</span>);</span><br><span class="line">    response.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment;filename="</span> + filename);</span><br><span class="line">    response.addHeader(<span class="string">"Pargam"</span>, <span class="string">"no-cache"</span>);</span><br><span class="line">    response.addHeader(<span class="string">"Cache-Control"</span>, <span class="string">"no-cache"</span>);</span><br><span class="line">    OutputStream os = response.getOutputStream();</span><br><span class="line">    workbook.write(os);</span><br><span class="line">    os.flush();</span><br><span class="line">    os.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>poi用法还是很简单的，也就这个地方被我踩了个坑。另外数据量上来以后可能还有分sheet的坑在等着我，不过这个以后再说。</p>
+
+                        <p class="article-more-link">
+                          <a class="dashang" href="javascript:;">小额打赏</a>
+                        </p>
+                        
+          </div>
+          <footer class="article-footer">
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+          </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/31/web-tool/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">常用工具合计</div>
+    </a>
+  
+</nav>
+
+      
+</article>
+
+
+  <section id="comments">
+    <!--PC和WAP自适应版-->
+    <div id="SOHUCS"></div>
+    <script>
+      (function () {
+        var appid = 'cyty1Pt2F';
+        var conf = 'prod_bab62ce514b78e635471dd0544889c5d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+          window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+        } else {
+          var loadJs = function (d, a) {
+            var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+            var b = document.createElement("script");
+            b.setAttribute("type", "text/javascript");
+            b.setAttribute("charset", "UTF-8");
+            b.setAttribute("src", d);
+            if (typeof a === "function") {
+              if (window.attachEvent) {
+                b.onreadystatechange = function () {
+                  var e = b.readyState;
+                  if (e === "loaded" || e === "complete") {
+                    b.onreadystatechange = null;
+                    a()
+                  }
+                }
+              } else {
+                b.onload = a
+              }
+            }
+            c.appendChild(b)
+          };
+          loadJs("https://changyan.sohu.com/upload/changyan.js",
+            function () {
+              window.changyan.api.config({
+                appid: appid,
+                conf: conf
+              })
+            });
+        }
+      })();
+    </script>
+  </section>
+  </section>
+                
+                  <aside id="sidebar">
+	<div class="widget-wrap">
+		<h3 class="widget-title">广告位</h3>
+		<div class="widget" >
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- M-finder -->
+			<ins class="adsbygoogle"
+				 style="display:block"
+				 data-ad-client="ca-pub-3280933721783945"
+				 data-ad-slot="2496953790"
+				 data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	</div>    
+	
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/测试区/">测试区</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/码不能停/">码不能停</a><span class="category-list-count">31</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲言赘语/">闲言赘语</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Layim/">Layim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui/">layui</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/">openssl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swoole/">swoole</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吃吃吃/">吃吃吃</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/新年快乐/">新年快乐</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲言赘语/">闲言赘语</a><span class="tag-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/Docker/" style="font-size: 13.33px;">Docker</a> <a href="/tags/Hexo/" style="font-size: 11.67px;">Hexo</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Layim/" style="font-size: 10px;">Layim</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringCloud/" style="font-size: 18.33px;">SpringCloud</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/laravel/" style="font-size: 16.67px;">laravel</a> <a href="/tags/layui/" style="font-size: 11.67px;">layui</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 18.33px;">php</a> <a href="/tags/swoole/" style="font-size: 10px;">swoole</a> <a href="/tags/test/" style="font-size: 15px;">test</a> <a href="/tags/吃吃吃/" style="font-size: 10px;">吃吃吃</a> <a href="/tags/新年快乐/" style="font-size: 10px;">新年快乐</a> <a href="/tags/闲言赘语/" style="font-size: 15px;">闲言赘语</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/13/poi-excel/">poi导出excel效率优化</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/31/web-tool/">常用工具合计</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/30/about-web-view/">前端之路多坎坷 - hexo主题开发历程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/28/Idea-2018-2-lombok/">Idea 2018.2 lombok插件失效的解决办法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/27/im-a-test/">im-a-test</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+
+    
+        <div class="widget-wrap">
+            <h3 class="widget-title">友情链接</h3>
+            <div class="widget" >
+                <ul>
+                    
+                        <li>
+                            <a href="http://www.aprilblank.com" title="AprilBlank" target="_blank" rel="noopener">AprilBlank</a>
+                        </li>
+                    
+                        <li>
+                            <a href="http://blog.csdn.net/qq_27948659" title="大白" target="_blank" rel="noopener">大白</a>
+                        </li>
+                    
+                        <li>
+                            <a href="https://www.yyblogs.net/" title="大槐树" target="_blank" rel="noopener">大槐树</a>
+                        </li>
+                    
+                        <li>
+                            <a href="http://www.sgclzqq.com/" title="Sgclzqq" target="_blank" rel="noopener">Sgclzqq</a>
+                        </li>
+                    
+                        <li>
+                            <a href="https://93xiaosi.github.io/" title="Wait" target="_blank" rel="noopener">Wait</a>
+                        </li>
+                    
+                        <li>
+                            <a href="http://2k.m-finder.com" title="艾克教程网" target="_blank" rel="noopener">艾克教程网</a>
+                        </li>
+                    
+                        <li>
+                            <a href="https://thekingstyle.github.io/" title="Wang WeiQiang" target="_blank" rel="noopener">Wang WeiQiang</a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    
+</aside>
+                
+            </div>
+            <footer class="footer">
+    
+
+    <div class="footavatar site-footer clearfix u-textAlignCenter">
+        <img src="/images/logo.gif">
+        <ul class="footinfo">
+            <p class="fname"><a>M-finder</a></p>
+            <p class="finfo">南瓜不说话，默默地成长着</p>
+        </ul>
+    </div>
+    <div class="Copyright">
+        <br><p>
+            <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=c4f068d3baefa9f0e31f6271d9bebe70e542830dd6e713d7689fd2a084a952e7">
+                <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="IT行业交流" title="IT行业交流">
+            </a>
+        </p><br>
+        &copy; 2018  M-finder 豫ICP备18011086号<br>
+        Powered by <a href="http://www.m-finder.com" target="_blank"> M-finder</a>
+    </div>
+</footer>
+        </div>
+
+        <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">博客首页</a>
+  
+    <a href="/categories/码不能停" class="mobile-nav-link">码不能停</a>
+  
+    <a href="/categories/闲言赘语" class="mobile-nav-link">闲言赘语</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+    <a href="/reward" class="mobile-nav-link">打赏记录</a>
+  
+</nav>
+        <script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/layui/layui.js"></script>
+<script src="/js/nprogress.js"></script>
+<script type="text/javascript">
+    layui.config({
+        base: '/js/'
+        ,version: false
+    }).extend({
+        index: 'index'
+    }).use(['index']);
+    // ,function (){
+    //     var $ = layui.jquery;
+    //         $(function () {
+    //             $(document).pjax('a', '#main',{fragment:'#main'});
+    //             $(document).on('pjax:start', function () {
+    //                 NProgress.start();
+    //             });
+    //             $(document).on('pjax:end', function () {
+    //                 NProgress.done();
+    //             });
+                
+    //         });
+    // }
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+</body>
+</html>
