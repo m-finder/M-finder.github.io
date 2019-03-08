@@ -9,7 +9,7 @@
   <title>Laravel使用chunk自更新有误的原因 | M-finder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Laravel 的 chunk 在查询大量数据时非常好用，但是在用某个字段做为检索条件，并且在程序内部有更新这个字段的时候，就会有一部分数据丢失。 原因是这样的，比如有7条数据，每次取2条，那么这7条数据就会被分为2，2，2，1这样几块，第一次调用时，取得第一页，也就是第一个2的数据块，更新完后再取数据，原来的第二页就变成了第一页，但是这时候取的还是第二页，所以这时候取的是第三个数据块，到了第三次">
-<meta name="keywords" content="laravel,php">
+<meta name="keywords" content="php,laravel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel使用chunk自更新有误的原因">
 <meta property="og:url" content="https://www.m-finder.com/2018/06/19/Laravel-chunk/index.html">
@@ -208,11 +208,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">laravel</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">laravel</a>
         		</li>
       		
 		</ul>
@@ -437,11 +437,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Centos</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color2">Centos</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -453,11 +453,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">laravel</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color3">laravel</a>
               </li>
              
               <li class="article-tag-list-item">
