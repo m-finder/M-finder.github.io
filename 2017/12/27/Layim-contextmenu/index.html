@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.m-finder.com">
-  <title>代码备忘录 | M-finder</title>
+  <title>Layim模块化右键菜单 | M-finder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="计算两个日期的差值12345$datetime1 = new DateTime(&amp;apos;2009-10-11&amp;apos;);  //new DateTime = date_create , 在某些框架中用 new DateTime 需要加 &amp;apos;\&amp;apos; ;$datetime2 = new DateTime(&amp;apos;2009-10-13&amp;apos;);  $interval =">
-<meta name="keywords" content="php,js">
+  <meta name="description" content="一直觉得社区那群“先驱”搞的右键菜单要么太丑，要么风格不统一，很难受。 这两天仔细看了看心姐的源码，把历史消息里的右键菜单揪出来改了一把，感觉很良好。 演示地址已挂，请在本地搭建后测试。 调用方法，先引用上边暴露出来的方法，然后：1234567891011121314151617181920212223242526layim.on(&amp;apos;ready&amp;apos;, function (opti">
+<meta name="keywords" content="js,layui,Layim">
 <meta property="og:type" content="article">
-<meta property="og:title" content="代码备忘录">
-<meta property="og:url" content="https://www.m-finder.com/2017/12/22/代码备忘录/index.html">
+<meta property="og:title" content="Layim模块化右键菜单">
+<meta property="og:url" content="https://www.m-finder.com/2017/12/27/Layim-contextmenu/index.html">
 <meta property="og:site_name" content="M-finder">
-<meta property="og:description" content="计算两个日期的差值12345$datetime1 = new DateTime(&amp;apos;2009-10-11&amp;apos;);  //new DateTime = date_create , 在某些框架中用 new DateTime 需要加 &amp;apos;\&amp;apos; ;$datetime2 = new DateTime(&amp;apos;2009-10-13&amp;apos;);  $interval =">
+<meta property="og:description" content="一直觉得社区那群“先驱”搞的右键菜单要么太丑，要么风格不统一，很难受。 这两天仔细看了看心姐的源码，把历史消息里的右键菜单揪出来改了一把，感觉很良好。 演示地址已挂，请在本地搭建后测试。 调用方法，先引用上边暴露出来的方法，然后：1234567891011121314151617181920212223242526layim.on(&amp;apos;ready&amp;apos;, function (opti">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-23T08:36:58.782Z">
+<meta property="og:updated_time" content="2019-03-11T08:58:56.632Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="代码备忘录">
-<meta name="twitter:description" content="计算两个日期的差值12345$datetime1 = new DateTime(&amp;apos;2009-10-11&amp;apos;);  //new DateTime = date_create , 在某些框架中用 new DateTime 需要加 &amp;apos;\&amp;apos; ;$datetime2 = new DateTime(&amp;apos;2009-10-13&amp;apos;);  $interval =">
+<meta name="twitter:title" content="Layim模块化右键菜单">
+<meta name="twitter:description" content="一直觉得社区那群“先驱”搞的右键菜单要么太丑，要么风格不统一，很难受。 这两天仔细看了看心姐的源码，把历史消息里的右键菜单揪出来改了一把，感觉很良好。 演示地址已挂，请在本地搭建后测试。 调用方法，先引用上边暴露出来的方法，然后：1234567891011121314151617181920212223242526layim.on(&amp;apos;ready&amp;apos;, function (opti">
   
     <link rel="alternative" href="/atom.xml" title="M-finder" type="application/atom+xml">
   
@@ -157,45 +157,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-代码备忘录" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Layim-contextmenu" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      代码备忘录
+      Layim模块化右键菜单
     </h1>
   
 
         
-        <a href="/2017/12/22/代码备忘录/" class="archive-article-date">
-  	<time datetime="2017-12-22T01:38:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-22</time>
+        <a href="/2017/12/27/Layim-contextmenu/" class="archive-article-date">
+  	<time datetime="2017-12-27T01:40:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="计算两个日期的差值"><a href="#计算两个日期的差值" class="headerlink" title="计算两个日期的差值"></a>计算两个日期的差值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$datetime1 = new DateTime(&apos;2009-10-11&apos;);  </span><br><span class="line">//new DateTime = date_create , 在某些框架中用 new DateTime 需要加 &apos;\&apos; ;</span><br><span class="line">$datetime2 = new DateTime(&apos;2009-10-13&apos;);  </span><br><span class="line">$interval = $datetime1-&gt;diff($datetime2);  </span><br><span class="line">echo $interval-&gt;format(&apos;%R%a days&apos;);</span><br></pre></td></tr></table></figure>
-<h3 id="新建文件夹"><a href="#新建文件夹" class="headerlink" title="新建文件夹"></a>新建文件夹</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$dir = iconv(&quot;UTF-8&quot;, &quot;GBK&quot;, &quot;C:/www/report/&quot;); //linux下可不转码</span><br><span class="line">if (!file_exists($dir))&#123;</span><br><span class="line">      mkdir ($dir,0755,true);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Ascii-码转换"><a href="#Ascii-码转换" class="headerlink" title="Ascii 码转换"></a>Ascii 码转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function stringFromColumnIndex($pColumnIndex = 0) &#123;</span><br><span class="line">    static $_indexCache = array();</span><br><span class="line">    if (!isset($_indexCache[$pColumnIndex])) &#123;</span><br><span class="line">        // Determine column string</span><br><span class="line">        if ($pColumnIndex &lt; 26) &#123;</span><br><span class="line">            $_indexCache[$pColumnIndex] = chr(65 + $pColumnIndex);</span><br><span class="line">        &#125; elseif ($pColumnIndex &lt; 702) &#123;</span><br><span class="line">            $_indexCache[$pColumnIndex] = chr(64 + ($pColumnIndex / 26)) .</span><br><span class="line">                    chr(65 + $pColumnIndex % 26);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $_indexCache[$pColumnIndex] = chr(64 + (($pColumnIndex - 26) / 676)) . chr(65 + ((($pColumnIndex - 26) % 676) / 26)) . chr(65 + $pColumnIndex % 26);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return $_indexCache[$pColumnIndex];</span><br><span class="line">&#125;</span><br><span class="line">echo stringFromColumnIndex(37);</span><br></pre></td></tr></table></figure>
-<h3 id="计算时间过去了多久-天-时-分-秒"><a href="#计算时间过去了多久-天-时-分-秒" class="headerlink" title="计算时间过去了多久 天\时\分\秒"></a>计算时间过去了多久 天\时\分\秒</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function secsToStr($secs) &#123;</span><br><span class="line">    $r = &apos;&apos;;</span><br><span class="line">    if ($secs &gt;= 86400) &#123;</span><br><span class="line">        $days = floor($secs / 86400);</span><br><span class="line">        $secs = $secs % 86400;</span><br><span class="line">        $r = $days . &apos; 天&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    if ($secs &gt;= 3600) &#123;</span><br><span class="line">        $hours = floor($secs / 3600);</span><br><span class="line">        $secs = $secs % 3600;</span><br><span class="line">        $r .= $hours . &apos; 小时&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    if ($secs &gt;= 60) &#123;</span><br><span class="line">        $minutes = floor($secs / 60);</span><br><span class="line">        $secs = $secs % 60;</span><br><span class="line">        $r .= $minutes . &apos; 分钟&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    $r .= $secs . &apos; 秒&apos;;</span><br><span class="line">    return $r;</span><br><span class="line">&#125;</span><br><span class="line">echo secsToStr(545517.1111111111);</span><br></pre></td></tr></table></figure>
-<h3 id="win10-配置-pthreads-多线程扩展"><a href="#win10-配置-pthreads-多线程扩展" class="headerlink" title="win10 配置 pthreads 多线程扩展"></a>win10 配置 pthreads 多线程扩展</h3><p>pthreads 只支持 ts 版本的 php , 即线程安全版</p>
-<p>phpstudy 自定义版本时总在报错 , 所以换了 xmapp</p>
-<p>pthreads 下载地址 : <a href="http://windows.php.net/downloads/pecl/releases/pthreads/" target="_blank" rel="noopener">没错，点我</a></p>
-<p>要对应版本号和位数  位数以 php 的为准</p>
-<p>下载解压后 , 把 php_pthreads.dll 和  pthreadVC2.dll 复制到 php\ext 下边</p>
-<p>php.ini 最后边新增 : extension=php_pthreads.dll</p>
-<p>然后再复制一个 pthreadVC2.dll 到系统目录</p>
-<p>系统为 32 位的就复制进 C:\Windows\System32</p>
-<p>64 位的就复制进 C:\Windows\SysWOW64</p>
-<p>重启 xmapp , 新建一个 test.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class AsyncOperation extends \Thread &#123;</span><br><span class="line">    public function __construct($arg)&#123;</span><br><span class="line">        $this-&gt;arg = $arg;</span><br><span class="line">    &#125;</span><br><span class="line">    public function run()&#123;</span><br><span class="line">        if($this-&gt;arg)&#123;</span><br><span class="line">            printf(&quot;Hello %s\n&quot;, $this-&gt;arg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$thread = new AsyncOperation(&quot;World&quot;);</span><br><span class="line"></span><br><span class="line">if($thread-&gt;start())&#123;</span><br><span class="line">    $thread-&gt;join();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>通过 url 访问 test 文件 , 出现 Hello World 就成功了</p>
-<p>或者查看 phpinfo 里边有没有 pthreads 扩展</p>
-<h3 id="Js调用系统桌面通知"><a href="#Js调用系统桌面通知" class="headerlink" title="Js调用系统桌面通知:"></a>Js调用系统桌面通知:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (window.Notification &amp;&amp; Notification.permission !== &quot;denied&quot;) &#123;</span><br><span class="line">	Notification.requestPermission(function (status) &#123;</span><br><span class="line">		var n = new Notification(&quot;sir, you got a message&quot;, &#123;</span><br><span class="line">			icon: &apos;/img/logo.png&apos;,</span><br><span class="line">			body: &apos;you will have a meeting 5 minutes later.&apos;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="js声音提醒"><a href="#js声音提醒" class="headerlink" title="js声音提醒"></a>js声音提醒</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">audioElementHovertree = document.createElement(&apos;audio&apos;);  </span><br><span class="line">audioElementHovertree.setAttribute(&apos;src&apos;, &apos;http://w.qq.com/audio/classic.mp3&apos;);  </span><br><span class="line">audioElementHovertree.setAttribute(&apos;autoplay&apos;, &apos;autoplay&apos;);</span><br></pre></td></tr></table></figure>
-<h3 id="数据分配："><a href="#数据分配：" class="headerlink" title="数据分配："></a>数据分配：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$max_worker_num = 30;</span><br><span class="line">$data_num = 74;</span><br><span class="line"></span><br><span class="line">if ($data_num == 0) &#123;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for ($i = 0; $i &lt; $data_num; $i++) &#123;</span><br><span class="line">	$data[$i] = $i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$min_worker_num = min($data_num, $max_worker_num);</span><br><span class="line"></span><br><span class="line">$data_arr = array_chunk($data, ceil($data_num / $min_worker_num), true);</span><br><span class="line"></span><br><span class="line">$worker_num = ceil($data_num / ceil($data_num / $min_worker_num));</span><br></pre></td></tr></table></figure>
+        <p>一直觉得社区那群“先驱”搞的右键菜单要么太丑，要么风格不统一，很难受。</p>
+<p>这两天仔细看了看心姐的源码，把历史消息里的右键菜单揪出来改了一把，感觉很良好。</p>
+<p>演示地址已挂，请在本地搭建后测试。</p>
+<p>调用方法，先引用上边暴露出来的方法，然后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">layim.on(&apos;ready&apos;, function (options) &#123;</span><br><span class="line">    $(&quot;.layim-list-friend &gt;li &gt; ul &gt; li&quot;).menu(&#123;</span><br><span class="line">        menu: [&#123;</span><br><span class="line">                text: &quot;新增&quot;,</span><br><span class="line">                callback: function () &#123;</span><br><span class="line">                    alert(&quot;新增&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                text: &quot;复制&quot;,</span><br><span class="line">                callback: function () &#123;</span><br><span class="line">                    alert(&quot;复制&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                text: &quot;粘贴&quot;,</span><br><span class="line">                callback: function () &#123;</span><br><span class="line">                    alert(&quot;粘贴&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                text: &quot;删除&quot;,</span><br><span class="line">                callback: function () &#123;</span><br><span class="line">                    alert(&quot;删除&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>代码下载地址：<br><a href="https://gitee.com/M-finder/Layim-contextmenu" target="_blank" rel="noopener">码云</a><br><a href="https://github.com/M-finder/Layim-contextmenu" target="_blank" rel="noopener">Github</a></p>
 
       
 
@@ -209,11 +195,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">layui</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Layim</a>
         		</li>
       		
 		</ul>
@@ -280,7 +270,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="https://img.fanhaobai.com/qrcode.php?url=https://www.m-finder.com/2017/12/22/代码备忘录/" alt="微信分享二维码">
+      <img src="https://img.fanhaobai.com/qrcode.php?url=https://www.m-finder.com/2017/12/27/Layim-contextmenu/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +284,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/22/Layui使用备忘/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/05/laravel5-4疑难杂症/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Layui使用备忘
+          laravel5.4疑难杂症
         
       </div>
     </a>
   
   
-    <a href="/2017/12/22/laravel-使用笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">laravel 使用笔记</div>
+    <a href="/2017/12/22/Layui-notes/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Layui使用备忘</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -332,7 +322,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算两个日期的差值"><span class="toc-number">1.</span> <span class="toc-text">计算两个日期的差值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建文件夹"><span class="toc-number">2.</span> <span class="toc-text">新建文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ascii-码转换"><span class="toc-number">3.</span> <span class="toc-text">Ascii 码转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算时间过去了多久-天-时-分-秒"><span class="toc-number">4.</span> <span class="toc-text">计算时间过去了多久 天\时\分\秒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#win10-配置-pthreads-多线程扩展"><span class="toc-number">5.</span> <span class="toc-text">win10 配置 pthreads 多线程扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Js调用系统桌面通知"><span class="toc-number">6.</span> <span class="toc-text">Js调用系统桌面通知:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js声音提醒"><span class="toc-number">7.</span> <span class="toc-text">js声音提醒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据分配："><span class="toc-number">8.</span> <span class="toc-text">数据分配：</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -348,7 +338,7 @@
   
 
   
-  <div id="SOHUCS" sid="代码备忘录"></div> 
+  <div id="SOHUCS" sid="Layim-contextmenu"></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
 <script type="text/javascript">
     window.changyan.api.config({
@@ -463,11 +453,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">laravel</a>
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color3">laravel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,11 +497,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
