@@ -81,7 +81,7 @@ theme: yilia
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://gh_token@github.com:M-finder/M-finder.github.io.git
+  repo: https://github.com/M-finder/M-finder.github.io.git
   branch: master
 
 jsonContent:
@@ -102,4 +102,3 @@ jsonContent:
     excerpt: false
     categories: false
     tags: true
-GH_TOKEN: 3450b6cfab2427a8bd0d9eee1722907b24c84389
