@@ -17,7 +17,7 @@ categories: 码不能停
 
 #### github 账号 登陆 travis ci
 登陆后把博客项目的开关打开。
-![](images/set.png)
+![](travis-ci-test/set.png)
 
 #### 博客项目创建分支
 把博客项目，即 .io 的那个项目拉到本地，创建一个新的分支 hexo:
@@ -82,6 +82,8 @@ env:
 
 #### github生成token
 在 setting - developer settings 中生成 token，勾选 repo 所有选项和 user 下的 email。
+
+![](travis-ci-test/github-set.png)
 
 把生成的 token 填写的 travis ci 的设置中。
 
