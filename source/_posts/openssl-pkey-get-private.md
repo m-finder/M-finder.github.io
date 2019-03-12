@@ -29,7 +29,7 @@ while(true){
 ```
 
 结果：
-![运行结果](openssl_pkey_get_private 内存泄漏/2018-02-08-07-30-12-5a7bfc84465bf.png)
+![运行结果](openssl-pkey-get-private/2018-02-08-07-30-12-5a7bfc84465bf.png)
 
 审判结果：该阉的就赶紧阉了吧
 

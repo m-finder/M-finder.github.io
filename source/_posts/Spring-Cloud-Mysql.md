@@ -7,7 +7,7 @@ categories: 码不能停
 
 #### 前言
 这两天开始尝试用 spring cloud 来重构公司的应用，所以就一边摸索一边做个记录，预防以后再次踩坑。
-![Spring Cloud](Spring-Cloud-Mysql/java.jpg)
+![](Spring-Cloud-Mysql/java.jpg)
 <!--more-->
 
 #### 注意事项

@@ -9,7 +9,7 @@ categories: 码不能停
 
 算了，老子再搞一遍，放在网上随便看。
 
-![](LNMP环境搭建教程/1.jpg)
+![](lnmp/1.jpg)
 <!--more-->
 
 #### 更新组件
@@ -253,7 +253,7 @@ _<font color=red>注：</font>_
 ```
 如果不复制的话也一样能够运行php，但是就无法装扩展了，踩坑千百遍终有一疏，装完swoole发现无法加载，最后查到时这里的问题。
 
-![swoole](LNMP环境搭建教程/swoole.png)
+![swoole](lnmp/swoole.png)
 
 
 打完收工，一个不小心又搞到凌晨一点，感觉头上凉凉哒~
