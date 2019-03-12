@@ -1,0 +1,65 @@
+---
+title: 关于
+date: 2018-02-14 13:11:41
+---
+## 关于我
+90后大龄无为男青年，海贼粉，码渣。
+
+## 关于博客
+仅以记录成神之旅。
+
+### 更新日志：
+
+#### 2018-4-8
+* 添加畅言评论系统
+* 移除pjax
+
+#### 2018-2-28
+* 增加百度链接推送，最简单那种
+
+#### 2018-2-13
+* 博客迁移到github
+* 使用hexo作为底层支持
+* hexo-theme-M-finder更新
+* 模板地址：[github](https://github.com/M-finder/hexo-theme-M-fidner.git)
+
+#### 2017-12-23
+* 规范性更新
+* 新增pjax
+* 功能完善
+* 编辑器替换
+* 音乐播放器移除
+* layui版本升级
+
+#### 2017-11-17
+* 遗留问题修复
+* 收录友好优化
+
+#### 2017-09-30
+* 修正用户中心无法通过评论跳转到文章详情页面
+* 用户中心评论倒叙
+
+#### 2017-09-17
+* 新增音乐播放器
+* 修复后台和用户中心的数据分页问题
+
+#### 2017-09-16
+* 完全替换后台编辑器
+* 修复无法注册的bug
+* 优化 js 
+
+#### 2017-09-11
+* M-fidner博客2.0  laravel5.5 + wordpress JAGUAR主题 + forget 主题 diy 版 +layui 2.12
+* 码云地址 :   [码云](https://git.oschina.net/M-finder/laravel-M-finder) 
+* github地址 :  [github](https://github.com/M-finder/laravel-M-finder )
+
+#### 2017-02-26
+* M-finder1.0上线， Thinkphp3.2.3 + wordpress JAGUAR 主题 diy 版 + layui1.9
+* JAGUAR 主题演示地址 ： [点我查看演示](https://www.mywpku.com/jaguar.html)
+* JAGUAR 主题下载地址 ： [Jaguar](https://github.com/bigfa/Jaguar)
+
+#### 2016-06-09
+* M-finder博客前身 Pumwaterkin 博客上线，wordpress + forget 主题 diy 版
+* forget 主题地址 ： [forget](http://azfashao.com/forget3-0-2/)
+
+![码不能停](about/index/码不能停.jpg)

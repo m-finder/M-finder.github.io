@@ -1,0 +1,27 @@
+#disqus_thread, .duoshuo, .cloud-tie-wrapper, #SOHUCS, #gitment-ctn {
+	padding: 0 30px !important;
+	min-height: 20px;
+}
+
+#SOHUCS {
+	#SOHU_MAIN .module-cmt-list .block-cont-gw {
+		border-bottom: 1px dashed #c8c8c8 !important;
+	}
+}
+
+#feedAv{ 
+	margin-top: -250px!important;
+	transform: scale(0);
+}
+
+#SOHUCS{
+	display: none!important;
+}
+#SOHUCS #SOHU_MAIN .module-hot-topic {
+    width: 0!important;
+    display: none!important;
+}
+
+#SOHUCS #SOHU_MAIN .module-cmt-footer .section-service-w, #SOHUCS #SOHU_MAIN .module-cmt-footer .section-service-w .service-wrap-w, #SOHUCS #SOHU_MAIN .module-cmt-footer .section-service-w .service-wrap-w a {
+    opacity: 0;
+}
