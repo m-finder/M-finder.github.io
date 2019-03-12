@@ -7,7 +7,7 @@ categories: 码不能停
 
 在微服务架构的系统中，通常会使用轻量级的消息代理来构建一个共同的消息主题让系统中的所有服务都连接上来。这个消息主题，就是消息总线组件。
 在总线上各个实例都可以方便地广播一些需要让其他服务知道的消息，例如配置信息的变更或其他的一些管理操作等。
-
+![](Spring-Cloud-RabbitMQ/java.jpg)
 <!--more-->
 ## RabbitMQ实现消息总线
 
@@ -27,12 +27,12 @@ rabbitmq-plugins enable rabbitmq_management
 
 启动后访问 localhost:15672/#/，默认帐号密码均为 guest
 
-![web管理](SpringCloud入门六/web管理.png)
+![web管理](Spring-Cloud-RabbitMQ/web管理.png)
 
 在admin选项卡内创建一个SpringCloud的新用户：
-![创建新用户](SpringCloud入门六/创建新用户.png)
+![创建新用户](Spring-Cloud-RabbitMQ/创建新用户.png)
 分配下权限：
-![分配权限](SpringCloud入门六/分配权限.png)
+![分配权限](Spring-Cloud-RabbitMQ/分配权限.png)
 
 
 #### 创建项目
@@ -107,13 +107,13 @@ public class RabbitmqApplicationTests {
 #### 运行测试
 
 运行，刷新页面
-![连接成功](SpringCloud入门六/连接成功.png)
+![连接成功](Spring-Cloud-RabbitMQ/连接成功.png)
 
 这里没有成功的话一般有两个错误，连接被拒绝和无法注册Queue，第一个请检查权限和用户名密码是否正确，guest的用户好像也是不能在程序中用的。第二个就看下是不是导错了包。
 
 然后运行test
 
-![运行结果](SpringCloud入门六/ok.png)
+![运行结果](Spring-Cloud-RabbitMQ/ok.png)
 
 ## 整合Spring Cloud Bus
 改造上一个项目中的config-client的configClientController
@@ -138,14 +138,14 @@ or
 management.endpoints.web.exposure.include=*
 ```
 
-![终于出来了](SpringCloud入门六/actuator.png)
+![终于出来了](Spring-Cloud-RabbitMQ/actuator.png)
 
 postman 来访问一下，用post方式
 
-![post](SpringCloud入门六/post.png)
+![post](Spring-Cloud-RabbitMQ/post.png)
 
 刷新页面
-![posted](SpringCloud入门六/posted.png)
+![posted](Spring-Cloud-RabbitMQ/posted.png)
 
 ok，这一步算是搞定了，忍不住想吐槽一下，真特么的坑！
 
