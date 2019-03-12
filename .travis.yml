@@ -36,7 +36,7 @@ after_script:
   - git config user.email "m@m-finder.com"
   - git add .
   - git commit -m "Update blogs"
-  - git push --force --quiet "https://${gh_token}@${gh_repo}" master:master
+  - git push --force --quiet "https://${travis_token}@${gh_repo}" master:master
 env:
   global:
     - gh_repo: github.com/M-finder/M-finder.github.io.git
