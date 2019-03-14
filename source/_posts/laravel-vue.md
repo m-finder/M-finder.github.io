@@ -12,14 +12,20 @@ categories: 码不能停
 ![](laravel-vue/php.jpg)
 <!--more-->
 
-#### laravel安装
+#### 安装laravel
+
 操作均在 laradock 的环境中进行。
+进入 workspace 容器，执行以下命令安装 laravel
+```
+composer create-project laravel/laravel study
+```
 
-* docker-compose up -d nginx mysql phpmyadmin 启动容器
-* 配置 nginx、hosts 并重启 nginx
-* 进入 mysql 容器执行以下命令：
+#### 配置mysql
+
+docker-compose up -d nginx mysql phpmyadmin 启动容器
+配置 nginx、hosts 并重启 nginx
+进入 mysql 容器执行以下命令：
 ```shell
-
 mysql -uroot -p
 root
 ALTER USER root IDENTIFIED WITH mysql_native_password BY 'PASSWORD';
@@ -27,9 +33,11 @@ exit;
 exit
 
 ```
-* 访问 phpmyadmin： localhost:8080，host 填写 mysql，用户名密码均为 root。
-* 进入 workspace 容器，创建 laravel 项目：create-project laravel/laravel study
-* 修改数据库信息，生成用户模块并安装前端脚手架:
+
+访问 phpmyadmin： localhost:8080，host 填写 mysql，用户名密码均为 root。
+
+#### 配置laravel
+修改数据库信息，生成用户模块并安装前端脚手架:
 ```php
 php artisan make:auth
 php artisan migrate
@@ -47,13 +55,15 @@ php artisan db:seed
 npm install
 ```
 
-* 修改 home.blade.php：
+#### 修改视图 
+home.blade.php：
 vue 的组件在 resources/js/components，然后在 app.js 中注册。
 ```html
 You are logged in!
 <example-component></example-component>
 ```
-* 更新脚手架：npm run dev  or npm run watch
-有两个地方需要注意：
+更新脚手架：npm run dev  or npm run watch
+
+#### 注意事项
 > 组件在 @section('content') 标签内才会生效
 > 每次修改组件后都需要重新运行一次 npm run dev，也可以用 watch 监听。
