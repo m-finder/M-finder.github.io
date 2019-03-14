@@ -54,7 +54,8 @@ php artisan db:seed
 npm install
 ```
 
-* 修改 home.blade.php：
+#### 修改视图 
+home.blade.php：
 vue 的组件在 resources/js/components，然后在 app.js 中注册。
 ```html
 You are logged in!
