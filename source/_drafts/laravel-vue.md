@@ -12,7 +12,7 @@ categories: 码不能停
 ![](laravel-vue/php.jpg)
 <!--more-->
 
-#### laravel安装
+#### 安装laravel
 
 操作均在 laradock 的环境中进行。
 进入 workspace 容器，执行以下命令安装 laravel
