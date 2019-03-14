@@ -22,9 +22,9 @@ composer create-project laravel/laravel study
 
 #### 配置mysql
 
-* docker-compose up -d nginx mysql phpmyadmin 启动容器
-* 配置 nginx、hosts 并重启 nginx
-* 进入 mysql 容器执行以下命令：
+docker-compose up -d nginx mysql phpmyadmin 启动容器
+配置 nginx、hosts 并重启 nginx
+进入 mysql 容器执行以下命令：
 ```shell
 mysql -uroot -p
 root
