@@ -67,3 +67,15 @@ You are logged in!
 #### 注意事项
 > 组件在 @section('content') 标签内才会生效
 > 每次修改组件后都需要重新运行一次 npm run dev，也可以用 watch 监听。
+
+#### 进阶使用
+理论上，到了上一步已经可以完成一些基础的操作了，但是刚刚发现 laravel 还有一个叫做 laravel-mix 的东西，在 [ [ LearnKu ] ](https://learnku.com) (laravel-china 社区)社区的文档中是这么介绍的：
+
+>Laravel Mix 提供了简洁且可读性高的 API ，用于使用几个常见的 CSS 和 JavaScript 预处理器为应用定义 Webpack 构建步骤。可以通过简单链式调用来定义资源的编译。
+
+>Laravel Mix 是叠加于 webpack 上的一层干净的膜， 它让 webpack 百分之80的用例变得十分简单。
+
+也就是说，laravel-mix 是用来简化 webpack 学习和开发成本的工具。之前因为没在框架中用过
+
+之前因为没在框架中用过 vue，所以一直也没有接触到这个工具，现在看完发现，学习之路真的是永无止境… 😂
+
