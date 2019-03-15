@@ -64,12 +64,93 @@ You are logged in!
 ```
 更新脚手架：npm run dev  or npm run watch
 
+![组件生效](laravel-vue/laravel.png)
+
+#### 再实验下
+例子来自：[[ cxp1539 ]](https://learnku.com/docs/laravel-core-concept/5.5/Laravel%E4%B8%8E%E5%89%8D%E7%AB%AF%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/3029)
+
+视图组件：
+```vue
+<template>
+  <transition name="fade">
+    <div v-if="isShow" class="goTop" @click="goTop">
+      <span class="glyphicon glyphicon-menu-up"></span>
+    </div>
+  </transition>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isShow: false
+    }
+  },
+  mounted() {
+    const that = this
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 50) {
+        that.isShow = true
+      } else {
+        that.isShow = false
+      }
+    })
+  },
+  methods: {
+    goTop() {
+      $('html,body').animate({ scrollTop: 0 })
+    }
+  }
+}
+</script>
+<style scoped lang="scss">
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+  .goTop {
+    position: fixed;
+    right: 36px;
+    bottom: 50px;
+    background: #FFF;
+    width: 50px;
+    height: 50px;
+    line-height: 60px;
+    text-align: center;
+    border-radius: 2px;
+    box-shadow: 0 4px 12px 0 rgba(7,17,27,.1);
+    cursor: pointer;
+    z-index: 1000;
+    span {
+      font-size: 20px;
+    }
+  }
+</style>
+```
+
+app.js 注册：
+```
+Vue.component('go-top', require('./components/GoTop.vue'));
+```
+
+在 app.blade.php 中引入组件：
+```
+<main class="py-4">
+    @yield('content')
+</main>
+<go-top></go-top>
+```
+
+为了使页面更高，随便修改个样式使滚动条出现。
+
+![up](laravel-vue/up.png)
 #### 注意事项
-> 组件在 @section('content') 标签内才会生效
 > 每次修改组件后都需要重新运行一次 npm run dev，也可以用 watch 监听。
 
 #### 进阶使用
-理论上，到了上一步已经可以完成一些基础的操作了，但是刚刚发现 laravel 还有一个叫做 laravel-mix 的东西，在 [ [ LearnKu ] ](https://learnku.com) (laravel-china 社区)社区的文档中是这么介绍的：
+到了上一步已经可以完成一些基础的操作了，实际上，刚才得操作还用到了一个叫做 laravel-mix 的东西，在 [ [ LearnKu ] ](https://learnku.com) (laravel-china 社区)社区的文档中是这么介绍的：
 
 >Laravel Mix 提供了简洁且可读性高的 API ，用于使用几个常见的 CSS 和 JavaScript 预处理器为应用定义 Webpack 构建步骤。可以通过简单链式调用来定义资源的编译。
 
