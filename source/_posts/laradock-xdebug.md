@@ -65,6 +65,9 @@ build 服务： `docker-compose bild php-fpm workspace`
 
 添加 php 时，要把 additional 里的两个内容填好。
 options 内容如下图：
+```
+-dxdebug.remote_host=docker.for.win.localhost -dxdebug.remote_enable=1 -dxdebug.remote_port=9000 -dxdebug.remote_mode=req
+```
 ![options](laradock-xdebug/option.png)
 
 ![server](laradock-xdebug/server.png)
