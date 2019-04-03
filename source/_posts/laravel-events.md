@@ -1,8 +1,8 @@
 ---
 title: laravel 事件系统学习
-date: 2019:03:27: 23:00
-tag: laravel
-categies: 码不能停
+date: 2019:04:03: 23:00
+tags: laravel
+categories: 码不能停
 ---
 
 学习下 laravel 的事件系统。

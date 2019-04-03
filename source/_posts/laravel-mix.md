@@ -1,7 +1,7 @@
 ---
 title: 使用 laravel mix 编译资源
 date: 2019-03-15 23:00:00
-tag: [php, laravel]
+tags: [php, laravel]
 categories: 码不能停
 ---
 
