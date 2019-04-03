@@ -8,7 +8,7 @@ categories: 闲言赘语
 
 * ~~laradock~~
 * ~~laravel 内置 vue 的用法~~
-* _laravel 事件_
+* ~~laravel 事件~~
 * _laravel 队列_
 * laravel 内置测试模块
 * php travis ci 可持续集成
