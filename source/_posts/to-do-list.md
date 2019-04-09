@@ -16,3 +16,4 @@ categories: 闲言赘语
 * composer 扩展包开发
 * trait 的实际应用
 * php 代码分析工具 PHPStan 的研究与学习
+* deep learning
