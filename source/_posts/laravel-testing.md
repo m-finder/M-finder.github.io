@@ -46,7 +46,7 @@ $username = ucfirst($user->name);
 $this->assertEquals($username, $name);
 ```
 
-把用户名手字母大写，然后判断和原用户名是否相等。
+把用户名首s字母大写，然后判断和原用户名是否相等。
 
 运行结果如下：
 

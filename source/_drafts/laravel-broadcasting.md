@@ -1,0 +1,98 @@
+---
+title: laravel 广播系统学习
+date: 2019-04-12 23:59:59
+tags: [laravel, php]
+categories: 码不能停
+---
+
+看到广播系统，先想起了曾经虐过我的即时通讯。
+
+虽然都是对 websocket 的应用，但是好像又有点区别，这里好好学习一下。
+
+![](laravel-broadcasting/laravel.jpg)
+<!-- more -->
+
+laravel 的广播与事件紧密相关，广播即对事件进行广播，因此在学习广播之前，要线阅读事件和监听器的相关文档。
+
+
+#### 配置
+老规矩，先来看配置文件 `config/broadcasting.php` 里边的配置选项：
+
+```php
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default Broadcaster
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the default broadcaster that will be used by the
+    | framework when an event needs to be broadcast. You may set this to
+    | any of the connections defined in the "connections" array below.
+    |
+    | Supported: "pusher", "redis", "log", "null"
+    |
+    */
+
+    'default' => env('BROADCAST_DRIVER', 'null'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Broadcast Connections
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define all of the broadcast connections that will be used
+    | to broadcast events to other systems or over websockets. Samples of
+    | each available type of connection are provided inside this array.
+    |
+    */
+
+    'connections' => [
+
+        'pusher' => [
+            'driver' => 'pusher',
+            'key' => env('PUSHER_APP_KEY'),
+            'secret' => env('PUSHER_APP_SECRET'),
+            'app_id' => env('PUSHER_APP_ID'),
+            'options' => [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'encrypted' => true,
+            ],
+        ],
+
+        'redis' => [
+            'driver' => 'redis',
+            'connection' => 'default',
+        ],
+
+        'log' => [
+            'driver' => 'log',
+        ],
+
+        'null' => [
+            'driver' => 'null',
+        ],
+
+    ],
+
+];
+
+```
+
+默认情况下，laravel 提供了以上几种开箱即用的广播驱动器程序。
+
+`env` 配置文件中，默认的驱动为 `log`，意味着客户端不会受到任何信息，只是会把要广播的消息写入 log 文件中，跟学习目标不符，就先以 `pusher` 展开学习吧。
+
+#### 前期准备
+开始之前，必须要先注册 `App\Providers\BroadcastServiceProvider`，只需要在 `config/app.php` 配置文件中的 `providers` 数组中取消对提供者的注释即可。
+
+注册:[ [ pusher ] ](https://dashboard.pusher.com)
+
+安装组件：
+```php
+composer require pusher/pusher-php-server
+npm install --save laravel-echo pusher-js
+```
+
