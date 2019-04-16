@@ -12,7 +12,7 @@ categories: 码不能停
 ![](laravel-broadcasting/laravel.jpg)
 <!-- more -->
 
-laravel 的广播与事件紧密相关，广播即对事件进行广播，因此在学习广播之前，要线阅读事件和监听器的相关文档。
+laravel 的广播与事件紧密相关，广播即对事件进行广播，因此在学习广播之前，要先阅读事件和监听器的相关文档。
 
 
 #### 配置
@@ -85,6 +85,8 @@ return [
 
 `env` 配置文件中，默认的驱动为 `log`，意味着客户端不会受到任何信息，只是会把要广播的消息写入 log 文件中，跟学习目标不符，就先以 `pusher` 展开学习吧。
 
+我们就以发布新文章后推送给所有用户为例。
+
 #### 前期准备
 开始之前，必须要先注册 `App\Providers\BroadcastServiceProvider`，只需要在 `config/app.php` 配置文件中的 `providers` 数组中取消对提供者的注释即可。
 
@@ -95,4 +97,56 @@ return [
 composer require pusher/pusher-php-server
 npm install --save laravel-echo pusher-js
 ```
+
+添加文章模块，包含 migrate，controller，model，view 和 router 等内容。
+
+
+新建事件：
+```php
+php artisan make:event NewArticleNotificationEvent
+```
+
+内容：
+```php
+<?php
+
+namespace App\Events;
+
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\Article;
+
+class NewArticleNotificationEvent implements ShouldBroadcast
+{
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    private $article;
+    /**
+     * Create a new event instance.
+     *
+     * @return void
+     */
+    public function __construct(Article $article)
+    {
+        $this->article = $article;
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return \Illuminate\Broadcasting\Channel|array
+     */
+    public function broadcastOn()
+    {
+        return new Channel('articles');
+    }
+}
+```
+
+
+
+
 

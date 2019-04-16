@@ -147,7 +147,7 @@ Vue.component('go-top', require('./components/GoTop.vue'));
 
 ![up](laravel-vue/up.png)
 #### 注意事项
-> 每次修改组件后都需要重新运行一次 npm run dev，也可以用 watch 监听。
+> 每次修改组件后都需要重新运行一次 npm run dev，也可以用 watch-poll 监听。
 
 #### 进阶使用
 到了上一步已经可以完成一些基础的操作了，实际上，刚才得操作还用到了一个叫做 laravel-mix 的东西，在 [ [ LearnKu ] ](https://learnku.com) (laravel-china 社区)社区的文档中是这么介绍的：
