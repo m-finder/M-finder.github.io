@@ -12,12 +12,12 @@ categories: 闲言赘语
 * ~~laravel 队列~~
 * ~~laravel 内置测试模块~~
 * ~~laravel 广播系统~~
-* _laravel 消息通知_
+* ~~laravel 消息通知~~
 * composer 扩展包开发
 * php travis ci 可持续集成
 * swoole 深入学习
 * ~~trait 的实际应用~~
 * php 代码分析工具 PHPStan 的研究与学习
-* _laravel 最新版项目实战_
+* ~~laravel 最新版项目实战~~
 * _deep learning_
-* _卷积网络预测股票涨跌_
+* ~~卷积网络预测股票涨跌~~s
