@@ -20,4 +20,4 @@ categories: 闲言赘语
 * php 代码分析工具 PHPStan 的研究与学习
 * ~~laravel 最新版项目实战~~
 * _deep learning_
-* ~~卷积网络预测股票涨跌~~s
+* ~~卷积网络预测股票涨跌~~
