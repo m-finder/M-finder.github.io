@@ -5,7 +5,7 @@ categories: docker
 tags: docker
 ---
 
-运行在 docker 容器中的一个项目需要访问宿主机的某个端口，之前查到文档说用下边的地址代替 localhost 即可：
+运行在 docker 容器中的一个项目需要访问宿主机的某个端口，比如容器 A 中的项目访问宿主机 B，在 A 的项目中以下边的地址来访问即可：
 ```
 host.docker.internal
 ```
