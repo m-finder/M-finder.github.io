@@ -8,18 +8,19 @@ categories: 码不能停
 #### 1. 在需要权限校验的 model 中新增方法
 ```php
 public function getAllPermissionsAttribute() {
-	$permissions = [];
-	foreach (Permission::all() as $permission) {
-		if (Auth::user()->can($permission->name)) {
-			$permissions[] = $permission->name;
-		}
-	}
-	return $permissions;
+	$permissions = $this->getAllPermissions();
+  $permission_names = [];
+
+  collect($permissions)->map(function ($permission) use (&$permission_names) {
+      $permission_names[] = $permission->name;
+  });
+
+  return $permission_names;
 }
 ```
 
 #### 2. 在 app.blade 中存储当前用户的所有权限
-```
+```html
 <script>
     @auth
         window.Permissions = @json(Auth::user()->allPermissions);
@@ -29,7 +30,7 @@ public function getAllPermissionsAttribute() {
 </script>
 ```
 #### 3. 新建 vue component
-```
+```vue
 <script>
     export default {
         methods: {
