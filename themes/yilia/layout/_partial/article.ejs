@@ -17,6 +17,18 @@
       <% } else { %>
         <%- post.content %>
       <% } %>
+	
+		<div>
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- M-finder -->
+		<ins class="adsbygoogle"
+			 style="display:inline-block;width:728px;height:90px"
+			 data-ad-client="ca-pub-3280933721783945"
+			 data-ad-slot="2496953790"></ins>
+		<script>
+			 (adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		</div>
 
       <% if ((theme.reward_type === 2 || (theme.reward_type === 1 && post.reward)) && !index){ %>
         <div class="page-reward">
@@ -131,11 +143,11 @@
   <% } %>
   
   <% if(theme.valine.enable === true){ %>
-	<section id="comments">
+	<div id="gitment-ctn"></div> 
     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
     <script>
         new Valine({
-            el: '#comments',
+            el: '#gitment-ctn',
             appId: '<%= theme.valine.appId %>',
             appKey: '<%= theme.valine.appKey %>',
             notify: '<%= theme.valine.notify %>',
@@ -147,13 +159,3 @@
   <% } %>
 
 <% } %>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- M-finder -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-3280933721783945"
-     data-ad-slot="2496953790"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
