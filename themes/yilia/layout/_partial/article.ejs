@@ -17,18 +17,19 @@
       <% } else { %>
         <%- post.content %>
       <% } %>
-	
+
 		<div>
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<!-- M-finder -->
-		<ins class="adsbygoogle"
-			 style="display:inline-block;width:728px;height:90px"
-			 data-ad-client="ca-pub-3280933721783945"
-			 data-ad-slot="2496953790"></ins>
-		<script>
-			 (adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-		</div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- blog -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-3280933721783945"
+           data-ad-slot="7800464206"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
 
       <% if ((theme.reward_type === 2 || (theme.reward_type === 1 && post.reward)) && !index){ %>
         <div class="page-reward">
@@ -99,7 +100,7 @@
       url: config.url+url_for(post.path)
     }) %>
   <% } %>
-  
+
   <% if (theme.wangyiyun){ %>
   <%- partial('post/wangyiyun', {
       key: post.slug,
@@ -141,21 +142,34 @@
       url: config.url+url_for(post.path)
     }) %>
   <% } %>
-  
+
   <% if(theme.valine.enable === true){ %>
-	<div id="gitment-ctn"></div> 
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-    <script>
-        new Valine({
-            el: '#gitment-ctn',
-            appId: '<%= theme.valine.appId %>',
-            appKey: '<%= theme.valine.appKey %>',
-            notify: '<%= theme.valine.notify %>',
-            verify: '<%= theme.valine.verify %>',
-            avatar:'mp',
-            placeholder: '<%= theme.valine.placeholder %>'
-        })
-    </script>
+	  <div id="comment"></div>
+    <style>
+         #comment{
+           padding: 0 30px !important;
+           min-height: 20px;
+        }
+         .v .vlist{
+            background:#fff;
+            padding:15px;
+         }
+         .v .vwrap{
+            background:#fff;
+         }
+      </style>
+      <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+      <script>
+          new Valine({
+              el: '#comment',
+              appId: '<%= theme.valine.appId %>',
+              appKey: '<%= theme.valine.appKey %>',
+              notify: '<%= theme.valine.notify %>',
+              verify: '<%= theme.valine.verify %>',
+              avatar:'mp',
+              placeholder: '<%= theme.valine.placeholder %>'
+          })
+      </script>
   <% } %>
 
 <% } %>
