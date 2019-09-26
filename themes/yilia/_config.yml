@@ -85,8 +85,8 @@ duoshuo: false
 wangyiyun: false
 
 #3、畅言
-changyan_appid: cyty1Pt2F
-changyan_conf: prod_bab62ce514b78e635471dd0544889c5d
+changyan_appid: false #cyty1Pt2F
+changyan_conf: false #prod_bab62ce514b78e635471dd0544889c5d
 
 #4、Disqus 在hexo根目录的config里也有disqus_shortname字段，优先使用yilia的
 disqus: false
@@ -97,6 +97,15 @@ gitment_repo: ''          #存储评论的 repo
 gitment_oauth:
   client_id: ''           #client ID
   client_secret: ''       #client secret
+
+# valine
+valine:
+  enable: true
+  appId: oJB5EXRF33MliWEMIRsv4qr8-MdYXbMMI
+  appKey: qUshUPE75crxuoBS944qJpS5
+  notify: false
+  verify: false
+  placeholder:  '来啊，快活啊 (๑•ᴗ•๑)' 
 
 # 样式定制 - 一般不需要修改，除非有很强的定制欲望…
 style:
