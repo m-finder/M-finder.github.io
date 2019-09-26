@@ -131,10 +131,11 @@
   <% } %>
   
   <% if(theme.valine.enable === true){ %>
+	<section id="comments">
     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
     <script>
         new Valine({
-            el: '#container',
+            el: '#comments',
             appId: '<%= theme.valine.appId %>',
             appKey: '<%= theme.valine.appKey %>',
             notify: '<%= theme.valine.notify %>',
