@@ -35,11 +35,15 @@
                 , headers: headers
                 , success: function (res) {
                     layer.closeAll();
-                    layui.data('im', {key: 'userId', value: data.userId});
-                    layui.data('im', {key: 'name', value: data.name});
-                    layui.data('im', {key: 'portraitUri', value: data.portraitUri});
-                    layui.data('im', {key: 'token', value: res.token});
-                    this.config({
+                    layui.data('im', {
+                        key: 'userInfo', value: {
+                            userId: data.userId,
+                            name: data.name,
+                            portraitUri: data.portraitUri,
+                            token: res.token
+                        }
+                    });
+                    socket.config({
                         key: setter.app_key,
                         token: res.token,
                         user: data
@@ -50,43 +54,17 @@
         },
         register: function (data) {
             layim.config({
-                init: {
-                    "mine": {
-                        "username": data.name
-                        , "id": data.userId
-                        , "status": "online"
-                        , "sign": "在深邃的编码世界，做一枚轻盈的纸飞机"
-                        , "avatar": data.portraitUri
-                    }
-                    , "friend": [{
-                        "groupname": "我的好友"
-                        , "id": 1
-                        , "list": [{
-                            "username": "贤心"
-                            , "id": "100001"
-                            , "avatar": "img/shanks.jpg"
-                            , "sign": "这些都是测试数据，实际使用请严格按照该格式返回"
-                            , "status": "online"
-                        },]
-                    }]
-                    , "group": [{
-                        "groupname": "前端群" //群组名
-                        , "id": "101" //群组ID
-                        , "avatar": "/img/box.jpg" //群组头像
-                    },]
-                }
+                init: data
                 , members: {
                     url: '' //接口地址（返回的数据格式见下文）
                     , type: 'get' //默认get，一般可不填
                     , data: {} //额外参数
                 }
-
                 //上传图片接口（返回的数据格式见下文），若不开启图片上传，剔除该项即可
                 , uploadImage: {
                     url: '' //接口地址
                     , type: 'post' //默认post
                 }
-
                 //上传文件接口（返回的数据格式见下文），若不开启文件上传，剔除该项即可
                 , uploadFile: {
                     url: '' //接口地址
@@ -124,13 +102,6 @@
             //监听layim建立就绪
             layim.on('ready', function (res) {
                 layim.msgbox(5);
-                layim.addList({
-                    type: 'group'
-                    , avatar: "static/img/tel.jpg"
-                    , groupname: '海贼世界'
-                    , id: "1"
-                    , members: 0
-                });
                 ry.joinGroup('1', '海贼世界');  //加入融云群组
             });
 
@@ -176,13 +147,13 @@
                     // status 标识当前连接状态
                     switch (status) {
                         case RongIMLib.ConnectionStatus.CONNECTED:
-                            layer.msg('链接成功');
+                            console.log('链接成功');
                             break;
                         case RongIMLib.ConnectionStatus.CONNECTING:
-                            layer.msg('正在链接');
+                            console.log('正在链接');
                             break;
                         case RongIMLib.ConnectionStatus.DISCONNECTED:
-                            layer.msg('断开连接');
+                            console.log('断开连接');
                             break;
                         case RongIMLib.ConnectionStatus.KICKED_OFFLINE_BY_OTHER_CLIENT:
                             layer.msg('其他设备登录');
@@ -202,7 +173,7 @@
                 onReceived: function (message) { // 接收到的消息
                     switch (message.messageType) { // 判断消息类型
                         case RongIMClient.MessageType.LAYIM_TEXT_MESSAGE:
-                            conf.layim.getMessage(message.content);
+                            layim.getMessage(message.content);
                             break;
                     }
                 }
@@ -211,23 +182,23 @@
         connectWithToken: function (token) {    //连接事件
             RongIMClient.connect(token, {
                 onSuccess: function (userId) {
-                    console.log("Login successfully." + userId);
+                    console.log("Login successfully：" + userId);
                 },
                 onTokenIncorrect: function () {
-                    console.log('token无效');
+                    layer.msg('token无效');
                 },
                 onError: function (errorCode) {
-                    console.log('发送失败:' + errorCode);
+                    layer.msg('发送失败:' + errorCode);
                 }
             });
         },
         //融云自定义消息，把消息格式定义为layim的消息类型
         defineMessage: function () {
-            var defineMsg = function (obj) {
+            let defineMsg = function (obj) {
                 RongIMClient.registerMessageType(obj.msgName, obj.objName, obj.msgTag, obj.msgProperties);
-            }
+            };
             //注册普通消息
-            var textMsg = {
+            let textMsg = {
                 msgName: 'LAYIM_TEXT_MESSAGE',
                 objName: 'LAYIM:CHAT',
                 msgTag: new lib.MessageTag(false, false),
@@ -235,10 +206,8 @@
             };
             //注册
             defineMsg(textMsg);
-
         },
-        sendMsg: function (data) {  //根据layim提供的data数据，进行解析
-            console.log(data);
+        sendMsg: function (data) {
             var mine = data.mine;
             var to = data.to;
             var id = mine.id;   //当前用户id

@@ -11,36 +11,45 @@ layui.extend({
         form = layui.form;
 
     $(function () {
-        form.on('submit(submit)', function (data) {
-            let user_info;
-            user_info = data.field;
-            user_info.userId = user_info.name;
-            im.getToken(user_info);
-            return false;
-        });
+        const changeStatus = function (that) {
+            that.text('已登录');
+            $('.login-btn').addClass('layui-btn-disabled');
+            console.log(that.length)
+        };
+        $('.login-btn').click(function () {
+            let that = this
+            $.get('./json/' + this.id + '-firends.json', function (res) {
+                let user_info = res.data;
 
+                // 请求 token，前端请求需 nginx 代理，不安全
+                // https://support.rongcloud.cn/kb/NDU0
+                // location /api/ {
+                //     proxy_pass http://api-cn.ronghub.com/;
+                // }
+                // im.getToken(user_info);
+
+                im.config({
+                    key: setter.app_key,
+                    token: res.data.mine.token,
+                    user: res.data
+                });
+
+                layui.data('im', {key: 'userInfo', value: user_info});
+                changeStatus($(that))
+            })
+        });
         let local_data = layui.data('im');
-        if (local_data === '{}' || local_data.token === undefined) {
-            layer.open({
-                type: 1
-                , area: ['500px', '300px']
-                , closeBtn: 0
-                , title: '输入用户信息'
-                , skin: 'layui-layer-prompt'
-                , shade: 0.6
-                , anim: 1
-                , content: $('#user-form').html()
-                , success(layero, index) {
-                    form.render()
-                }
-            });
+        if (local_data === '{}' || local_data.userInfo === undefined) {
+            layer.msg('请选择一个用户登录');
+            $('.login-btn').removeClass('layui-btn-disabled');
             return false;
-        }else{
+        } else {
             im.config({
                 key: setter.app_key,
-                token: local_data.token,
-                user: local_data
-            })
+                token: local_data.userInfo.mine.token,
+                user: local_data.userInfo
+            });
+            changeStatus($('#' + (local_data.userInfo.mine.username).toLowerCase()))
         }
     });
 

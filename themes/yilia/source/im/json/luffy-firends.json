@@ -2,6 +2,14 @@
   "code": 0,
   "msg": "",
   "data": {
+    "mine": {
+      "username": "Luffy",
+      "id": "100001",
+      "status": "online",
+      "sign": "我想吃肉！！",
+      "avatar": "https://www.m-finder.com/im/img/logo.jpg",
+      "token": "fLEvqSlBwmQxVUMlxIC3isNQbPUQJUsLeXRzNI6iEYI63V6Jr9UGl97K816PecMM4h1aTaW1Bsi19JdYRHWlXA=="
+    },
     "friend": [
       {
         "groupname": "我的好友",
@@ -11,13 +19,13 @@
           {
             "username": "Shanks",
             "id": "100002",
-            "avatar": "/img/shanks.jpg",
+            "avatar": "https://www.m-finder.com/im/img/shanks.jpg",
             "sign": "给我个面子如何"
           },
           {
             "username": "Buggy",
             "id": "100003",
-            "avatar": "/img/buggy.jpg",
+            "avatar": "https://www.m-finder.com/im/img/buggy.jpg",
             "sign": "buggy deliver"
           }
         ]
@@ -27,7 +35,7 @@
       {
         "groupname": "海贼世界",
         "id": "1",
-        "avatar": "/img/box.jpg"
+        "avatar": "https://www.m-finder.com/im/img/box.jpg"
       }
     ]
   }
