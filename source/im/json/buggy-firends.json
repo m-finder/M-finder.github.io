@@ -1,0 +1,34 @@
+{
+  "code": 0,
+  "msg": "",
+  "data": {
+    "friend": [
+      {
+        "groupname": "我的好友",
+        "id": 1,
+        "online": 2,
+        "list": [
+          {
+            "username": "Shanks",
+            "id": "100002",
+            "avatar": "/img/shanks.jpg",
+            "sign": "给我个面子如何?"
+          },
+          {
+            "username": "Buggy",
+            "id": "100003",
+            "avatar": "/img/buggy.jpg",
+            "sign": "buggy deliver"
+          }
+        ]
+      }
+    ],
+    "group": [
+      {
+        "groupname": "海贼世界",
+        "id": "1",
+        "avatar": "/img/box.jpg"
+      }
+    ]
+  }
+}
