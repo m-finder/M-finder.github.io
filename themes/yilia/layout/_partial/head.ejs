@@ -24,13 +24,6 @@
   <link rel="dns-prefetch" href="<%= config.url %>">
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-3280933721783945",
-      enable_page_level_ads: true
-    });
-  </script>
   <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
   <% if (theme.rss){ %>
     <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
@@ -47,4 +40,11 @@
   </style>
   <%- partial('google-analytics') %>
   <%- partial('baidu-analytics') %>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3280933721783945",
+      enable_page_level_ads: true
+    });
+  </script>
 </head>
