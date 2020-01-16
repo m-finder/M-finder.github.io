@@ -1,5 +1,5 @@
 ---
-title: 学习清单
+title: 2019 年学习清单
 date: 2019-08-23 09:21:00
 tags:
 categories: 闲言赘语
@@ -13,7 +13,7 @@ categories: 闲言赘语
 * ~~laravel 内置测试模块~~
 * ~~laravel 广播系统~~
 * ~~laravel 消息通知~~
-* _composer 扩展包开发_
+* ~~composer 扩展包开发~~
 * php travis ci 可持续集成
 * _swoole 深入学习_
 * ~~trait 的实际应用~~
