@@ -1,5 +1,5 @@
 ---
-title: laravel 生命周期
+title: Laravel 生命周期
 date: 2019-03-15 23:00:00
 tags: [php, laravel]
 categories: 码不能停
