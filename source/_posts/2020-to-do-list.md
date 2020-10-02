@@ -1,7 +1,7 @@
 ---
 title: 2020 年计划清单
 date:
-tags:
+tags: 闲言赘语
 categories: 闲言赘语
 ---
 
@@ -11,10 +11,10 @@ categories: 闲言赘语
 * [x] composer 包开发
 * [ ] 学习一下手写 swoole 分布式框架
 * [ ] 尝试做一个基于 laravel-swoole 的 websocket 项目
-* [ ] 研究 laravel framework
+* [x] 研究 laravel framework
 * [ ] 继续学习 ps，做个不合格的美工
-* [ ] 学习 pr 剪辑
+* [x] 学习 pr 剪辑
 * [ ] 软考软件设计师
-* [ ] 软考架构师
+* [ ] ~~软考架构师~~
 * [x] 研究下 win10 linux 子系统在开发中的使用
 * [x] 域名备案
