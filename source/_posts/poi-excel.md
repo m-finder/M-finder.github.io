@@ -9,7 +9,7 @@ categories: 码不能停
 
 一番百度，发现是设置列宽写成了设置格宽，本来20列的数据，只需要设置20次就够了，但是现在就要跑20*500次，而设置宽度本身又是个比较消耗资源的操作，好死不死的是我还做了中文宽度适配，so…fuck the dogs
 
-![cover](/poi-excel/cover.JPEG)
+![cover](cover.JPEG)
 <!--more-->
 
 ```java

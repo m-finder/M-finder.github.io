@@ -25,7 +25,7 @@ git remote add origin git@github.com:yourname/yourname.github.io.git  #将本地
 git push origin hexo  #push到Github项目的hexo分支上
 ```
 
-![效果图](/hexo-new-pc/截图.png)
+![效果图](截图.png)
 
 别的设备只需要拉下代码，然后切换下分支，再执行下 "npm install" 就可以愉快的玩耍了。
 
@@ -37,5 +37,5 @@ git push origin hexo  #push到Github项目的hexo分支上
 提交
 搞定
 ```
-![test](/hexo-new-pc/x.gif)
+![test](x.gif)
 

@@ -8,7 +8,7 @@ categories: 码不能停
 
 给博客添加了  travis ci 可持续集成，以后本地可以不装 node 环境了。
 
-![travis-ci](/travis-ci-test/travis.png)
+![travis-ci](travis.png)
 
 <!--more-->
 
@@ -17,7 +17,7 @@ categories: 码不能停
 
 #### github 账号 登陆 travis ci
 登陆后把博客项目的开关打开。
-![](/travis-ci-test/set.png)
+![](set.png)
 
 #### 博客项目创建分支
 把博客项目，即 .io 的那个项目拉到本地，创建一个新的分支 hexo:
@@ -83,7 +83,7 @@ env:
 #### github生成token
 在 setting - developer settings 中生成 token，勾选 repo 所有选项和 user 下的 email。
 
-![](/travis-ci-test/github-set.png)
+![](github-set.png)
 
 把生成的 token 填写的 travis ci 的设置中。
 

@@ -7,7 +7,7 @@ categories: 码不能停
 
 #### 前言
 这两天开始尝试用 spring cloud 来重构公司的应用，所以就一边摸索一边做个记录，预防以后再次踩坑。
-![](/Spring-Cloud-Mysql/java.jpg)
+![](java.jpg)
 <!--more-->
 
 #### 注意事项
@@ -149,6 +149,6 @@ public class OrderController {
 
 #### 结果
 打开浏览器，访问 localhost:8070/getorder?id=104576553，结果如下：
-![结果](/Spring-Cloud-Mysql/res.png)
+![结果](res.png)
 
 ok，这算是把坑踩完了。

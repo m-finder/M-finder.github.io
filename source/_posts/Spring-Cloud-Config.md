@@ -8,11 +8,11 @@ categories: 码不能停
 Spring Cloud Config 用来为分布式系统中的基础设施和微服务应用提供集中化的外部配置支持，分为服务端和客户端两个部分。
 其中服务端也成为分布式配置中心，是一个独立的微服务应用，用来连接配置仓库并为客户端提供配置信息、加解密等访问接口；客户端则是微服务架构中的各个微服务应用或基础设施，通过指定的配置中心来管理应用资源与业务相关的配置内容，并在启动的时候从配置中心获取和加载配置信息。
 
-![Spring Cloud](/Spring-Cloud-Config/java.jpg)
+![Spring Cloud](java.jpg)
 <!--more-->
 #### 第一步
 比较简单，直接创建新项目，勾选config组件。
-![创建](/Spring-Cloud-Config/创建.png)
+![创建](创建.png)
 
 在入口类加入注解：@EnableConfigServer
 
@@ -33,7 +33,7 @@ spring.cloud.config.server.git.uri 是指配置文件在git存放的仓库地址
 spring.cloud.config.server.git.searchPaths是指配置文件存放的路径
 
 配置信息写好以后去git仓库创建好对应文件夹，然后在文件夹中创建几个.properties文件，
-![properties文件](/Spring-Cloud-Config/didispace.png)
+![properties文件](didispace.png)
 
 分别写入内容：
 ```
@@ -100,7 +100,7 @@ setver.port=8088
 ```
 
 启动服务查看效果：
-![结果](/Spring-Cloud-Config/结果.png)
+![结果](结果.png)
 
 这里会有很多坑，Could not resolve placeholder 'from' in value "${from}" 什么什么的。
 第一，请先确认git端的文件名是否和配置文件中的spring.application.name一致;

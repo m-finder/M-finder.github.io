@@ -15,4 +15,4 @@ categories: 闲言赘语
 
 Happy Birthday!
 
-![](/happy-birthday/1.jpg)
+![](1.jpg)

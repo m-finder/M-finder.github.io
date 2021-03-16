@@ -7,7 +7,7 @@ categories: 码不能停
 
 最近在用layui做一个社区站点，有个页面想做成瀑布流形式，但是layui本身的流加载并没有实现这个功能，所以在研究了几个臃肿的插件源码后，自己做了一个可以结合layui流加载使用的轻量级瀑布流插件，用起来也比较简单。
 
-![](/layui-waterfall/layui.png)
+![](layui.png)
 <!--more-->
 
 

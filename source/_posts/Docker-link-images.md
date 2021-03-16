@@ -21,7 +21,7 @@ docker run -itd --name php-fpm -v /docker/www:/var/www/html:ro php:7.2-fpm
 
 因为是在 windows 上跑，还特么是 win10 家庭版，所以只有打开 VirtualBox 来设置下共享文件夹：
 
-![设置共享文件夹](/Docker-link-images/set.png)
+![设置共享文件夹](set.png)
 ok，重启虚拟机。
 
 然后再执行下边命令：
@@ -35,7 +35,7 @@ docker run -itd --name nginx-server -p 80:80 --link php-fpm:php-fpm -v  /docker/
 除了要在 www 里创建一个 index.html外，还需要一个 default.conf 文件
 
 打开浏览器：192.168.99.100：
-![ok](/Docker-link-images/hello.png)
+![ok](hello.png)
 
 最后，docker 文件夹的结构：
 ```

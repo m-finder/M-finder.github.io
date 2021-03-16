@@ -5,7 +5,7 @@ tags: laravel
 categories: 码不能停
 ---
 在 laravel vue 中使用 svg 图标
-![](/laravel-vue-svg/laravel-vue.jpg)
+![](laravel-vue.jpg)
 <!-- more -->
 
 #### 安装扩展组件：

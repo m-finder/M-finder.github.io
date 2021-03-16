@@ -8,7 +8,7 @@ categories: 码不能停
 上一篇搞了服务的注册和发现，对Spring Cloud 也有了一定的了解，那么再来做下负载均衡 Ribbon 和 Feign。
 
 这两个是两种形式的负载均衡的实现组件，二者选一即可，不过学习的话还是都看看，做下比较，也方便自己选择使用哪一个。
-![Spring Cloud](/Spring-Cloud-Feign/java.jpg)
+![Spring Cloud](java.jpg)
 <!--more-->
 
 ## 第一章 Ribbon
@@ -70,7 +70,7 @@ eureka.client.serviceUrl.defaultZone=http://${eureka.instance.hostname}:8081/eur
 
 #### 第二步
 打开浏览器，访问配置中定义的端口，并传入参数name：http://localhost:8084/hi?name=wu
-![结果](/Spring-Cloud-Feign/结果.png)
+![结果](结果.png)
 
 #### 第三步
 复制一份代码，更改接口为8083，然后运行，继续刷新上边的url，就会看到其实是在两个端口上随机跳转。
@@ -82,8 +82,8 @@ eureka.client.serviceUrl.defaultZone=http://${eureka.instance.hostname}:8081/eur
 Ribbon组件的手动添加依赖一切正常，而这个组件开始遇到这种情况，所以补充说明一下。
 
 还是截个图吧：
-![勾选server](/Spring-Cloud-Feign/server.png)
-![勾选feign](/Spring-Cloud-Feign/feign.png)
+![勾选server](server.png)
+![勾选feign](feign.png)
 
 在spring-cloud-feign-test\src\main\java\com\mztech\feign\FeignApplication.java添加注解：
 ```

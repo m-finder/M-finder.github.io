@@ -9,7 +9,7 @@ categories: 码不能停
 
 虽然都是对 websocket 的应用，但是好像又有点区别，这里好好学习一下。
 
-![](/laravel-broadcasting/laravel.jpg)
+![](laravel.jpg)
 <!-- more -->
 
 laravel 的广播与事件紧密相关，广播即对事件进行广播，因此在学习广播之前，要先阅读事件和监听器的相关文档。
@@ -211,9 +211,9 @@ export default {
 
 #### 测试
 写篇文章测试一下：
-![](/laravel-broadcasting/new.png)
+![](new.png)
 
-![](/laravel-broadcasting/mes.png)
+![](mes.png)
 
 #### 注意事项
 * 不需要创建 channel 路由

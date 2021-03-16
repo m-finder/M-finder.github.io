@@ -9,7 +9,7 @@ categories: 码不能停
 
 Laravel 的服务容器，是用于管理类的依赖和执行依赖注入的工具。
 
-![](/laravel-container/laravel.jpg)
+![](laravel.jpg)
 
 <!-- more -->
 

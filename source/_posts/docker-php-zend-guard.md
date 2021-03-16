@@ -6,7 +6,7 @@ categories: 码不能停
 ---
 
 在 docker 容器中安装 zend guard。
-![docker](/docker-php-zend-guard/docker.jpg)
+![docker](docker.jpg)
 
 <!-- more -->
 
@@ -37,7 +37,7 @@ tar -xzvf zend-loader-php5.6-linux-x86_64_update1.tar.gz
 ```
 extension_dir
 ```
-![path](/docker-php-zend-guard/path.png)
+![path](path.png)
 
 #### 移动扩展包并使之生效
 ```
@@ -47,4 +47,4 @@ docker-php-ext-enable ZendGuardLoader
 
 #### 安装成功
 重启环境。
-![](/docker-php-zend-guard/done.png)
+![](done.png)

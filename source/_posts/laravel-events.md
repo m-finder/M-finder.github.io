@@ -6,7 +6,7 @@ categories: 码不能停
 ---
 
 学习下 laravel 的事件系统。
-![](/laravel-events/laravel.jpg)
+![](laravel.jpg)
 <!-- more -->
 
 Laravel 的事件提供了一个简单的观察者实现，能够订阅和监听应用中发生的各种事件。
