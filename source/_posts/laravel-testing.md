@@ -10,7 +10,7 @@ categories: 码不能停
 >当你想把一些东西写到 print 语句或者调试表达式中时，别这么做，将其写成一个测试来代替。
 >        --Martin Fowler
 
-![](laravel-testing/laravel.jpg)
+![](/laravel-testing/laravel.jpg)
 <!-- more -->
 
 最开始看到的关于 laravel 测试的信息是借助模型工厂来生成测试数据，今天查完资料发现，这只是测试中的一小部分。
@@ -50,7 +50,7 @@ $this->assertEquals($username, $name);
 
 运行结果如下：
 
-![](laravel-testing/res.png)
+![](/laravel-testing/res.png)
 
 
 #### HTTP测试
@@ -87,13 +87,13 @@ $response->assertStatus(200)
 
 ###### 运行测试
 发现接口需要登录，所以会被拦截：
-![](laravel-testing/login.png)
+![](/laravel-testing/login.png)
 
 所以需要先模拟用户登录，可以使用：`Auth::loginUsingId(1);` 使 id 为 1 的用户强制登录。
 
 再次运行，结果 ok。
 
-![](laravel-testing/ok.png)
+![](/laravel-testing/ok.png)
 
 
 #### 数据库测试

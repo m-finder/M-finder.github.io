@@ -11,7 +11,7 @@ categories: 码不能停
 
 Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。
 
-![Docker](Docker-images/docker.jpg)
+![Docker](/Docker-images/docker.jpg)
 
 <!--more-->
 
@@ -41,7 +41,7 @@ exit
 然后，我们用 Hello, Docker! 覆盖了 /usr/share/nginx/html/index.html 的内容。
 
 现在我们再刷新浏览器的话，会发现内容被改变了。
-![Nginx](Docker-images/nginx.png)
+![Nginx](/Docker-images/nginx.png)
 
 我们修改了容器的文件，也就是改动了容器的存储层。要保存这些修改，可以使用 docker 提供的 docker commit 命令将存储层保存下来成为新的镜像。也就是说，是在原有镜像的基础上，再叠加上改动了的存储层并构成新的镜像。
 

@@ -30,7 +30,7 @@ categories: 闲言赘语
 
 还是撑过这个夏天吧，我很希望你们都好好活着……
 
-![比心](nothing-to-say/heart.jpg)
+![比心](/nothing-to-say/heart.jpg)
 
 
 

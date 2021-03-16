@@ -11,7 +11,7 @@ categories: 码不能停
 
 它的存在就像是整个微服务架构系统的门面一样，所有外部客户端的访问都需要经过它的过滤和筛选。在spring大礼包中，它的存在就是API网关组件------Spring Cloud Zuul。
 
-![](Spring-Cloud-Zuul/java.jpg)
+![](/Spring-Cloud-Zuul/java.jpg)
 
 <!--more-->
 #### 第一步
@@ -42,7 +42,7 @@ zuul.routes.api-a.url=http://localhost:8082/
 
 _<font color=red>注：</font>_
 定义路由转发一定不要忘了后边的两个**，否则就会出现下边的画面：
-![404](Spring-Cloud-Zuul/errorpage.png)
+![404](/Spring-Cloud-Zuul/errorpage.png)
 
 #### 第三步
 很明显，上边的路由配置对我们来说并不友好，同样需要我们花费大量事件去维护各个路由的path和url的关系，所以下边就把它改为面向服务的配置方式：
@@ -105,5 +105,5 @@ public class zuulFilter extends ZuulFilter {
 * shouldFilter：判断过滤器是否需要被执行。这里直接返回true，对所有请求生效。
 * run：过滤器的具体逻辑。
 
-![执行结果](Spring-Cloud-Zuul/gif.gif)
+![执行结果](/Spring-Cloud-Zuul/gif.gif)
 

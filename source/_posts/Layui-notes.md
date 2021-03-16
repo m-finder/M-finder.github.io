@@ -6,12 +6,12 @@ categories: 码不能停
 ---
 
 一个关于 form 渲染特殊用法的解决方案。
-![](Layui-notes/layui.png)
+![](/Layui-notes/layui.png)
 
 <!--more-->
 ### 需求 :
 项目中需要做一个带参导入功能 , 画面效果如下图:
-![效果图](Layui-notes/2017-11-16-10-48-47-5a0cfc8febf33.png)
+![效果图](/Layui-notes/2017-11-16-10-48-47-5a0cfc8febf33.png)
 
 ### 遇到的问题 : 
 1. 弹窗中 select 不显示

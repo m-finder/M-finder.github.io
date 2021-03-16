@@ -12,7 +12,7 @@ Laravel 的生命周期主要分为四个阶段：
 3. 接收请求并响应
 4. 请求结束进行回调
 
-![](laravel-life-cycle/laravel.jpg)
+![](/laravel-life-cycle/laravel.jpg)
 <!-- more -->
 
 这四个阶段都在 index.php 中完成：

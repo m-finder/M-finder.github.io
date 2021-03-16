@@ -9,7 +9,7 @@ categories: 码不能停
 
 仔细看看，原来是 lombok 插件失效了，虽然项目还能正常启动，但是却出现了大片的红字，强迫症不能忍，严重威胁了世界和平。
 
-![IDEA](Idea-2018-2-lombok/idea.png)
+![IDEA](/Idea-2018-2-lombok/idea.png)
 <!--more-->
 
 于是我先去查了下，发现这个问题在上个版本就出现过，而且已经被官方修复了。
@@ -20,4 +20,4 @@ categories: 码不能停
 
 然后提交修改后提示我需要重启，片刻后果然春光灿烂，世界恢复了和平与宁静。
 
-![updated plugins](Idea-2018-2-lombok/update.png)
+![updated plugins](/Idea-2018-2-lombok/update.png)

@@ -7,7 +7,7 @@ tags: python
 
 运行在服务器上的数据同步脚本突然出现已杀死，谁把你杀了，咋就突然被杀了？？？
 
-![真実はいつも一つ！](python-out-of-memory/kn.jpg)
+![真実はいつも一つ！](/python-out-of-memory/kn.jpg)
 
 <!-- more -->
 

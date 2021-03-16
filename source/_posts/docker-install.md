@@ -13,7 +13,7 @@ Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级�
 
 docker官方推荐了两种安装方式:app和toolbox。
 
-![Docker](docker-install/docker.jpg)
+![Docker](/docker-install/docker.jpg)
 <!--more-->
 
 注：app方式对系统版本和配置会有一定要求，Mac版本会自动为你安装好VM（虚拟机），但Windows版本需要你安装微软虚拟化产品Hyper-V，而toolbox方式则需要你额外安装virtualbox来作为docker的VM。
@@ -55,9 +55,9 @@ sudo yum install docker-io
 ```
 安装完就可以愉快地安装了。
 
-![安装](docker-install/yum.png)
+![安装](/docker-install/yum.png)
 
-![安装完成](docker-install/yumdone.png)
+![安装完成](/docker-install/yumdone.png)
 
 
 #### docker 启动
@@ -72,7 +72,7 @@ service docker start
 docker run hello-world
 ```
 
-![测试运行](docker-install/hello.png)
+![测试运行](/docker-install/hello.png)
 
 由于本地没有hello-world这个镜像，所以会下载一个hello-world的镜像，并在容器内运行。
 
@@ -83,35 +83,35 @@ _<font color=red>注意：win7，8和10的家庭版需要docker toolbox安装</f
 [点我下载：](https://docs.docker.com/toolbox/toolbox_install_windows/)
 
 安装完成后，桌面会多这三个图标出来。强行给我乔巴照相，哈哈！
-![安装完成](docker-install/winok.png)
+![安装完成](/docker-install/winok.png)
 
 点击 Docker QuickStart 图标来启动 Docker Toolbox 终端。
 
 如果系统显示 User Account Control 窗口来运行 VirtualBox 修改你的电脑，选择 Yes
 
-![启动](docker-install/启动.png)
+![启动](/docker-install/启动.png)
 
 输入一下命令调用测试：
 ```
 docker run hello-world
 ```
 
-![启动测试](docker-install/hello-win.png)
+![启动测试](/docker-install/hello-win.png)
 
 ##### win10专业版
 
 win10专业版自带hyper-v,用来装docker更方便。（hyper-v是win系统自带的一个虚拟机工具）
-![hyper-v启用](docker-install/hyper-v.png)
+![hyper-v启用](/docker-install/hyper-v.png)
 
 找到程序和功能
-![程序和功能](docker-install/程序和功能.png)
+![程序和功能](/docker-install/程序和功能.png)
 
 打开启用和关闭功能，然后勾选hyper-v
-![程序和功能](docker-install/勾选.png)
+![程序和功能](/docker-install/勾选.png)
 
 然后下载安装 [Toolbox](https://www.docker.com/get-docker.png)
 
 安装完成后会自动打开，右下角的系统通知栏有个小鲸鱼的图标，这表示docker在运行。
-![🐳](docker-install/docker.png)
+![🐳](/docker-install/docker.png)
 
 到这里就安装好了，更多姿势我们可以在启动器输入 docker 来解锁。

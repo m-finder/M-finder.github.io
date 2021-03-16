@@ -6,7 +6,7 @@ categories: 码不能停
 ---
 laradock 中 php 5.6 连接 mysql 报错的解决方法。
 
-![](laradock-php-5-6-connect-mysql/laradock.png)
+![](/laradock-php-5-6-connect-mysql/laradock.png)
 <!--more-->
 
 之前弄的是默认版本的 php 7.2 和 mysql 8，配置好以后一直都能正常使用。

@@ -6,7 +6,7 @@ categories: 码不能停
 ---
 
 在 laradock 环境中使用 laravel-swoole 加速你的 laravel 应用。
-![](laravel-swoole-in-laradock/laradock.png)
+![](/laravel-swoole-in-laradock/laradock.png)
 <!-- more -->
 
 #### 安装laravel-swoole

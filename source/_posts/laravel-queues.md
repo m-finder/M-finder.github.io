@@ -6,7 +6,7 @@ categories: 码不能停
 ---
 
 学习下 laravel 的队列系统。
-![](laravel-queues/laravel.jpg)
+![](/laravel-queues/laravel.jpg)
 
 队列的目的是将耗时的任务延时处理，比如发送邮件，从而大幅度缩短 Web 请求和相应的时间。
 

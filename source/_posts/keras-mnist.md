@@ -10,7 +10,7 @@ MNIST 是 keras 中一个入门级的计算机视觉数据集，这个数据集�
 
 是解决手写数字分类问题的经典数据集，可以看做是深度学习的 'Hello World'。
 
-![](keras-mnist/keras.jpg)
+![](/keras-mnist/keras.jpg)
 <!-- more -->
 
 
@@ -87,7 +87,7 @@ test_loss, test_acc = network.evaluate(test_images, test_labels)
 print('test_acc:', test_acc)
 ```
 
-![](keras-mnist/res.png)
+![](/keras-mnist/res.png)
 
 测试集精度为97.98%，比训练集精度低不少。
 

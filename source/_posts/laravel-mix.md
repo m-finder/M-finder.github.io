@@ -7,7 +7,7 @@ categories: 码不能停
 
 学习下如何在 laravel 框架中，用 laravel mix 编译前端资源。
 
-![](laravel-mix/laravel-mix.png)
+![](/laravel-mix/laravel-mix.png)
 <!-- more -->
 
 #### 使用

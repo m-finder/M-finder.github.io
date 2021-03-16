@@ -7,7 +7,7 @@ categories: 码不能停
 
 公司项目最近翻新了页面，把 bootstrap 完全改成了 layui 。
 
-![](laravel-5-4-bug/laravel.jpg)
+![](/laravel-5-4-bug/laravel.jpg)
 按照惯例，上线之前先在测试环境跑几天，结果在搭建测试环境的时候，问题就出来了：
 
 laravel 版本是 5.4.63 ，服务器的 php 版本是 5.6 ，执行 composer install 时，提示我需要 php7.1 。
@@ -21,14 +21,14 @@ laravel 版本是 5.4.63 ，服务器的 php 版本是 5.6 ，执行 composer in
 小样，还治不了你了！容老夫抽根烟得瑟一下。
 
 下一秒，一个新的报错又砸我个措手不及：
-![错误信息](laravel-5-4-bug/error.png)
+![错误信息](/laravel-5-4-bug/error.png)
 
 class ‘’ not found !
 
 虽然不知道这个报错是咋回事，但是潜意识觉得应该是某个 Kernel 文件出错了。
 
 找到一份之前的备份，一通对比，终于有所发现：
-![对比结果](laravel-5-4-bug/2018-01-05-03-03-33-5a4eeb050862d.png)
+![对比结果](/laravel-5-4-bug/2018-01-05-03-03-33-5a4eeb050862d.png)
 
 出错的代码比之前正常的代码多了个 “，”，丫的，太粗糙了！
 

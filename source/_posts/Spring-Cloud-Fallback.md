@@ -7,7 +7,7 @@ categories: 码不能停
 
 在入门第二篇里已经搞定了两个负载均衡的组件，但是如果多台服务中某个或多个服务出现问题而无法及时反映，那么调用这个服务的线程就会出现阻塞，对微服务造成很大的影响。就个时候，就需要新的组件来支持了，这个组件就是断路器Hystrix。
 
-![回退防止联级故障](Spring-Cloud-Fallback/Fallback.png)
+![回退防止联级故障](/Spring-Cloud-Fallback/Fallback.png)
 <!--more-->
 
 ## 第一章
@@ -37,7 +37,7 @@ feign.hystrix.enabled=true
 
 #### 第二步
 重启，然后关闭一个服务，刷新页面会看到下边的画面：
-![服务关闭](Spring-Cloud-Fallback/服务关闭.png)
+![服务关闭](/Spring-Cloud-Fallback/服务关闭.png)
 当服务停机无法访问时，可以在这个方法中处理一些事件或者返回一些特定的参数。
 
 ## 第二章
@@ -70,5 +70,5 @@ feign.hystrix.enabled=true
 
 #### 第二步
 访问 localhost:8084/hi?name=wu，会看到如下画面：
-![服务关闭](Spring-Cloud-Fallback/Ribbon服务关闭.png)
+![服务关闭](/Spring-Cloud-Fallback/Ribbon服务关闭.png)
 Ok,恭喜你又搞定一个组件，以后再创建Ribbon服务记着直接把Hystrix勾选。

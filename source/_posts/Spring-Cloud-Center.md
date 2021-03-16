@@ -10,7 +10,7 @@ categories: 码不能停
 推荐给我们的有 Spring Cloud 和 Dubbo。考虑到 Dubbo 有突然停止维护的前科，还是选用前者吧。
 就这样，跟 Spring Cloud 开始了第一次握手。
 
-![Spring Cloud](Spring-Cloud-Center/java.jpg)
+![Spring Cloud](/Spring-Cloud-Center/java.jpg)
 <!--more-->
 #### 初次见面
 初次见面，先介绍一下：
@@ -30,14 +30,14 @@ Spring Cloud版本：Finchley M7 （版本号以伦敦的地铁站命名）
 
 ##### 新建项目：
 file->new project->srping initializr
-![新建项目](Spring-Cloud-Center/新建项目.png)
+![新建项目](/Spring-Cloud-Center/新建项目.png)
 
 ##### 填写项目信息：
 ```
 Group: com.mztech #自定义包名
 Artifact: demo #项目名
 ```
-![填写信息](Spring-Cloud-Center/填写信息.png)
+![填写信息](/Spring-Cloud-Center/填写信息.png)
 
 ##### 选择服务：
 Cloud Discovery->Eureka Server
@@ -73,7 +73,7 @@ public class TestApplication {
 ```
 ##### 运行结果：
 运行，然后浏览器访问:localhost:8081
-![结果](Spring-Cloud-Center/结果.png)
+![结果](/Spring-Cloud-Center/结果.png)
 
 ##### 创建第一个服务：
 新建一个项目，创建步骤同上，然后spring-cloud-client-test\src\main\java\com\mztech\client\ClientApplication.java的代码如下
@@ -105,7 +105,7 @@ eureka.instance.hostname=localhost
 eureka.client.serviceUrl.defaultZone=http://${eureka.instance.hostname}:8081/eureka/
 ```
 启动，刷新页面，可以看到服务已经被监听到了。
-![结果](Spring-Cloud-Center/服务注册.png)
+![结果](/Spring-Cloud-Center/服务注册.png)
 
 _<font color=red>* 注：</font>_
 
@@ -114,7 +114,7 @@ _<font color=red>* 注：</font>_
 
 ##### 访问服务：
 localhost:8082/hi?name=wu
-![结果](Spring-Cloud-Center/访问服务.png)
+![结果](/Spring-Cloud-Center/访问服务.png)
 
 #### 总结
 
