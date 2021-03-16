@@ -62,4 +62,4 @@ date: 2018-02-14 13:11:41
 * M-finder博客前身 Pumwaterkin 博客上线，wordpress + forget 主题 diy 版
 * forget 主题地址 ： [forget](http://azfashao.com/forget3-0-2/)
 
-![码不能停](about/index/码不能停.jpg)
+![码不能停](/about/index/码不能停.jpg)
