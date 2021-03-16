@@ -6,7 +6,7 @@
 
 另外因为 layim 为付费组件，代码已删除 layim.js，请获取授权后自行引入该文件。
 
-![demo](./img/demo.png)
+![demo](img/demo.png)
 
 演示地址: [ [ 点我 ] ](https://www.m-finder.com/im)
 
