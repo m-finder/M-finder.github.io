@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
+title: M-finder
+subtitle: '删繁就简，发现更多'
+description: 'M-finder博客，一个强迫症患者的个人博客，长期分享技术知识与个人生活感悟。'
 keywords:
-author: John Doe
-language: en
+author: m-finder
+language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://www.m-finder.com
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
