@@ -1,11 +1,11 @@
 - class_name: 友情链接
-  class_desc: 那些人，那些事
+  class_desc: 网络一线牵，珍惜这段缘
   link_list:
-    - name: ashin
+    - name: Alon
       link: http://ashin33.github.io/
       avatar: https://ashin33.github.io/img/namikaze_minato_2.png
       descr: 后青春期的诗
-    - name: d-107
+    - name: D-107
       link: http://d-107.github.io/
       avatar: https://www.m-finder.com/images/favicon.ico
       descr: 3wly 项目开发组自留地
