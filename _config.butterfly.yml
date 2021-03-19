@@ -794,7 +794,8 @@ artitalk:
   appId: oJB5EXRF33MliWEMIRsv4qr8-MdYXbMMI
   appKey: qUshUPE75crxuoBS944qJpS5
   option:
-   - avatarPla: https://www.m-finder.com/images/avatar.jpeg
+    avatarPla: https://www.m-finder.com/images/avatar.jpeg
+    pageSize: 15
 
 # Pjax [Beta]
 # It may contain bugs and unstable, give feedback when you find the bugs.
