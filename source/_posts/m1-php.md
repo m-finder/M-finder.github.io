@@ -65,6 +65,19 @@ ln -s /opt/homebrew/Cellar/pcre2/10.36/include/pcre2.h /opt/homebrew/Cellar/php@
 pech install mongodb
 ```
 
+##### xdebug
+
+xdebug3 配置有改动，具体如下：
+```shell
+xdebug.mode = debug
+xdebug.client_host = 127.0.0.1
+xdebug.client_port = 9003
+xdebug.start_with_request=yes
+xdebug.log="opt/homebrew/var/www/logs/xdebug.log"
+xdebug.idekey = PHPSTORM
+xdebug.discover_client_host=false
+```
+
 #### nginx 安装
 
 ```shell
