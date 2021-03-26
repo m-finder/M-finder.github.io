@@ -7,7 +7,7 @@ categories: 码不能停
 
 没忍住，把家里的电脑更新到了预览版，然后体验了一下 wls2，相对于 wsl1，使用 docker 简直不要太简单。
 
-![](docker-love-wsl2.png)
+![](/images/docker-love-wsl2.png)
 <!-- more  -->
 #### 更新 wsl2
 开个命令行：
@@ -21,12 +21,12 @@ wsl --set-default-version 2
 
 #### 配置
 下载完成后，先勾选 wsl2。
-![配置](enable-wsl2.png)
+![配置](/images/enable-wsl2.png)
 
 然后直接重启 docker。
 
 重启完成后，勾选你的发行版子系统。
-![image.png](ubuntu.png)
+![image.png](/images/ubuntu.png)
 
 然后再次重启 docker。
 
@@ -35,10 +35,10 @@ wsl --set-default-version 2
 bash
 docker -v
 ```
-![image.png](test.png)
+![image.png](/images/test.png)
 
 重装好像把我之前的镜像都给弄没了，切到 laradock 重新下载。
 
-![image.png](visited.png)
+![image.png](/images/visited.png)
 
 正常访问，打完收工。

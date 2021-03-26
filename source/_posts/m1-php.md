@@ -7,6 +7,8 @@ categories: 码不能停
 
 一番挣扎之后，还是下手了 m1，真香。
 
+![macos](/images/macos.png)
+
 <!-- more -->
 
 #### homebrew 安装

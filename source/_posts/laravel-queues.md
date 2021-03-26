@@ -6,7 +6,7 @@ categories: 码不能停
 ---
 
 学习下 laravel 的队列系统。
-![](laravel.jpg)
+![](/images/laravel.jpg)
 
 队列的目的是将耗时的任务延时处理，比如发送邮件，从而大幅度缩短 Web 请求和相应的时间。
 
@@ -79,6 +79,6 @@ php artisan queue:work --tries=3 --timeout=30 --queue=emails
 然后重新登录触发任务。
 可以看到邮箱已经有了提示：
 
-![邮件通知](laravel-queues/email.png)
+![邮件通知](/images/email.png)
 
 邮件已经成功发出，接下来就可以在实际的需求中使用了。

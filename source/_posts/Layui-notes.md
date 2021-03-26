@@ -6,7 +6,7 @@ categories: 码不能停
 ---
 
 一个关于 form 渲染特殊用法的解决方案。
-![](layui.png)
+![](/images/layui.png)
 
 <!--more-->
 ### 需求 :

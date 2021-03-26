@@ -5,7 +5,7 @@ tags: laravel
 categories: 码不能停
 ---
 
-![示意图](time.png)
+![示意图](/images/time.png)
 
 <!--more-->
 

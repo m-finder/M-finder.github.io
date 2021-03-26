@@ -15,4 +15,4 @@ categories: 闲言赘语
 
 不说了，19 年也都进来这么久了，祝大家新年快乐吧。
 
-![](img.jpg)
+![](/images/img.jpg)

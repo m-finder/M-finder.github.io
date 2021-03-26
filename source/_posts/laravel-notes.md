@@ -5,7 +5,7 @@ tags: [laravel,php]
 categories: 码不能停
 ---
 
-![](laravel.jpg)
+![](/images/laravel.jpg)
 
 <!--more-->
 先从最简单的开始：

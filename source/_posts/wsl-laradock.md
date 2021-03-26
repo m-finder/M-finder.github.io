@@ -13,7 +13,7 @@ categories: 码不能停
 
 子系统选择 Ubuntu。
 
-![](cover.png)
+![](/images/cover.png)
 
 <!-- more -->
 

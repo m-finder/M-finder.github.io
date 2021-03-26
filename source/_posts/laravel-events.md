@@ -6,7 +6,7 @@ categories: 码不能停
 ---
 
 学习下 laravel 的事件系统。
-![](laravel.jpg)
+![](/images/laravel.jpg)
 <!-- more -->
 
 Laravel 的事件提供了一个简单的观察者实现，能够订阅和监听应用中发生的各种事件。
@@ -113,7 +113,7 @@ public function handle($guard) {
 
 #### 触发事件
 退出帐号重新登录，可以看到以下内容：
-![输出结果](laravel-events/out.png)
+![输出结果](/images/out.png)
 
 可以再优化一下：
 ```php

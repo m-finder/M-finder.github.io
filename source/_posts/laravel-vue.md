@@ -9,7 +9,6 @@ categories: 码不能停
 
 从刚接触 laravel 到现在已经又过去了四个版本，种种原因，还是一直没能用上 vue.js 来做开发，现在刚好因为公司项目用到了 vue，对 vue 有了一定的了解，所以顺便就研究下 vue 在 laravel 中的使用吧。
 
-![](php.jpg)
 <!--more-->
 
 #### 安装laravel
@@ -64,7 +63,7 @@ You are logged in!
 ```
 更新脚手架：npm run dev  or npm run watch
 
-![组件生效](laravel-vue/laravel.png)
+![组件生效](/images/laravel.png)
 
 #### 再实验下
 例子来自：[[ cxp1539 ]](https://learnku.com/docs/laravel-core-concept/5.5/Laravel%E4%B8%8E%E5%89%8D%E7%AB%AF%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/3029)
@@ -145,7 +144,7 @@ Vue.component('go-top', require('./components/GoTop.vue'));
 
 为了使页面更高，随便修改个样式使滚动条出现。
 
-![up](up.png)
+![up](/images/up.png)
 #### 注意事项
 > 每次修改组件后都需要重新运行一次 npm run dev，也可以用 watch-poll 监听。
 

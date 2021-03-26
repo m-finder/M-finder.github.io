@@ -7,7 +7,7 @@ categories: 码不能停
 
 本次操作为 win10 系统，理论上和其他系统无差异。
 
-![laradock](laradock.png)
+![laradock](/images/laradock.png)
 <!--more-->
 
 克隆 laradock 到本地： 
@@ -59,25 +59,25 @@ build 服务： `docker-compose bild php-fpm workspace`
 
 打开 phpstorm，添加 php 设置和 server：
 
-![php](php.png)
+![php](/images/php.png)
 
-![php-option](php-set.png)
+![php-option](/images/php-set.png)
 
 添加 php 时，要把 additional 里的两个内容填好。
 options 内容如下图：
 ```
 -dxdebug.remote_host=docker.for.win.localhost -dxdebug.remote_enable=1 -dxdebug.remote_port=9000 -dxdebug.remote_mode=req
 ```
-![options](option.png)
+![options](/images/option.png)
 
-![server](server.png)
+![server](/images/server.png)
 
 建好以后，再添加 remote_debug：
 
-![debug](debug.png)
+![debug](/images/debug.png)
 
 配置好以后，启动 debug，打开电话按钮，添加断点刷新页面。
-![start](start.png)
+![start](/images/start.png)
 
 
 _注：_ 配置好 xdebug 后，如果需要安装 laravel，需要把 phpstorm 关掉。否则会拦截的 composer 的请求。

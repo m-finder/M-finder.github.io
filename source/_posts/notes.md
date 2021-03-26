@@ -7,7 +7,7 @@ categories: 码不能停
 
 杂七杂八大乱炖。
 
-![](st.jpg)
+![](/images/st.jpg)
 <!--more-->
 ### 计算两个日期的差值
 ```
