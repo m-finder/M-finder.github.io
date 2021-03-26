@@ -42,5 +42,5 @@ if($handler = fopen($txt_file, 'r')){
 }
 ```
 
-![res](media/res.png)
+![res](images/res.png)
 
