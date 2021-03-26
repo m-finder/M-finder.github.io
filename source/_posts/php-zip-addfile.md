@@ -42,5 +42,4 @@ if($handler = fopen($txt_file, 'r')){
 }
 ```
 
-![res](images/res.png)
-
+![res](https://i.loli.net/2021/03/26/wKgFbXmiAPdsjor.png)
