@@ -11,4 +11,4 @@ categories: 闲言赘语
 
 祝他做一只幸福的哈士奇，每天都有骨头吃。
 
-![](husky.gif)
+![](/images/husky.gif)
