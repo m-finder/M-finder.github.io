@@ -3,7 +3,7 @@ title: 2021 年计划清单
 date:
 tags:
 - 闲言赘语
-  categories:
+categories:
 - 闲言赘语
 ---
 

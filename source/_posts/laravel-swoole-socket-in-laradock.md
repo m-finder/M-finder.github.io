@@ -4,7 +4,7 @@ date: 2019-10-12 15:24:36
 tags:
 - laravel
 - docker
-category:
+categories:
 - 码不能停
 ---
 

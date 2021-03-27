@@ -3,7 +3,7 @@ title: 2020 年计划清单
 date: 2020-12-31 23:59:59
 tags:
 - 闲言赘语
-  categories:
+categories:
 - 闲言赘语
 ---
 
