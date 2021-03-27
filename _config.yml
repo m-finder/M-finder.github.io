@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: M-finder
+title: 'M-finder'
 subtitle: '删繁就简，发现更多'
 description: 'happy coding'
-keywords: keywords,php
-author: m-finder
-language: zh-CN
-timezone: ''
+keywords: ['m-finder', 'php', 'laravel']
+author: 'm-finder'
+language: 'zh-CN'
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
