@@ -16,6 +16,7 @@ hexo 借助图片插件可以在 post 目录建立跟文章文件的同名文件
 
 ![图片路径](/images/mweb-images.png)
 
+把 hexo 的配置文件中：`post_asset_folder` 改为 `false`。
 
 下一步，把你花花哨哨的图片放到 source/images 目录即可，新增图片时用 mweb 的图片工具添加，会自动保存到文件夹内，并且会自动添加 mackdown 格式的图片到文档内。
 
