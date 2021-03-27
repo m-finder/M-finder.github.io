@@ -104,4 +104,4 @@ theme: butterfly
 deploy:
   type: git
   repo: https://github.com/M-finder/M-finder.github.io.git
-  branch: master
+  branch: hexo
