@@ -1,7 +1,7 @@
 ---
 title: 哈！
 date: 2019-07-30 09:20:00
-tags:
+tags: 闲言赘语
 categories: 闲言赘语
 ---
 

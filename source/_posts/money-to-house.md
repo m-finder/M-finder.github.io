@@ -1,7 +1,7 @@
 ---
 title: 做个记录
 date: 2018-05-24 08:33:33
-tags:
+tags: 闲言赘语
 categories: 闲言赘语
 ---
 

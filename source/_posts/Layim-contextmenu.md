@@ -1,7 +1,7 @@
 ---
 title: Layim模块化右键菜单
 date: 2017-12-27 09:40:33
-tags: [js,layui,Layim]
+tags: [js,layui,layim]
 categories: 码不能停
 ---
 
