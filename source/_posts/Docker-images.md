@@ -1,8 +1,10 @@
 ---
 title: Docker使用教程-以Dockerfile定制镜像
 date: 2018-04-10 10:48:33
-tags: docker
-categories: 码不能停
+tags: 
+- docker
+categories: 
+- 码不能停
 ---
 
 我们都知道，操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。

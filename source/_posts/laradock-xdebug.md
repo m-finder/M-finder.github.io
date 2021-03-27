@@ -1,8 +1,10 @@
 ---
 title: phpstorm 配置 laradock xdebug
 date: 2019-03-08 11:41:48
-tags: docker
-categories: 码不能停
+tags: 
+- docker
+categories: 
+- 码不能停
 ---
 
 本次操作为 win10 系统，理论上和其他系统无差异。

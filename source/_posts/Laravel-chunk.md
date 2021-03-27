@@ -1,8 +1,11 @@
 ---
 title: Laravel使用chunk自更新有误的原因
 date: 2018-06-19 16:20:45
-tags: [laravel,php]
-categories: 码不能停
+tags: 
+- laravel
+- php
+categories: 
+- 码不能停
 ---
 
 Laravel 的 chunk 在查询大量数据时非常好用，但是在用某个字段做为检索条件，并且在程序内部有更新这个字段的时候，就会有一部分数据丢失。

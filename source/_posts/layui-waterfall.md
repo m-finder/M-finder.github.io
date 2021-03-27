@@ -1,7 +1,9 @@
 ---
 title: 结合layui流加载实现的瀑布流
 date: 2018-03-23 14:35:14
-tags: [js,layui]
+tags: 
+- js
+- layui
 categories: 码不能停
 ---
 

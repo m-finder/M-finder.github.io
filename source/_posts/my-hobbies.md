@@ -1,8 +1,10 @@
 ---
 title: 为爱好充值
 date: 2018-04-18 15:20:08
-tags: 闲言赘语
-categories: 闲言赘语
+tags: 
+- 闲言赘语
+categories: 
+- 闲言赘语
 ---
 
 那个周末，阳光明媚。

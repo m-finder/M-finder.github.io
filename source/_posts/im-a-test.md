@@ -1,8 +1,10 @@
 ---
 title: im-a-test
 date: 2018-08-27 16:38:58
-tags: test
-categories: 测试区
+tags: 
+- test
+categories: 
+- 测试区
 ---
 
 I am a test...

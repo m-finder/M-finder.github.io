@@ -1,8 +1,11 @@
 ---
 title: MWeb Hexo 设置
 date: 2021-03-26 21:00:00
-categories: [码不能停, hexo]
-tags: [hexo]
+categories: 
+- 码不能停
+- hexo
+tags: 
+- hexo
 ---
 
 hexo 借助图片插件可以在 post 目录建立跟文章文件的同名文件夹来保存图片，之前也一直都是这么做的，但是在 mweb 上预览时图片不显示，经过一番折腾，反正总会有一番折腾，而且也少不了一番折腾以后，弄好了。

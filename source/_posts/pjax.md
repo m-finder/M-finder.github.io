@@ -1,8 +1,10 @@
 ---
 title: Pjax的正确使用
 date: 2018-03-14 21:03:52
-tags: js
-categories: 码不能停
+tags: 
+- js
+categories: 
+- 码不能停
 ---
 
 以前偶然之间接触到pjax这个插件，眼前一亮，被它惊艳到了。

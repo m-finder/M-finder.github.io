@@ -1,8 +1,11 @@
 ---
 title: laravel 内置 vue 的使用
 date: 2019-03-14 23:00:00
-tag: [php, laravel]
-categories: 码不能停
+tag: 
+- php
+- laravel
+categories: 
+- 码不能停
 ---
 
 从 5.3 版本开始，用 Vue.js 作为默认 JavaScript 前端框架。

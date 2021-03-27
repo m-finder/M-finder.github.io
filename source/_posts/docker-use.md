@@ -1,8 +1,10 @@
 ---
 title: Docker使用教程-入门
 date: 2018-03-28 16:34:13
-tags: docker
-categories: 码不能停
+tags: 
+- docker
+categories: 
+- 码不能停
 ---
 
 docker已经装好了，但是完全不知道怎么用，先来点官网的例子看看吧。

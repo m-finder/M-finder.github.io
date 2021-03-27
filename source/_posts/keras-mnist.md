@@ -1,8 +1,11 @@
 ---
 title: 深度学习 -- 基于 keras 的手写数字识别示例
 date: 2019-04-10 23:59:59
-tags: [keras, python]
-categories: 码不能停
+tags: 
+- keras
+- python
+categories: 
+- 码不能停
 ---
 
 

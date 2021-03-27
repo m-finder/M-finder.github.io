@@ -1,8 +1,11 @@
 ---
 title: Laravel 服务容器
 date: 2019-03-15 23:00:00
-tags: [php, laravel]
-categories: 码不能停
+tags: 
+- php
+- laravel
+categories: 
+- 码不能停
 ---
 
 在 Laravel 生命周期中，我们了解到框架运行过程中，会通过创建应用实例来完成很多事情，这个应用实例，也就是我们今天的主角，服务容器。

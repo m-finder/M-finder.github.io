@@ -1,8 +1,11 @@
 ---
 title: PHP ZipArchive addFile return false
 date: 2021-03-25 20:30:00
-categories: [码不能停, php]
-tags: [php]
+categories: 
+- 码不能停
+- php
+tags: 
+- php
 ---
 
 有个文件，存储了两条准备用于给文件重命名的字符串和文件路径的数据，每行一条，名称和字符串以 `,` 间隔。

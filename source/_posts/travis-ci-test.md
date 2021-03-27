@@ -1,8 +1,11 @@
 ---
 title: travis-ci 可持续集成测试
 date: 2019-03-12 10:20:35
-tags: [hexo, test]
-categories: 码不能停
+tags: 
+- hexo
+- test
+categories:
+- 码不能停
 ---
 
 

@@ -1,8 +1,10 @@
 ---
 title: mac m1 下搭建 php 开发环境
 date: 2021-03-20 19:30:00
-tags: php
-categories: 码不能停
+tags: 
+- php
+categories: 
+- 码不能停
 ---
 
 一番挣扎之后，还是下手了 m1，真香。

@@ -1,8 +1,12 @@
 ---
 title: openssl_pkey_get_private 内存泄漏
 date: 2018-02-08 07:31:16
-tags: [php,openssl,swoole]
-categories: 码不能停
+tags: 
+- php
+- openssl
+- swoole
+categories: 
+- 码不能停
 ---
 
 从前，有一块使用 swoole_process 做多线程处理的程序，这个程序有一个奇怪的问题：每运行一个星期左右都会因为内存爆表而停掉。

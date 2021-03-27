@@ -1,8 +1,11 @@
 ---
 title: laravel 测试模块学习
 date: 2019-04-11 23:59:59
-tags: [laravel, php]
-categories: 码不能停
+tags: 
+- laravel
+- php
+categories:
+- 码不能停
 ---
 
 学习下 larave 内置的测试模块。

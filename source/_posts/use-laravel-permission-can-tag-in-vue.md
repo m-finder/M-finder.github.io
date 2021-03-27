@@ -1,8 +1,11 @@
 ---
 title: 在vue中使用laravel-permission的@can标签
 date: 2019-08-02 10:24:00
-tags: [vue, laravel]
-categories: 码不能停
+tags: 
+- vue
+- laravel
+categories:
+- 码不能停
 ---
 
 #### 1. 在需要权限校验的 model 中新增方法

@@ -1,8 +1,11 @@
 ---
 title: 代码备忘录
 date: 2017-12-22 09:38:12
-tags: [php,js]
-categories: 码不能停
+tags: 
+- php
+- js
+categories:
+- 码不能停
 ---
 
 杂七杂八大乱炖。

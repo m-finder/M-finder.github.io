@@ -1,8 +1,10 @@
 ---
 title: docker 容器访问宿主机端口
 date: 2019-07-31 21:48:00
-categories: 码不能停
-tags: docker
+categories: 
+- 码不能停
+tags:
+- docker
 ---
 
 运行在 docker 容器中的一个项目需要访问宿主机的某个端口，比如容器 A 中的项目访问宿主机 B，在 A 的项目中以下边的地址来访问即可：

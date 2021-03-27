@@ -1,8 +1,11 @@
 ---
 title: laravel5.4疑难杂症
 date: 2018-01-05 03:05:12
-tags: [laravel,php]
-categories: 码不能停
+tags: 
+- laravel
+- php
+categories: 
+- 码不能停
 ---
 
 公司项目最近翻新了页面，把 bootstrap 完全改成了 layui 。

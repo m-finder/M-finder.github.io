@@ -1,8 +1,11 @@
 ---
 title: 在 laradock 环境中使用 laravel-swoole 加速你的 laravel 应用
 date: 2019-08-23 09:20:00
-tags: [laravel, docker]
-categories: 码不能停
+tags: 
+- laravel
+- docker
+categories: 
+- 码不能停
 ---
 
 在 laradock 环境中使用 laravel-swoole 加速你的 laravel 应用。

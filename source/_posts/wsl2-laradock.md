@@ -1,8 +1,10 @@
 ---
 title: win10 子系统（wsl2）运行laradock
 date: 2020-01-16 12:21:00
-tags: docker
-categories: 码不能停
+tags: 
+- docker
+categories: 
+- 码不能停
 ---
 
 没忍住，把家里的电脑更新到了预览版，然后体验了一下 wls2，相对于 wsl1，使用 docker 简直不要太简单。

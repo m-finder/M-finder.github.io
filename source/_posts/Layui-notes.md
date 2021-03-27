@@ -1,8 +1,11 @@
 ---
 title: Layui使用备忘
 date: 2017-12-22 09:39:12
-tags: [js,layui]
-categories: 码不能停
+tags: 
+- js
+- layui
+categories: 
+- 码不能停
 ---
 
 一个关于 form 渲染特殊用法的解决方案。

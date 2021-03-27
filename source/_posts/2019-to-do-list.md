@@ -1,8 +1,10 @@
 ---
 title: 2019 年学习清单
 date: 2019-08-23 09:21:00
-tags: 闲言赘语
-categories: 闲言赘语
+tags:
+- 闲言赘语
+categories: 
+- 闲言赘语
 ---
 
 

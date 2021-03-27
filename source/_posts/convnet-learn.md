@@ -1,8 +1,11 @@
 ---
 title: 卷积神经网络学习
 date: 2019-04-18 23:59:59
-tags: [keras, python]
-categories: 码不能停
+tags:
+- keras
+- python
+categories:
+- 码不能停
 ---
 
 

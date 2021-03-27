@@ -1,8 +1,11 @@
 ---
 title: 在 laradock 环境中使用 laravel-swoole 的 websocket
 date: 2019-10-12 15:24:36
-tags: [laravel, docker]
-category: 码不能停
+tags: 
+- laravel
+- docker
+category:
+- 码不能停
 ---
 
 之前写了一篇 [在 laradock 环境中使用 laravel-swoole 加速你的 laravel 应用](https://www.m-finder.com/2019/08/23/laravel-swoole-in-laradock/) 的博客，算是敲开了 laravel-swoole 的大门，今天就继续研究下期中的 websocket 功能。

@@ -1,8 +1,10 @@
 ---
 title: Docker安装教程
 date: 2018-03-27 15:34:30
-tags: docker
-categories: 码不能停
+tags: 
+- docker
+categories: 
+- 码不能停
 ---
 
 Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。

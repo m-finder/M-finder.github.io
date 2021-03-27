@@ -1,8 +1,10 @@
 ---
 title: nothing to say,just hope
 date: 2018-07-19 08:58:19
-tags: 闲言赘语
-categories: 闲言赘语
+tags: 
+- 闲言赘语
+categories: 
+- 闲言赘语
 ---
 
 一眨眼我一个月没更新博客了……

@@ -1,8 +1,10 @@
 ---
 title: hexo多设备支持
 date: 2018-02-26 14:35:02
-tags: hexo
-categories: 码不能停
+tags: 
+- hexo
+categories: 
+- 码不能停
 ---
 
 测试时未知原因，markdown格式的图片标签无法识别，只能用下边hexo推荐的标签。

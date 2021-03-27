@@ -1,8 +1,12 @@
 ---
 title: laravel 队列学习
 date: 2019-04-09 23:00:00
-tags: [laravel, php, docker]
-categories: 码不能停
+tags:
+- laravel
+- php
+- docker
+categories: 
+- 码不能停
 ---
 
 学习下 laravel 的队列系统。

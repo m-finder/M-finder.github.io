@@ -1,8 +1,10 @@
 ---
 title: Laravel转换时间为xx分钟前
 date: 2018-05-08 16:37:28
-tags: laravel
-categories: 码不能停
+tags: 
+- laravel
+categories:
+- 码不能停
 ---
 
 ![示意图](/images/time.png)

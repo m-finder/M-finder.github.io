@@ -1,8 +1,11 @@
 ---
 title: laravel 广播系统学习
 date: 2019-04-12 23:59:59
-tags: [laravel, php]
-categories: 码不能停
+tags: 
+- laravel
+- php
+categories: 
+- 码不能停
 ---
 
 看到广播系统，先想起了曾经虐过我的即时通讯。

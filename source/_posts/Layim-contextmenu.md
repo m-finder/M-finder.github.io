@@ -1,8 +1,12 @@
 ---
 title: Layim模块化右键菜单
 date: 2017-12-27 09:40:33
-tags: [js,layui,layim]
-categories: 码不能停
+tags: 
+- js
+- layui
+- layim
+categories: 
+- 码不能停
 ---
 
 一直觉得社区那群“先驱”搞的右键菜单要么太丑，要么风格不统一，很难受。

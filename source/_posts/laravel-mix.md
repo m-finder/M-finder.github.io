@@ -1,8 +1,11 @@
 ---
 title: 使用 laravel mix 编译资源
 date: 2019-03-15 23:00:00
-tags: [php, laravel]
-categories: 码不能停
+tags: 
+- php
+- laravel
+categories:
+- 码不能停
 ---
 
 学习下如何在 laravel 框架中，用 laravel mix 编译前端资源。

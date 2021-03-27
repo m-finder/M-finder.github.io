@@ -1,8 +1,10 @@
 ---
 title: Happy Birthday
 date: 2018-08-13 09:35:38
-tags: 闲言赘语
-categories: 闲言赘语
+tags: 
+- 闲言赘语
+categories: 
+- 闲言赘语
 ---
 
 昨天我爹生日，我竟然可耻的忘了……

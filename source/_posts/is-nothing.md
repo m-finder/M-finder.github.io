@@ -1,8 +1,10 @@
 ---
 title: 闲话三两句
 date: 2020-10-02 13:38:58
-tags: 闲言赘语
-categories: 闲言赘语
+tags: 
+- 闲言赘语
+categories: 
+- 闲言赘语
 ---
 
 

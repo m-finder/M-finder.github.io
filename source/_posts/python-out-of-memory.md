@@ -1,8 +1,10 @@
 ---
 title: python 内存溢出的解决方法
 date: 2019-09-24 09:05:00
-categories: [码不能停]
-tags: python
+categories: 
+- 码不能停
+tags: 
+- python
 ---
 
 运行在服务器上的数据同步脚本突然出现已杀死，谁把你杀了，咋就突然被杀了？？？

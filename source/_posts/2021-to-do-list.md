@@ -1,8 +1,10 @@
 ---
 title: 2021 年计划清单
-date: 
-tags: 闲言赘语
-categories: 闲言赘语
+date:
+tags:
+- 闲言赘语
+  categories:
+- 闲言赘语
 ---
 
 魔幻的 2020 已经成为过去……
