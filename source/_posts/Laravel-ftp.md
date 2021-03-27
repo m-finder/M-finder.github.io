@@ -1,10 +1,10 @@
 ---
 title: Laravel使用ftp传输文件时报错ftp_put() No data connection的解决
 date: 2018-06-12 17:00:50
-tags: 
+tags:
 - laravel
 - php
-categories: 
+categories:
 - 码不能停
 ---
 

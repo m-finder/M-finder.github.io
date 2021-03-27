@@ -1,9 +1,9 @@
 ---
 title: 为爱好充值
 date: 2018-04-18 15:20:08
-tags: 
+tags:
 - 闲言赘语
-categories: 
+categories:
 - 闲言赘语
 ---
 

@@ -1,10 +1,10 @@
 ---
 title: MWeb Hexo 设置
 date: 2021-03-26 21:00:00
-categories: 
+categories:
 - 码不能停
 - hexo
-tags: 
+tags:
 - hexo
 ---
 

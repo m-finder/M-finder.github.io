@@ -1,10 +1,10 @@
 ---
 title: laradock 中 php5.6 连接 mysql 报错解决
 date: 2019-03-21 23:00:00
-tags: 
+tags:
 - php
 - docker
-categories: 
+categories:
 - 码不能停
 ---
 laradock 中 php 5.6 连接 mysql 报错的解决方法。

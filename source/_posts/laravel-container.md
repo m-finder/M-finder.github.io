@@ -1,10 +1,10 @@
 ---
 title: Laravel 服务容器
 date: 2019-03-15 23:00:00
-tags: 
+tags:
 - php
 - laravel
-categories: 
+categories:
 - 码不能停
 ---
 

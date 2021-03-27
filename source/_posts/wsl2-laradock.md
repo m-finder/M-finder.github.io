@@ -1,9 +1,9 @@
 ---
 title: win10 子系统（wsl2）运行laradock
 date: 2020-01-16 12:21:00
-tags: 
+tags:
 - docker
-categories: 
+categories:
 - 码不能停
 ---
 

@@ -4,7 +4,7 @@ date: 2019-03-14 23:00:00
 tag: 
 - php
 - laravel
-categories: 
+categories:
 - 码不能停
 ---
 

@@ -5,7 +5,7 @@ tags:
 - laravel
 - php
 - docker
-categories: 
+categories:
 - 码不能停
 ---
 

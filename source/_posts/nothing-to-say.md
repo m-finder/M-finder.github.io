@@ -1,9 +1,9 @@
 ---
 title: nothing to say,just hope
 date: 2018-07-19 08:58:19
-tags: 
+tags:
 - 闲言赘语
-categories: 
+categories:
 - 闲言赘语
 ---
 

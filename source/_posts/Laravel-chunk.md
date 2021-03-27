@@ -1,10 +1,10 @@
 ---
 title: Laravel使用chunk自更新有误的原因
 date: 2018-06-19 16:20:45
-tags: 
+tags:
 - laravel
 - php
-categories: 
+categories:
 - 码不能停
 ---
 

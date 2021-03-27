@@ -38,7 +38,7 @@ function init() {
 			aboutme: false,
 			items: [],
 			jsonFail: false,
-			showTags: false,
+			showtags:false,
 			search: ''
 		},
 	    methods: {

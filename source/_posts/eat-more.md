@@ -1,9 +1,9 @@
 ---
 title: 吃货就该走到哪儿吃到哪儿
 date: 2017-03-28 09:24:55
-tags: 
+tags:
 - 闲言赘语
-categories: 
+categories:
 - 闲言赘语
 ---
 1号去4号回，武汉三日游。哈哈哈~

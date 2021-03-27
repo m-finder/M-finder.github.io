@@ -1,9 +1,9 @@
 ---
 title: 在 laravel vue 中使用 svg 图标
 date: 2019-10-28 21:21:59
-tags: 
+tags:
 - laravel
-categories: 
+categories:
 - 码不能停
 ---
 在 laravel vue 中使用 svg 图标

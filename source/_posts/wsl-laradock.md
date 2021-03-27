@@ -2,9 +2,9 @@
 ---
 title: win10 子系统（wsl1）运行 laradock
 date: 2020-01-14 12:21:00
-tags: 
+tags:
 - docker
-categories: 
+categories:
 - 码不能停
 ---
 

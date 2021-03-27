@@ -1,9 +1,9 @@
 ---
 title: hexo多设备支持
 date: 2018-02-26 14:35:02
-tags: 
+tags:
 - hexo
-categories: 
+categories:
 - 码不能停
 ---
 

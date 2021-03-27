@@ -1,10 +1,10 @@
 ---
 title: laravel 使用笔记
 date: 2017-12-22 09:35:57
-tags: 
+tags:
 - laravel
 - php
-categories: 
+categories:
 - 码不能停
 ---
 

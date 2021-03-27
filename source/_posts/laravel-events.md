@@ -1,9 +1,9 @@
 ---
 title: laravel 事件系统学习
 date: 2019-04-03 23:00:00
-tags: 
+tags:
 - laravel
-categories: 
+categories:
 - 码不能停
 ---
 

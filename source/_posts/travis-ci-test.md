@@ -1,7 +1,7 @@
 ---
 title: travis-ci 可持续集成测试
 date: 2019-03-12 10:20:35
-tags: 
+tags:
 - hexo
 - test
 categories:

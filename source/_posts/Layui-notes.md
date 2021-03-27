@@ -1,10 +1,10 @@
 ---
 title: Layui使用备忘
 date: 2017-12-22 09:39:12
-tags: 
+tags:
 - js
 - layui
-categories: 
+categories:
 - 码不能停
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 在vue中使用laravel-permission的@can标签
 date: 2019-08-02 10:24:00
-tags: 
+tags:
 - vue
 - laravel
 categories:

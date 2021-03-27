@@ -1,9 +1,9 @@
 ---
 title: Pjax的正确使用
 date: 2018-03-14 21:03:52
-tags: 
+tags:
 - js
-categories: 
+categories:
 - 码不能停
 ---
 

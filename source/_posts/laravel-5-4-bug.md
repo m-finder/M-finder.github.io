@@ -1,10 +1,10 @@
 ---
 title: laravel5.4疑难杂症
 date: 2018-01-05 03:05:12
-tags: 
+tags:
 - laravel
 - php
-categories: 
+categories:
 - 码不能停
 ---
 

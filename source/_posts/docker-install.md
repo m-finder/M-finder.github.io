@@ -1,9 +1,9 @@
 ---
 title: Docker安装教程
 date: 2018-03-27 15:34:30
-tags: 
+tags:
 - docker
-categories: 
+categories:
 - 码不能停
 ---
 

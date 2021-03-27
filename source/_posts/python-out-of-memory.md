@@ -1,9 +1,9 @@
 ---
 title: python 内存溢出的解决方法
 date: 2019-09-24 09:05:00
-categories: 
+categories:
 - 码不能停
-tags: 
+tags:
 - python
 ---
 

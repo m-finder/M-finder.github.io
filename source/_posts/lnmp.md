@@ -1,9 +1,9 @@
 ---
 title: CentOS 7.2 64位安装LNMP php7+Mysql 5.7搭建教程
 date: 2018-03-11 00:51:45
-tags: 
+tags:
 - php
-categories: 
+categories:
 - 码不能停
 ---
 
