@@ -25,6 +25,6 @@ tags:
 
 #### 目录
 
-[对象](/object.html)
+[对象](./design-patrern-object.html)
 [模式](/pattern.html)
 [工厂模式](/factory.html)
