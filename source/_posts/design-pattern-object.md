@@ -348,11 +348,11 @@ PHP 内置的拦截器方法可以拦截发送给为定义方法和属性的消�
 PHP 支持三个内置的拦截器方法。与 `__construct()`  相似，这些方法也会在适当的条件下自动调用。
 
 
-| 方法 | s |
+| 方法 | 说明 |
 |:-----|:-----|
 |  __get($property) | 访问未定义属性时会被调用  |
 | __set($property, $value)| 对未定义属性赋值时会被调用 |
-| __isset($property) | 对未定义属性调用 isset()时调用|
+| __isset($property) | 对未定义属性调用 isset()时调用 |
 | __unset($property) | 对未定义属性调用 unset()时调用 |
 | __call($method, $args) | 调用未定义非静态方法时调用 |
 | __callStatic($method, $args)| 调用未定义静态方法时调用 |
