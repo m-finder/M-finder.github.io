@@ -25,4 +25,4 @@ tags:
 
 #### 目录
 
-[对象](2021/03/21/design-pattern-object/)
+[对象](/2021/03/21/design-pattern-object/)
