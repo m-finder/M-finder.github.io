@@ -1,5 +1,5 @@
 ---
-title： hexo 表格测试
+title: hexo 表格测试
 date: 2021-03-28 25:53:00
 categories:
 - test
