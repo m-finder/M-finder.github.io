@@ -1,5 +1,5 @@
 ---
-title: win10 子系统（wsl2）运行laradock
+title: win10 子系统（wsl2）运行 laradock
 date: 2020-01-16 12:21:00
 tags:
 - docker

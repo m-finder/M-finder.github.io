@@ -1,5 +1,5 @@
 ---
-title: PHP 和设计模式 - 设计原则
+title: php 和设计模式 - 设计原则
 date: 2021-03-21 14:35:02
 categories:
 - 设计模式

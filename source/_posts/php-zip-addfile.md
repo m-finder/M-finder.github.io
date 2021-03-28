@@ -1,5 +1,5 @@
 ---
-title: PHP ZipArchive addFile return false
+title: php ziparchive addfile return false
 date: 2021-03-25 20:30:00
 categories:
 - 码不能停
@@ -47,3 +47,4 @@ if($handler = fopen($txt_file, 'r')){
 
 ![res](/images/res.png)
 
+> 所以，不要怀疑，只要 addfile 返回了 false，肯定是路径有问题或者文件不存在。

@@ -1,5 +1,5 @@
 ---
-title: MWeb Hexo 设置
+title: mweb hexo 设置
 date: 2021-03-26 21:00:00
 categories:
 - 码不能停
