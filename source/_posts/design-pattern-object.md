@@ -357,6 +357,7 @@ PHP 支持三个内置的拦截器方法。与 `__construct()`  相似，这些�
 | __call($method, $args) | 调用未定义非静态方法时调用 |
 | __callStatic($method, $args)| 调用未定义静态方法时调用 |
 
+
 ```php
 class Person{
     public function __get($property)
