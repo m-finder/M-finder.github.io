@@ -155,6 +155,14 @@ class BlueLight extends Light
     }
 }
 
+class RedLight extends Light
+{
+    function show()
+    {
+        echo '红色', PHP_EOL;
+    }
+}
+
 class User
 {
     function openLight(Light $light)
@@ -162,12 +170,15 @@ class User
         $light->show();
     }
 }
+
 $user = new User();
 $light = new Light();
 $blueLight = new BlueLight();
+$redLight = new RedLight();
 
 $user->openLight($light);
 $user->openLight($blueLight);
+$user->openLight($redLight);
 ```
 
 #### 静态方法
