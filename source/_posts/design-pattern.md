@@ -28,3 +28,5 @@ tags:
 #### 目录
 
 {% post_link design-pattern-object  对象 %}
+{% post_link design-pattern-principles  设计原则 %}
+
