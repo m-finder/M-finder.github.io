@@ -51,7 +51,7 @@ tags:
 
 其中有一点很关键，里氏替换原则强调子类尽量使用基类中的方法，而不是重写，除非子类有其特殊性。
 
-举个🌰，依然是上一篇提到的{% post_link https://www.m-finder.com/2021/03/21/design-pattern-object/  灯 %}，但是加了一点改动：
+举个🌰，依然是上一篇提到的灯，但是加了一点改动：
 ```php
 class Light
 {
