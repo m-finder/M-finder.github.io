@@ -29,4 +29,18 @@ tags:
 
 {% post_link design-pattern-object  对象 %}
 {% post_link design-pattern-principles  设计原则 %}
+{% post_link design-pattern-category 设计模式分类 %}
+{% post_link design-pattern-factory 工厂模式 %}
+{% post_link design-pattern-singleton 单例模式 %}
+{% post_link design-pattern-builder 生成器模式 %}
+{% post_link design-pattern-prototype 原型模式 %}
+{% post_link design-pattern-adapter 适配器模式 %}
+{% post_link design-pattern-decorator 装饰器模式 %}
+{% post_link design-pattern-bridge 桥接模式 %}
+{% post_link design-pattern-proxy 代理模式 %}
+{% post_link design-pattern-composite 组合模式 %}
+{% post_link design-pattern-flyweight 享元模式 %}
+{% post_link design-pattern-di 依赖注入模式 %}
+{% post_link design-pattern-registry 注册模式 %}
+{% post_link design-pattern-fi 流接口模式 %}
 
