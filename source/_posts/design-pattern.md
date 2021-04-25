@@ -46,4 +46,5 @@ tags:
 {% post_link design-pattern-strategy 策略模式 %}
 {% post_link design-pattern-template-method 模板方法模式 %}
 {% post_link design-pattern-observer 观察者模式 %}
+{% post_link design-pattern-iterator 迭代器模式 %}
 
