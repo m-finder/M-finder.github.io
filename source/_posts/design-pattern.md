@@ -49,5 +49,6 @@ tags:
 {% post_link design-pattern-iterator 迭代器模式 %}
 {% post_link design-pattern-cor 责任链模式 %}
 {% post_link design-pattern-command 命令行模式 %}
+{% post_link design-pattern-memento 备忘录模式 %}
 
 
