@@ -4,7 +4,6 @@ date: 2021-05-08 23:35:22
 categories:
 - rabbitmq
 tags:
-- rabbitmq
 ---
 
 ACK confirm 确认机制：

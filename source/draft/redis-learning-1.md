@@ -4,7 +4,6 @@ date:
 categories:
 - redis
 tags:
-- redis
 ---
 
 redis 是一个远程内存数据库（或者说内存数据结构）服务器。
