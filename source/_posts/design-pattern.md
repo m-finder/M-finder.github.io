@@ -29,50 +29,77 @@ tags:
 
 {% post_link design-pattern-object  对象 %}
 
+
 {% post_link design-pattern-principles  设计原则 %}
+
 
 {% post_link design-pattern-category 设计模式分类 %}
 
+
 {% post_link design-pattern-factory 工厂模式 %}
+
 
 {% post_link design-pattern-singleton 单例模式 %}
 
+
 {% post_link design-pattern-builder 生成器模式 %}
+
 
 {% post_link design-pattern-prototype 原型模式 %}
 
+
 {% post_link design-pattern-adapter 适配器模式 %}
+
 
 {% post_link design-pattern-decorator 装饰器模式 %}
 
+
 {% post_link design-pattern-bridge 桥接模式 %}
+
 
 {% post_link design-pattern-proxy 代理模式 %}
 
+
 {% post_link design-pattern-composite 组合模式 %}
+
 
 {% post_link design-pattern-flyweight 享元模式 %}
 
+
 {% post_link design-pattern-di 依赖注入模式 %}
+
 
 {% post_link design-pattern-registry 注册模式 %}
 
+
 {% post_link design-pattern-fi 流接口模式 %}
+
 
 {% post_link design-pattern-strategy 策略模式 %}
 
+
 {% post_link design-pattern-template-method 模板方法模式 %}
+
 
 {% post_link design-pattern-observer 观察者模式 %}
 
+
 {% post_link design-pattern-iterator 迭代器模式 %}
+
 
 {% post_link design-pattern-cor 责任链模式 %}
 
+
 {% post_link design-pattern-command 命令行模式 %}
+
 
 {% post_link design-pattern-memento 备忘录模式 %}
 
+
 {% post_link design-pattern-state 状态模式 %}
 
+
 {% post_link design-pattern-visitor 访问者模式 %}
+
+
+{% post_link design-pattern-mediator 中介者模式 %}

@@ -8,7 +8,11 @@ categories:
 tags:
 ---
 
-这是一个 4 年前的老项目，基于 `融云` 和 `layim`，当初水平太菜，只做出来一点基础功能，代码还烂的一塌糊涂。一直想重构又一直在拖，不知不觉这么久过去了，真是一点都没有不好意思呢。 
+仓库有一个 4 年前的老项目，基于 `融云` 和 `layim`的即时通讯。
+
+当初水平太菜，只做出来一点基础功能，代码也烂的一塌糊涂。
+
+一直想重构又一直在拖，不知不觉这么久过去了，真是一点都没有不好意思呢。 
 
 (╯‵□′)╯︵┻━┻
 
@@ -17,7 +21,7 @@ tags:
 #### 安装 laravel
 先准备个全新的 laravel 项目，安装过程这里不再赘述。
 
-新版权限做成了第三方包，先选用最快速的：
+新版 laravel 的权限管理目前也被独立成了扩展包，先选用最快速的：
 ```shell
 composer require laravel/breeze --dev
 
@@ -38,7 +42,7 @@ php artisan migrate
 'token'
 ```
 
-#### 安装 SDK
+#### 安装融云 SDK
 
 之前是直接把官方的 SDK 下载下来拖进了项目里，这次按正规流程来，先把它加到准备好的 laravel 项目中。
 
@@ -49,6 +53,7 @@ composer require rongcloud/php-sdk dev-master
 #### 安装 layui
 
 突然发现 layui 是支持 npm 安装的，那就试试吧：
+
 ```shell
 npm i layui --save
 ```
@@ -95,6 +100,8 @@ mix.js('resources/js/im.js', 'public/js')
 </body>
 </html>
 ```
+
+注意底部位置，加上了 im.js 的引用。
 
 执行 `npm run watch-poll`，然后页面访问下域名，可以看到如下内容即说明已经配置成功。
 
