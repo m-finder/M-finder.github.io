@@ -15,9 +15,9 @@ categories:
 * [ ] _giorgio-spa 改版_
 * [x] 用 Qt 做个小工具箱
 * [x] 泰拉瑞亚毕业
-* [ ] _梳理设计模式_
-* [ ] redis 进一步学习
-* [ ] rabbitmq 进一步学习
+* [x] 梳理设计模式
+* [ ] _redis 进一步学习_
+* [ ] _rabbitmq 进一步学习_
 * [ ] 有时间的话研究下 App
 * [ ] 更多的 composer 扩展包
 * [x] 再剪几个视频玩玩 [[ bilibili ]](https://space.bilibili.com/12148036)
