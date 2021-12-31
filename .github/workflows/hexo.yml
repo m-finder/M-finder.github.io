@@ -39,7 +39,7 @@ jobs:
       # 从之前设置的 secret 获取部署私钥
       - name: Set up environment
         env:
-          DEPLOY_KEY: ${{ secrets.HEXO }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         run: |
           sudo timedatectl set-timezone "Asia/Shanghai"
           mkdir -p ~/.ssh
