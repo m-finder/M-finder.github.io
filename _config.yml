@@ -103,5 +103,5 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/M-finder/M-finder.github.io.git
+  repo: git@github.com:m-fidner/m-fidner.github.io.git
   branch: master
