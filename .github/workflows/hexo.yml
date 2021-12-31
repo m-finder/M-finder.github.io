@@ -11,7 +11,9 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
         with:
-          ref: hexo
+          repository: jerryc127/hexo-theme-butterfly
+          ref: master
+          path: themes/butterfly
       - name: Use Node.js ${{ matrix.node_version }}
         uses: actions/setup-node@v1
         with:
