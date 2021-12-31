@@ -29,11 +29,6 @@ jobs:
         with:
           node-version: '14'
 
-      # 缓存 Node 模块，提高构建速度
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
       # 安装依赖
       - name: Install dependencies
         run: |
@@ -44,7 +39,7 @@ jobs:
       # 从之前设置的 secret 获取部署私钥
       - name: Set up environment
         env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_KEY: ${{ secrets.HEXO }}
         run: |
           sudo timedatectl set-timezone "Asia/Shanghai"
           mkdir -p ~/.ssh
