@@ -33,9 +33,12 @@ jobs:
           git config --global user.email "m@m-finder.com"
           git config --global user.name "m-finder"
           npm install hexo-cli -g
+          npm install hexo-deployer-git --save
+          npm install hexo-asset-image --save
           npm install
 
       - name: Deploy
         run: |
           hexo clean
-          hexo deploy
+          hexo deploy --generate
+
