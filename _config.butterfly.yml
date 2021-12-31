@@ -11,7 +11,7 @@ menu:
  时间线: /archives/ || fas fa-archive
  标签: /tags/ || fas fa-tags
  分类: /categories/ || fas fa-folder-open
-# 相册: /gallery/ || fas fa-images
+ 相册: /gallery/ || fas fa-images
  友情链接: /link/ || fas fa-link
  关于: /about/ || fas fa-heart
 
@@ -316,7 +316,7 @@ valine:
  placeholder: Please leave your footprints # valine comment input placeholder (like: Please leave your footprints)
  guest_info: nick,mail,link # valine comment header info (nick/mail/link)
  recordIP: false # Record reviewer IP
- serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
+ serverURLs: https://ooiybpjc.lc-cn-n1-shared.com # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
  bg: /images/comment_bg.png # valine background
  emojiCDN: # emoji CDN
  enableQQ: true # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
