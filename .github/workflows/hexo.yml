@@ -36,6 +36,7 @@ jobs:
           npm install
           npm install hexo-deployer-git --save
           npm install hexo-asset-image --save
+          npm install hexo-generator-search --save
 
       # 从之前设置的 secret 获取部署私钥
       - name: Set up environment

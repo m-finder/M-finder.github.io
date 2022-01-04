@@ -13,8 +13,8 @@ categories:
 ### 更新日志：
 
 ### 2021-12-30
-* 停用了 travis ci，因为它收费了
-* 启用了 github actions，也是一样的香
+* 停用了 {% label travis ci red %}，因为它收费了
+* 启用了 {% label github actions green %}，也是一样的香
 
 
 #### 2021-3-27
