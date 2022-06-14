@@ -19,7 +19,5 @@
 ![](/gallery/world/202202.jpg)
 ![](/gallery/world/202203.jpg)
 ![](/gallery/world/beer.jpeg)
-![](/gallery/world/20220505.jpeg)
-![](/gallery/world/2022-05-13.jpeg)
 
 {% endgallery %}
