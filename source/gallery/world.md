@@ -22,4 +22,5 @@
 ![](/gallery/world/白玉兰.png)
 
 ![](/gallery/world/IMG_4173.JPG)
+![](/gallery/world/2022-06-22.jpeg)
 {% endgallery %}
