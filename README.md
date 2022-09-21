@@ -4,4 +4,4 @@ M-finder博客
 
 hexo + actions
 
-地址：https://www.m-finder.com/
+地址：https://m-finder.github.io/

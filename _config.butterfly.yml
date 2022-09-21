@@ -124,7 +124,7 @@ cover:
  position: both
  # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
  default_cover:
-  - https://www.m-finder.com/images/top.jpg
+  - https://m-finder.github.io/images/top.jpg
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
@@ -404,7 +404,7 @@ footer:
  owner:
   enable: true
   since: 2016
- custom_text: <a href="https://beian.miit.gov.cn" target="_blank">豫ICP备18011086号-1</a>
+ custom_text: 备案已注销 <span style="color:pink">❤</span> #<a href="https://beian.miit.gov.cn" target="_blank">豫ICP备18011086号-1</a>
  copyright: true # Copyright of theme and framework
 
 # Analysis
