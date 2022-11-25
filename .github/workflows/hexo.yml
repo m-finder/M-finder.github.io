@@ -37,6 +37,7 @@ jobs:
           npm install hexo-deployer-git --save
           npm install hexo-asset-image --save
           npm install hexo-generator-search --save
+          npm install hexo-butterfly-douban --save
 
       # 从之前设置的 secret 获取部署私钥
       - name: Set up environment
@@ -52,4 +53,4 @@ jobs:
       # 生成并部署
       - name: Deploy
         run: |
-          hexo clean && hexo g && hexo d
+          hexo clean && hexo g && hexo d && hexo douban

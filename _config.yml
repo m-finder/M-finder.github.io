@@ -102,7 +102,7 @@ theme: butterfly
 # 豆瓣
 douban:
   user: 264738267
-  builtin: true
+  builtin: false
   book:
     title: '书单'
     quote: '我的书单'
