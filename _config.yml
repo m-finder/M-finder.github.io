@@ -99,6 +99,29 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: butterfly
 
+# 豆瓣
+douban:
+  user: 264738267
+  builtin: true
+  book:
+    title: '书单'
+    quote: '书单'
+    meta: true
+    comments: true
+    top_img: /images/top.jpg
+    aside: true
+    path: books
+    limit:
+  movie:
+    title: '电影'
+    quote: '电影'
+    meta: true
+    comments: true
+    top_img: /images/top.jpg
+    aside: true
+    path: movies
+    limit:
+  timeout: 10000
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
