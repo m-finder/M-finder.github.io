@@ -102,10 +102,10 @@ theme: butterfly
 # 豆瓣
 douban:
   user: 264738267
-  builtin: true
+  builtin: false
   book:
     title: '书单'
-    quote: '书单'
+    quote: '我的书单'
     meta: true
     comments: true
     top_img: /images/top.jpg
@@ -114,12 +114,21 @@ douban:
     limit:
   movie:
     title: '电影'
-    quote: '电影'
+    quote: '我的电影'
     meta: true
     comments: true
     top_img: /images/top.jpg
     aside: true
     path: movies
+    limit:
+  game:
+    title: '游戏'
+    quote: '我的游戏'
+    meta: true
+    comments: true
+    top_img: /images/top.jpg
+    aside: true
+    path: games
     limit:
   timeout: 10000
 # Deployment
