@@ -11,9 +11,10 @@ menu:
  时间线: /archives/ || fas fa-archive
  标签: /tags/ || fas fa-tags
  分类: /categories/ || fas fa-folder-open
- 相册: /gallery/ || fas fa-images
- 书单: /books/ || fas fa-book
- 电影: /movies/ || fas fa-movie
+ 列表||fas fa-list:
+  相册: /gallery/ || fas fa-images
+  书单: /books/ || fas fa-book
+  电影: /movies/ || fas fa-video
  友情链接: /link/ || fas fa-link
  关于: /about/ || fas fa-heart
 

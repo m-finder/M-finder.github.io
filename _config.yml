@@ -130,7 +130,7 @@ douban:
     aside: true
     path: games
     limit:
-  timeout: 10000
+  timeout: 100000
 pjax:
   enable: true
   exclude:
