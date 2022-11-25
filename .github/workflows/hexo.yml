@@ -1,6 +1,6 @@
 name: Hexo Deploy
 
-# 只监听 master 分支的改动
+# 监听分支
 on:
   push:
     branches:
