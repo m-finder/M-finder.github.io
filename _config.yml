@@ -131,6 +131,14 @@ douban:
     path: games
     limit:
   timeout: 10000
+pjax:
+  enable: true
+  exclude:
+    - /movies/
+    - /books/
+    - /games/
+
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
