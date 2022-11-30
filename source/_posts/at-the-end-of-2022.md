@@ -3,7 +3,7 @@ title: The Fucked 2022
 date: 2022-11-30 09:26:00
 tags:
 - 闲言赘语
-  categories:
+categories:
 - 闲言赘语
 ---
 
