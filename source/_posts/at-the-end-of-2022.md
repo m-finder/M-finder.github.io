@@ -30,4 +30,3 @@ categories:
 作为一个普通个体，我着实改变不了什么，也丝毫不想去做些什么。写下这个过程也只是为了记录一下我平淡生活里为数不多的一丝丝涟漪。只希望这个狗日的疫情能早点结束，恢复正常的生活状态。
 
 love && peace，fuck && crazy.
-No newline at end of file
