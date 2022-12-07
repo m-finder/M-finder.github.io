@@ -12,6 +12,7 @@ menu:
  标签: /tags/ || fas fa-tags
  分类: /categories/ || fas fa-folder-open
  列表||fas fa-list:
+  说说: /artitalk/ || fas fa-comment-dots
   相册: /gallery/ || fas fa-images
   书单: /books/ || fas fa-book
   电影: /movies/ || fas fa-video
@@ -795,10 +796,11 @@ note:
 # Artitalk
 # see https://artitalk.js.org/
 artitalk:
+ enable: true
  appId: oJB5EXRF33MliWEMIRsv4qr8-MdYXbMMI
  appKey: qUshUPE75crxuoBS944qJpS5
  option:
-  avatarPla: https://www.m-finder.com/images/avatar.jpeg
+  avatarPla: https://m-finder.github.io/images/avatar.jpeg
   pageSize: 15
 
 # Pjax [Beta]
