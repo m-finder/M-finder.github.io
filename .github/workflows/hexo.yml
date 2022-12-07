@@ -35,6 +35,7 @@ jobs:
           npm install -g hexo-cli
           npm install hexo-deployer-git --save
           npm install hexo-asset-image --save
+          npm install hexo-wordcount --save
           npm install hexo-butterfly-artitalk
           npm install hexo-generator-search --save
           npm install hexo-butterfly-douban --save
