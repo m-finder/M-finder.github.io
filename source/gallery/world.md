@@ -19,7 +19,7 @@
 ![](/gallery/world/202202.jpg)
 ![](/gallery/world/202203.jpg)
 ![](/gallery/world/beer.jpeg)
-![](/gallery/world/白玉兰.png)
+![](/gallery/world/白玉兰.jpeg)
 
 ![](/gallery/world/IMG_4173.JPG)
 ![](/gallery/world/2022-06-22.jpeg)
