@@ -329,12 +329,11 @@ valine:
 # waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
 waline:
- serverURL: # Waline server address url
+ serverURL: https://ooiybpjc.lc-cn-n1-shared.com # Waline server address url
  avatar: monsterid # gravatar style https://zh-tw.gravatar.com/site/implement/images/#default-image
  emojiCDN: # emoji CDN
  bg: # waline background
  option:
-  serverURL: https://ooiybpjc.lc-cn-n1-shared.com
 
 # utterances
 # https://utteranc.es/
