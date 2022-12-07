@@ -11,7 +11,7 @@ menu:
  时间线: /archives/ || fas fa-archive
  标签: /tags/ || fas fa-tags
  分类: /categories/ || fas fa-folder-open
- 列表||fas fa-list:
+ 更多||fas fa-list:
   说说: /artitalk/ || fas fa-comment-dots
   相册: /gallery/ || fas fa-images
   书单: /books/ || fas fa-book
@@ -157,7 +157,7 @@ post_meta:
 
 # wordcount (字數統計)
 wordcount:
- enable: false
+ enable: true
  post_wordcount: true
  min2read: true
  total_wordcount: true
@@ -797,8 +797,11 @@ note:
 # see https://artitalk.js.org/
 artitalk:
  enable: true
- appId: oJB5EXRF33MliWEMIRsv4qr8-MdYXbMMI
- appKey: qUshUPE75crxuoBS944qJpS5
+# appId: oJB5EXRF33MliWEMIRsv4qr8-MdYXbMMI
+# appKey: qUshUPE75crxuoBS944qJpS5
+ appId: oOiybpJc2or7SPhTu2v9YUvq-gzGzoHsz # leancloud application app id
+  # appKey: qUshUPE75crxuoBS944qJpS5 # leancloud application app key
+ appKey: h0W2X6C4C7qOovTn9VM06Ql2 # leancloud application app key
  option:
   avatarPla: https://m-finder.github.io/images/avatar.jpeg
   pageSize: 15
