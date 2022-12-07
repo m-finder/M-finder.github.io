@@ -797,10 +797,7 @@ note:
 # see https://artitalk.js.org/
 artitalk:
  enable: true
-# appId: oJB5EXRF33MliWEMIRsv4qr8-MdYXbMMI
-# appKey: qUshUPE75crxuoBS944qJpS5
  appId: oOiybpJc2or7SPhTu2v9YUvq-gzGzoHsz # leancloud application app id
-  # appKey: qUshUPE75crxuoBS944qJpS5 # leancloud application app key
  appKey: h0W2X6C4C7qOovTn9VM06Ql2 # leancloud application app key
  option:
   avatarPla: https://m-finder.github.io/images/avatar.jpeg
