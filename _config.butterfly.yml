@@ -311,9 +311,7 @@ gitalk:
 # valine
 # https://valine.js.org
 valine:
-# appId: oJB5EXRF33MliWEMIRsv4qr8-MdYXbMMI # leancloud application app id
  appId: oOiybpJc2or7SPhTu2v9YUvq-gzGzoHsz # leancloud application app id
-# appKey: qUshUPE75crxuoBS944qJpS5 # leancloud application app key
  appKey: h0W2X6C4C7qOovTn9VM06Ql2 # leancloud application app key
  pageSize: 10 # comment list page size
  avatar: monsterid # gravatar style https://valine.js.org/#/avatar
@@ -336,6 +334,7 @@ waline:
  emojiCDN: # emoji CDN
  bg: # waline background
  option:
+  serverURL: https://ooiybpjc.lc-cn-n1-shared.com
 
 # utterances
 # https://utteranc.es/
