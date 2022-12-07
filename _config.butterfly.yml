@@ -796,6 +796,7 @@ note:
 # Artitalk
 # see https://artitalk.js.org/
 artitalk:
+ enabled: true
  appId: oOiybpJc2or7SPhTu2v9YUvq-gzGzoHsz # leancloud application app id
  appKey: h0W2X6C4C7qOovTn9VM06Ql2 # leancloud application app key
  option:
