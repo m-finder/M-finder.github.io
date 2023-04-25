@@ -13,7 +13,8 @@ categories:
 ### 更新日志：
 
 ### 2022-09-20
-* 域名备案注销了
+* 域名备案注销
+* 放弃域名迁往 github.io
 
 ### 2021-12-30
 * 停用了 travis，因为它收费了
@@ -82,3 +83,6 @@ categories:
 * forget 主题地址 ： [forget](http://azfashao.com/forget3-0-2/)
 
 ![码不能停](/about/index/码不能停.jpg)
+
+
+![领个红包再走呗](/about/index/hb.png)

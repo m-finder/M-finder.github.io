@@ -191,9 +191,9 @@ post_copyright:
 reward:
  enable: false
  QR_code:
- # - img: /img/wechat.jpg
- #   link:
- #   text: wechat
+  - img: /images/hb.png
+#    link:
+    text: 不用给钱，领个红包吧
  # - img: /img/alipay.jpg
  #   link:
  #   text: alipay
