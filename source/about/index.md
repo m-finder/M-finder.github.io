@@ -79,7 +79,7 @@ categories:
 * JAGUAR 主题下载地址 ： [Jaguar](https://github.com/bigfa/Jaguar)
 
 #### 2016-06-09
-* M-finder博客前身 Pumwaterkin 博客上线，wordpress + forget 主题 diy 版
+* M-finder博客前身 Pumpkin 博客上线，wordpress + forget 主题 diy 版
 * forget 主题地址 ： [forget](http://azfashao.com/forget3-0-2/)
 
 ![码不能停](/about/index/码不能停.jpg)
