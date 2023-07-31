@@ -27,4 +27,5 @@
 ![](/gallery/world/IMG_4947.png)
 ![](/gallery/world/laravel.png)
 ![](/gallery/world/zz.jpeg)
+![](/gallery/world/20230731.jpg)
 {% endgallery %}
