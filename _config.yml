@@ -110,7 +110,7 @@ douban:
     comments: true
     top_img: /images/top.jpg
     aside: true
-    path: books
+    path: books/index.html
     limit:
   movie:
     title: '电影'
@@ -119,7 +119,7 @@ douban:
     comments: true
     top_img: /images/top.jpg
     aside: true
-    path: movies
+    path: movies/index.html
     limit:
   game:
     title: '游戏'
@@ -128,7 +128,7 @@ douban:
     comments: true
     top_img: /images/top.jpg
     aside: true
-    path: games
+    path: games/index.html
     limit:
   timeout: 100000
 pjax:
