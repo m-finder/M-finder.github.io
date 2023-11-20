@@ -38,7 +38,6 @@ jobs:
           npm install hexo-wordcount --save
           npm install hexo-butterfly-artitalk
           npm install hexo-generator-search --save
-          #npm install hexo-butterfly-douban --save
 	  npm install hexo-douban --save
       - name: Build
         run: npm run build
