@@ -6,9 +6,9 @@ tags:
 - laravel
 - php
 categories:
+- php
 - 码不能停
 - laravel
-- php
 ---
 
 最近马上失业，整理资料的时候把一直想却又一直没有整理的 Socket 服务端抽了个扩展包，代码比较简洁，但是功能还算完善，有需要的可以看看: [ [giorgio-socket] ](https://github.com/m-finder/giorgio-socket)
