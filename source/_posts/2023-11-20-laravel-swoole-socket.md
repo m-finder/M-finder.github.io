@@ -10,7 +10,7 @@ categories:
 - php
 ---
 
-最近马上失业，整理资料的时候把一直想却又一直没有整理的 Socket 服务端抽了个扩展包，代码比较简洁，但是功能还算完善，有需要的可以看看: [ [giorgio-socket] ](https://github.com/m-finder/giorgio-socket)
+最近马上失业，整理资料的时候把一直想却又一直没有整理的 Socket 服务端抽了个扩展包，可以用来做实时状态推送，或者自定义消息处理实现im，有需要的可以看看: [ [giorgio-socket] ](https://github.com/m-finder/giorgio-socket)
 
 ![preview](/images/socket.jpg)
 ### 使用方法
@@ -34,7 +34,7 @@ php artisan socket:start
 ### 注意事项
 * 必须依赖 Redis
 * 可以通过实现 `GiorgioSocket\Services\Handlers\Interfaces` 下的接口类来自定义自己的业务逻辑。
-* 如果要从服务端发送消息，需要将 `.env` 文件中的 `QUEUE_CONNECTION` 配置修改为 `redis` 或其他异步队列。配置更改后，运行以下命令：`php-artisan queue:work`监听队列，然后按以下代码调用 `event`：
+* 如果要从服务端发送消息，需要将 `.env` 文件中的 `QUEUE_CONNECTION` 配置修改为 `redis` 或其他异步队列。配置更改后，运行以下命令：`php-artisan queue:work --queue=socket-listener`监听队列，然后按以下代码调用 `event`：
     ```
     Route::any('socket', function (Request $request){
         \GiorgioSocket\Events\SocketEvent::dispatch($request->get('to'), $request->get('message'));
