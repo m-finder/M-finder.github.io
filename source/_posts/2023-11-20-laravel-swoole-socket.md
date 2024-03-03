@@ -10,7 +10,7 @@ categories:
 - php
 ---
 
-最近马上失业，整理资料的时候把一直想却又一直没有整理的 Socket 服务端抽了个扩展包，可以用来做实时状态推送，或者自定义消息处理实现im，有需要的可以看看: [ [giorgio-socket] ](https://github.com/m-finder/giorgio-socket)
+做了一个基于 Swoole 的 WebSocket 扩展包，可以用来做实时状态推送，或者自定义消息处理实现 im，有需要的可以看看: [ [giorgio-socket] ](https://github.com/m-finder/giorgio-socket)
 
 ![preview](/images/socket.jpg)
 ### 使用方法
