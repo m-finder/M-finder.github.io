@@ -32,14 +32,23 @@ php artisan socket:start
 ```
 
 ### 注意事项
-* 必须依赖 Redis
 * 可以通过实现 `GiorgioSocket\Services\Handlers\Interfaces` 下的接口类来自定义自己的业务逻辑。
-* 如果要从服务端发送消息，需要将 `.env` 文件中的 `QUEUE_CONNECTION` 配置修改为 `redis` 或其他异步队列。配置更改后，运行以下命令：`php-artisan queue:work --queue=socket-listener`监听队列，然后按以下代码调用 `event`：
-    ```
-    Route::any('socket', function (Request $request){
-        \GiorgioSocket\Events\SocketEvent::dispatch($request->get('to'), $request->get('message'));
-    });
-    ```
+* 如果要从服务端发送消息，这里有两种方式：
+    * 第一种，借助 Laravel HTTP 客户端
+        ```php
+        Route::get('/socket', function () {
+            \Illuminate\Support\Facades\Http::asForm()->post('http://127.0.0.1:9501', [
+                'to' => 2,
+                'message' => 'server message',
+            ]);
+        });
+        ```
+    * 第二种：借助 Laravel Listener，需要将 `.env` 文件中的 `QUEUE_CONNECTION` 配置修改为 `redis` 或其他异步队列。配置更改后，运行以下命令：`php-artisan queue:work --queue=socket-listener`监听队列，然后按以下代码调用 `event`：
+        ```
+        Route::any('socket', function (Request $request){
+            \GiorgioSocket\Events\SocketEvent::dispatch($request->get('to'), $request->get('message'));
+        });
+        ```
 * 如果你正在使用 `laravel/breeze` 扩展包，并且使用了 `Blade` 模板，可以将以下代码粘贴到 `dashboard.blade.php` 中进行快速测试：
     ```
       @auth
