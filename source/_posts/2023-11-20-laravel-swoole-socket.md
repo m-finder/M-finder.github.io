@@ -1,5 +1,5 @@
 ---
-title: 为你的 Laravel 应用添加一个基于 Swoole 的 Socket 服务
+title: 为你的 Laravel 应用添加一个基于 Swoole 的 WebSocket 服务
 date: 2023-11-20 22:45:00
 tags:
 - 码不能停
