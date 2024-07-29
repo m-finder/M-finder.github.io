@@ -29,4 +29,5 @@
 ![](/gallery/world/zz.jpeg)
 ![](/gallery/world/20230731.jpg)
 ![](/gallery/world/M-tools.jpg)
+![](/gallery/world/20240715.png)
 {% endgallery %}
