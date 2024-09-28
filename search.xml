@@ -5,8 +5,8 @@
     
     <entry>
       <title>2024 年计划清单</title>
-      <link href="/2024/09/20/2024-to-do-list/"/>
-      <url>/2024/09/20/2024-to-do-list/</url>
+      <link href="/2024/09/28/2024-to-do-list/"/>
+      <url>/2024/09/28/2024-to-do-list/</url>
       
         <content type="html"><![CDATA[<ul><li><input disabled="" type="checkbox"> 找份好工作</li><li><input checked="" disabled="" type="checkbox"> 家具家电购置</li><li><input disabled="" type="checkbox"> 等大美丽毕业，拍婚纱照</li><li><input disabled="" type="checkbox"> 结 fen～</li><li><input checked="" disabled="" type="checkbox"> 软考继续</li></ul><blockquote><p>我倒要看看这个证我还得考几年</p></blockquote>]]></content>
       
@@ -25,6 +25,31 @@
             <tag> 闲言赘语 </tag>
             
             <tag> 计划清单 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mac m1 编译安装 Aseprite</title>
+      <link href="/2024/09/28/2024-09-28-cmake-aseprite/"/>
+      <url>/2024/09/28/2024-09-28-cmake-aseprite/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>!!!需要用到 <code>brew</code> 和 <code>xcode</code>，如果没安装要先装好。</p></blockquote><h2 id="克隆源码"><a href="#克隆源码" class="headerlink" title="克隆源码"></a>克隆源码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --recursive https://github.com/aseprite/aseprite.git</span><br></pre></td></tr></table></figure><h2 id="下载-skia"><a href="#下载-skia" class="headerlink" title="下载 skia"></a>下载 skia</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/aseprite/skia/releases</span><br></pre></td></tr></table></figure><p>选择对应平台的文件下载，解压后重命名文件夹为 <code>skia</code>。</p><h2 id="安装-cmake-amp-amp-ninja"><a href="#安装-cmake-amp-amp-ninja" class="headerlink" title="安装 cmake &amp;&amp; ninja"></a>安装 cmake &amp;&amp; ninja</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install cmake</span><br><span class="line">brew install ninja</span><br></pre></td></tr></table></figure><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">cd aseprite</span><br><span class="line">nkdir build</span><br><span class="line">cd build</span><br><span class="line"></span><br><span class="line">cmake \</span><br><span class="line">  -DCMAKE_BUILD_TYPE=RelWithDebInfo \</span><br><span class="line">  -DCMAKE_OSX_ARCHITECTURES=arm64 \</span><br><span class="line">  -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 \</span><br><span class="line">  -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk \</span><br><span class="line">  -DLAF_BACKEND=skia \</span><br><span class="line">  -DSKIA_DIR=/opt/homebrew/var/www/myself/skia \</span><br><span class="line">  -DSKIA_LIBRARY_DIR=/opt/homebrew/var/www/myself/skia/out/Release-arm64 \</span><br><span class="line">  -DSKIA_LIBRARY=/opt/homebrew/var/www/myself/skia/out/Release-arm64/libskia.a \</span><br><span class="line">  -DPNG_ARM_NEON:STRING=on \</span><br><span class="line">  -G Ninja \</span><br><span class="line">  ..</span><br><span class="line">ninja aseprite  </span><br></pre></td></tr></table></figure><p>！！！一定要注意 <code>skia</code> 的相关路径</p><p>编译完成后可以做成应用程序，以下两种方案二选一，建议采用第二种方法，因为第一种在启动台不显示应用。</p><h2 id="组装APP"><a href="#组装APP" class="headerlink" title="组装APP"></a>组装APP</h2><p>访达进入应用程序目录，新建 <code>Aseprite.app</code> 目录，<code>build/bin/data/icons</code>目录下有各种图标，右键 <code>Aseprite.app</code> 目录，选择显示简介，把心仪的图标拖到左上角。</p><p>然后继续右键目录，选择显示包内容，新建目录 <code>Contents/MacOS</code>，进入目录，把编译好的 <code>build/bin</code> 目录下的 <code>data</code> 和 <code>aseprite</code> 复制进去即可。</p><h2 id="替换试用版"><a href="#替换试用版" class="headerlink" title="替换试用版"></a>替换试用版</h2><p>从 <a href="https://www.aseprite.org/trial/">Aseprite</a> 官网下载其提供的免费测试版，重命名为 <code>Aseprite.dmg</code>，和刚才的源码放在同一个文件夹。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 将免费测试版安装包挂载至 mount 目录</span><br><span class="line">mkdir mount</span><br><span class="line">yes qy | hdiutil attach -quiet -nobrowse -noverify -noautoopen -mountpoint mount Aseprite.dmg</span><br><span class="line"># 复制得到 App 包</span><br><span class="line">cp -rf mount/Aseprite.app .</span><br><span class="line"># 卸载免费测试板安装包</span><br><span class="line">hdiutil detach mount</span><br><span class="line">rm -rf mount</span><br><span class="line"># 删除免费测试板 App 包中的可执行程序以及相关数据文件</span><br><span class="line">rm -rf Aseprite.app/Contents/MacOS/aseprite</span><br><span class="line">rm -rf Aseprite.app/Contents/Resources/data</span><br><span class="line"># 用刚编译好的可执行程序以及相关数据文件替换</span><br><span class="line">cp -rf Aseprite/build/bin/aseprite Aseprite.app/Contents/MacOS/aseprite</span><br><span class="line">cp -rf Aseprite/build/bin/data Aseprite.app/Contents/Resources/data</span><br><span class="line"></span><br><span class="line"># 将替换好的 App 包复制到 Applications/ 目录下</span><br><span class="line">cp -rf Aseprite.app /Applications/</span><br></pre></td></tr></table></figure><p>如果一切顺利的话，可在启动台看到安装好的 App，点击启动已确认是否可以正常打开。</p><h2 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h2><p><a href="https://github.com/J-11/Aseprite-Simplified-Chinese/blob/master/README.md">字体下载</a></p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.newverse.wiki/knows/aseprite/">在 Mac 上编译安装 Aseprite</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 码不能停 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 码不能停 </tag>
             
         </tags>
       
