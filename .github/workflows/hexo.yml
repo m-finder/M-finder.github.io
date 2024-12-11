@@ -43,6 +43,8 @@ jobs:
           npm install hexo-douban --save
       - name: Build
         run: npm run build
+      - name: Copy CNAME
+        run: echo 'm-finder.along.wang' > ./CNAME
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
