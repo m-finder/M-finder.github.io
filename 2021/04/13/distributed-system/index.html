@@ -1,36 +1,216 @@
-extends includes/layout.pug
-
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
-
-    article#article-container.container.post-content
-      if theme.noticeOutdate.enable && page.noticeOutdate !== false 
-        include includes/post/outdate-notice.pug
-      else
-        !=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (page.tags.length > 0 && theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
-        
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
-
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>一句话看懂集群、微服务和分布式的区别 | M-finder</title><meta name="author" content="m-finder"><meta name="copyright" content="m-finder"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一个完整的服务拆分成多个微小的服务，就是微服务。 每个服务不止一个就是集群。 微服务部署在多台服务器上，服务器之间可以相互通信就是分布式。 微服务与分布式的细微差别是微服务可以部署在一台服务器，也可以部署在多台服务器。 "><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://m-finder.github.io/2021/04/13/distributed-system/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
       
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一句话看懂集群、微服务和分布式的区别',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">110</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://m-finder.github.io/images/top.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">M-finder</span></a><a class="nav-page-title" href="/"><span class="site-name">一句话看懂集群、微服务和分布式的区别</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">一句话看懂集群、微服务和分布式的区别</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-13T14:33:00.000Z" title="发表于 2021-04-13 22:33:00">2021-04-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-11T03:50:54.515Z" title="更新于 2024-12-11 11:50:54">2024-12-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A0%81%E4%B8%8D%E8%83%BD%E5%81%9C/">码不能停</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">99</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2021/04/13/distributed-system/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2021/04/13/distributed-system/" itemprop="commentCount"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>一个完整的服务拆分成多个微小的服务，就是微服务。</p>
+<p>每个服务不止一个就是集群。</p>
+<p>微服务部署在多台服务器上，服务器之间可以相互通信就是分布式。</p>
+<p>微服务与分布式的细微差别是微服务可以部署在一台服务器，也可以部署在多台服务器。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://m-finder.github.io">m-finder</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://m-finder.github.io/2021/04/13/distributed-system/">https://m-finder.github.io/2021/04/13/distributed-system/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://m-finder.github.io" target="_blank">M-finder</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%A0%81%E4%B8%8D%E8%83%BD%E5%81%9C/">码不能停</a></div><div class="post-share"><div class="social-share" data-image="https://m-finder.github.io/images/top.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/hb.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/hb.png" alt="不用给钱，领个红包吧"/></a><div class="post-qr-code-desc">不用给钱，领个红包吧</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/04/21/laravel-excel-import-bug/" title="laravel 导入 excel 报错排查记录"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">laravel 导入 excel 报错排查记录</div></div><div class="info-2"><div class="info-item-1">今天公司项目导入 excel 时突遇一个报错：Undefined index: Sheet1，一下给我整懵逼了，一通排查，发现是因为执行过 composer update，把一个包升级到了最高，然后，它就不能用了。 看官方 issues 说：  This is a known bug in PhpSpreadsheet PHPOffice&#x2F;PhpSpreadsheet#1895. Until they release a new version, you have to lock the phpspreadsheet version to 1.16  啥意思呢，翻译一下吧：这是PhpSpreadsheet PHPOffice &#x2F; PhpSpreadsheet＃1895中的一个已知错误。在他们发布新版本之前，您必须将phpspreadsheet版本锁定为1.16 版本太高有时候也不是个好事呀！ issuse </div></div></div></a><a class="pagination-related" href="/2021/04/08/keyboard/" title="少年，留下你的键帽吧！"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">少年，留下你的键帽吧！</div></div><div class="info-2"><div class="info-item-1">今天干了一件有点伤感，但是挺有意思的事情。虽然是个流水账，但是我觉得有必要记录一下。 我跟要离职的 阿龙同学 换了一个键帽。 我想，如果把这个做法一直延续下去，每离职一个关系不错的小伙伴就相互交换一个键帽，那最后这把键盘也就非常有意义了，对吧。  😓看我这油光铮亮的空格…… 网络一线牵，珍惜这段缘。 祝愿阿龙的工作越来越好！ </div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/05/11/2023-05-11-gm/" title="php 国密 sm2 sm3 sm4 完整测试类"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-11</div><div class="info-item-2">php 国密 sm2 sm3 sm4 完整测试类</div></div><div class="info-2"><div class="info-item-1">应用范围及描述   算法类型 国密算法 应用范围及描述    对称加密 SM1 128位数据加密，算法不公开，仅以IP核的形式存在于芯片中。智能IC卡、智能密码钥匙、加密卡、加密机。   非对称加密 SM2 被用来替换RSA算法。常用于身份认证，数据签名，密码交换，256位椭圆曲线。   完整性运算 SM3 256位数据摘要计算，相当于SHA256，数字签名及验证、消息认证码生成及验证、随机数生成   对称加密 SM4 128位数据加密，相当于AES(128)   相关代码php sm2 sm3 sm4 完整测试类，可拖入 laravel unit test 模块运行。基于扩展包 [ lpilp&#x2F;guomi ] , sm2 与兴业银行有部分区别，sm4 已互通，未做招行验证。  sm2 密钥长度一般为 128 或 130 位，部分使用压缩密钥长度为 66，也就是将密钥分成 x、y，y是偶数就是02，y是奇数就是03，通过 x 可以算出...</div></div></div></a><a class="pagination-related" href="/2023/11/20/2023-11-20-laravel-swoole-socket/" title="为你的 Laravel 应用添加一个基于 Swoole 的 WebSocket 服务"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-20</div><div class="info-item-2">为你的 Laravel 应用添加一个基于 Swoole 的 WebSocket 服务</div></div><div class="info-2"><div class="info-item-1">做了一个基于 Swoole 的 WebSocket 扩展包，可以用来做实时状态推送，或者自定义消息处理实现 im，有需要的可以看看:  [giorgio-socket]   使用方法安装安装扩展包 1composer require wu/giorgio-socket  发布配置文件 1php artisan vendor:publish --provider=&quot;GiorgioSocket\Providers\SocketServiceProvider&quot;  运行 Socket 服务 1php artisan socket:start  注意事项 可以通过实现 GiorgioSocket\Services\Handlers\Interfaces 下的接口类来自定义自己的业务逻辑。 如果要从服务端发送消息，这里有两种方式： 第一种，借助 Laravel HTTP 客户端  123456Route::get(&#x27;/socket&#x27;, function () &#123;   ...</div></div></div></a><a class="pagination-related" href="/2024/03/01/2024-02-25-review-base/" title="职业生涯知识回顾-基础篇之面向对象"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-01</div><div class="info-item-2">职业生涯知识回顾-基础篇之面向对象</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/2024/02/28/2024-02-28-swoole-and-octane/" title="Laravel Octane 和 Swoole 协程的使用分析"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-28</div><div class="info-item-2">Laravel Octane 和 Swoole 协程的使用分析</div></div><div class="info-2"><div class="info-item-1">之前在工作中使用 Laravel Octane 的 concurrently 处理并发时，发现在队列和定时任务中不会触发并发效果。经过分析，作了如下猜测：队列定时任务都属于一个独立的进程，与 Octane 服务无关，而 Octane conturrently 恰恰需要在 Octane 环境下才能运行。 后来通过代码进行环境检测和查看 php 的进程，证明猜想成立。 1234info(&#x27;check env&#x27;, [    &#x27;served by octane&#x27; =&gt; isset($_SERVER[&#x27;LARAVEL_OCTANE&#x27;]) &amp;&amp; ((int)$_SERVER[&#x27;LARAVEL_OCTANE&#x27;] === 1),    &#x27;on swoole server&#x27; =&gt; (extension_loaded(&#x27;swoole&#x27;) || extension_loaded(&#x27;openswoole&#x27;)) &amp;&amp;...</div></div></div></a><a class="pagination-related" href="/2024/03/02/2024-02-29-review-http/" title="职业生涯知识回顾-基础篇之网络传输协议"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-02</div><div class="info-item-2">职业生涯知识回顾-基础篇之网络传输协议</div></div><div class="info-2"><div class="info-item-1">协议的本质也就是彼此之间的约定和规则。 HTTPHTTP 是一个承载于 TCP 协议上的超文本传输协议，明文，无状态。由客户端发起请求，服务器返回响应。 无状态是指协议对于事务处理没有记忆，不会保留之前请求的任何信息，也不会对后续请求进行关联。 为了弥补无状态带来的不便，产生了 Cookie 和 Session 技术。 CookieCookie 是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向服务器请求资源时携带并发送到服务器上，通常用于告知服务端两个请求是否来自同一浏览器，比如用户的登录状态。 Cookie 一般用于以下方面：  会话状态管理（用户登录状态等） 个性化设置（主题、自定义设置等） 浏览器行为跟踪（跟踪分析用户行为等）  SessionSession 是基于 Cookie 实现的，在服务器进行存储，也是一种会话跟踪技术。 一个 Session 独占一个浏览器，在浏览器关闭前，Session 一直存在。 Session 的使用场景：  用户身份验证 购物车功能 长表单或多步骤操作缓存  HTTP 的三次握手和四次挥手三次挥手是指建立一个 TCP...</div></div></div></a><a class="pagination-related" href="/2024/03/01/2024-03-01-swoole-and-octane2/" title="Laravel Octane 和 Swoole 协程的使用分析二"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-01</div><div class="info-item-2">Laravel Octane 和 Swoole 协程的使用分析二</div></div><div class="info-2"><div class="info-item-1">又仔细研究了下 Octane 源码和 Swoole 的文档，关于前几天 Laravel Octane 和 Swoole 协程的使用分析中的猜想，得到进一步验证： Swoole 的 HTTP Server 启动后会创建一个 master 进程和一个 manager 进程；master 进程又会创建多个 reactor 线程，负责将请求转发到 work，并从 work 接收结果发送给客户端，相当于 nginx；manager 会创建多个 work 和 task 子进程，work 进程相当于 php-fpm，task 专门处理一些耗时任务，最后将结果交给 work； 而 LaravelOctane 的 concurrently 方法，其实是以 task 为基础，也就解释了为什么脱离 HTTP server 会无法使用。 Swoole </div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">m-finder</div><div class="author-info-description">happy coding</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">110</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/m-finder"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/m-finder" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:m@m-finder.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/09/28/2024-09-28-cmake-aseprite/" title="Mac m1 编译安装 Aseprite"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac m1 编译安装 Aseprite"/></a><div class="content"><a class="title" href="/2024/09/28/2024-09-28-cmake-aseprite/" title="Mac m1 编译安装 Aseprite">Mac m1 编译安装 Aseprite</a><time datetime="2024-09-28T01:51:13.000Z" title="发表于 2024-09-28 09:51:13">2024-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/19/2024-09-19-brew-php-version/" title="Mac 用 Brew 安装旧版本 PHP"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac 用 Brew 安装旧版本 PHP"/></a><div class="content"><a class="title" href="/2024/09/19/2024-09-19-brew-php-version/" title="Mac 用 Brew 安装旧版本 PHP">Mac 用 Brew 安装旧版本 PHP</a><time datetime="2024-09-19T15:41:13.000Z" title="发表于 2024-09-19 23:41:13">2024-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/19/2024-09-19-boring-in-home/" title="水篇流水账，记下最近的情况"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="水篇流水账，记下最近的情况"/></a><div class="content"><a class="title" href="/2024/09/19/2024-09-19-boring-in-home/" title="水篇流水账，记下最近的情况">水篇流水账，记下最近的情况</a><time datetime="2024-09-19T15:33:00.000Z" title="发表于 2024-09-19 23:33:00">2024-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/2024-03-03-abstract-and-interface/" title="职业生涯知识回顾-关于抽象类和接口的思考"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="职业生涯知识回顾-关于抽象类和接口的思考"/></a><div class="content"><a class="title" href="/2024/03/02/2024-03-03-abstract-and-interface/" title="职业生涯知识回顾-关于抽象类和接口的思考">职业生涯知识回顾-关于抽象类和接口的思考</a><time datetime="2024-03-02T17:54:00.000Z" title="发表于 2024-03-03 01:54:00">2024-03-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/2024-02-29-review-http/" title="职业生涯知识回顾-基础篇之网络传输协议"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="职业生涯知识回顾-基础篇之网络传输协议"/></a><div class="content"><a class="title" href="/2024/03/02/2024-02-29-review-http/" title="职业生涯知识回顾-基础篇之网络传输协议">职业生涯知识回顾-基础篇之网络传输协议</a><time datetime="2024-03-02T14:00:00.000Z" title="发表于 2024-03-02 22:00:00">2024-03-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2024 By m-finder</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">备案已注销 <span style="color:pink">❤</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>(() => {
+  const panguFn = () => {
+    if (typeof pangu === 'object') pangu.autoSpacingPage()
+    else {
+      btf.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+        .then(() => {
+          pangu.autoSpacingPage()
+        })
+    }
+  }
+
+  const panguInit = () => {
+    if (false){
+      GLOBAL_CONFIG_SITE.isPost && panguFn()
+    } else {
+      panguFn()
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', panguInit, 'pangu')
+  document.addEventListener('DOMContentLoaded', panguInit)
+})()</script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'oOiybpJc2or7SPhTu2v9YUvq-gzGzoHsz',
+      appKey: 'h0W2X6C4C7qOovTn9VM06Ql2',
+      avatar: 'monsterid',
+      serverURLs: 'https://ooiybpjc.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = false;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

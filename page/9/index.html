@@ -1,5 +1,280 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>M-finder - 删繁就简，发现更多</title><meta name="author" content="m-finder"><meta name="copyright" content="m-finder"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="happy coding"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://m-finder.github.io/page/9/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-block content
-  include ./includes/mixins/indexPostUI.pug
-  +indexPostUI
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'M-finder',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">110</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/images/top.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">M-finder</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">M-finder</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/m-finder" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:m@m-finder.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2019/03/15/laravel-mix/" title="使用 laravel mix 编译资源"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 laravel mix 编译资源"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/03/15/laravel-mix/" title="使用 laravel mix 编译资源">使用 laravel mix 编译资源</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-03-15T15:00:00.000Z" title="发表于 2019-03-15 23:00:00">2019-03-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%81%E4%B8%8D%E8%83%BD%E5%81%9C/">码不能停</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a href="/2019/03/15/laravel-mix/#post-comment"><span class="valine-comment-count" data-xid="/2019/03/15/laravel-mix/"><i class="fa-solid fa-spinner fa-spin"></i></span></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">学习下如何在 laravel 框架中，用 laravel mix 编译前端资源。    使用本次操作的环境依然是 laradock，如果没用特殊说明，以后应该默认 laradock。 workspace 容器中，已经提前装好了 node 环境，而在项目根目录中，package.json 和 webpack.mix.js 也已经为我们预设好了，所以laravel 项目建好后，直接在根目录安装即可： 1npm install  在 webpack.mix.js 中，已经加载了两个默认的文件： 12mix.js(&#x27;resources/js/app.js&#x27;, &#x27;public/js&#x27;)   .sass(&#x27;resources/sass/app.scss&#x27;, &#x27;public/css&#x27;);  我们只需要把自己的资源文件，按照同样的格式写入进去，然后开始运行，就可以生成编译后的资源了。 虽然示例中只写了 sass...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2019/03/14/laravel-vue/" title="laravel 内置 vue 的使用"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="laravel 内置 vue 的使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/03/14/laravel-vue/" title="laravel 内置 vue 的使用">laravel 内置 vue 的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-03-14T15:00:00.000Z" title="发表于 2019-03-14 23:00:00">2019-03-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%81%E4%B8%8D%E8%83%BD%E5%81%9C/">码不能停</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a href="/2019/03/14/laravel-vue/#post-comment"><span class="valine-comment-count" data-xid="/2019/03/14/laravel-vue/"><i class="fa-solid fa-spinner fa-spin"></i></span></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">从 5.3 版本开始，用 Vue.js 作为默认 JavaScript 前端框架。 从刚接触 laravel 到现在已经又过去了四个版本，种种原因，还是一直没能用上 vue.js 来做开发，现在刚好因为公司项目用到了 vue，对 vue 有了一定的了解，所以顺便就研究下 vue 在 laravel 中的使用吧。   安装laravel操作均在 laradock 的环境中进行。进入 workspace 容器，执行以下命令安装 laravel 1composer create-project laravel/laravel study  配置mysqldocker-compose up -d nginx mysql phpmyadmin 启动容器配置 nginx、hosts 并重启 nginx进入 mysql 容器执行以下命令： 123456mysql -uroot -prootALTER USER root IDENTIFIED WITH mysql_native_password BY &#x27;PASSWORD&#x27;;exit;exit  访问 phpmyadmin：...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2019/03/12/travis-ci-test/" title="travis-ci 可持续集成测试"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="travis-ci 可持续集成测试"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/03/12/travis-ci-test/" title="travis-ci 可持续集成测试">travis-ci 可持续集成测试</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-03-12T02:20:35.000Z" title="发表于 2019-03-12 10:20:35">2019-03-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%81%E4%B8%8D%E8%83%BD%E5%81%9C/">码不能停</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a href="/2019/03/12/travis-ci-test/#post-comment"><span class="valine-comment-count" data-xid="/2019/03/12/travis-ci-test/"><i class="fa-solid fa-spinner fa-spin"></i></span></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">给博客添加了  travis ci 可持续集成，以后本地可以不装 node 环境了。   操作过程：github 账号 登陆 travis ci登陆后把博客项目的开关打开。 博客项目创建分支把博客项目，即 .io 的那个项目拉到本地，创建一个新的分支 hexo: 123456git checkout -b hexogit rm -rf *    #删除仓库中的文件，可能本地的文件还存有，则需要使用 rm -rf 命令git commit -m &quot;清空文件夹&quot; #提交删除信息git push origin hexo:hexo #将删除的信息推送到远程仓库  把博客源码放入 hexo 分支的文件夹中，然后再新建 .travis.yml: 123456789101112131415161718192021222324252627282930313233343536373839404142434445# 指定语言环境language: node_js# 指定需要sudo权限sudo: required# 指定node_js版本node_js:  - 7.9.0#...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2019/03/08/laradock-xdebug/" title="phpstorm 配置 laradock xdebug"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="phpstorm 配置 laradock xdebug"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/03/08/laradock-xdebug/" title="phpstorm 配置 laradock xdebug">phpstorm 配置 laradock xdebug</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-03-08T03:41:48.000Z" title="发表于 2019-03-08 11:41:48">2019-03-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%81%E4%B8%8D%E8%83%BD%E5%81%9C/">码不能停</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a href="/2019/03/08/laradock-xdebug/#post-comment"><span class="valine-comment-count" data-xid="/2019/03/08/laradock-xdebug/"><i class="fa-solid fa-spinner fa-spin"></i></span></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">本次操作为 win10 系统，理论上和其他系统无差异。    克隆 laradock 到本地：git clone https://github.com/Laradock/laradock.git 进入 laradock 文件夹， 生成配置文件：cp .\env-example .env 编辑 .env 配置文件： 1234WORKSPACE_INSTALL_XDEBUG=truePHP_FPM_INSTALL_XDEBUG=true  修改 laradock/php-fpm/xdebug.ini 和...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2019/01/21/happy-2019/" title="新年快乐"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="新年快乐"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/01/21/happy-2019/" title="新年快乐">新年快乐</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-01-21T01:23:05.000Z" title="发表于 2019-01-21 09:23:05">2019-01-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%97%B2%E8%A8%80%E8%B5%98%E8%AF%AD/">闲言赘语</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a href="/2019/01/21/happy-2019/#post-comment"><span class="valine-comment-count" data-xid="/2019/01/21/happy-2019/"><i class="fa-solid fa-spinner fa-spin"></i></span></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">久不更博，是因为最近在学习，然后把笔记都写在了简书。 博客不会关，域名已续费。 会忙里抽闲继续折腾。 只可惜想学想做的东西都太多，有点分身无暇。 不说了，19 年也都进来这么久了，祝大家新年快乐吧。  </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2018/08/31/web-tool/" title="常用工具合计"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常用工具合计"></a></div><div class="recent-post-info"><a class="article-title" href="/2018/08/31/web-tool/" title="常用工具合计">常用工具合计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-08-31T01:44:24.000Z" title="发表于 2018-08-31 09:44:24">2018-08-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B5%8B%E8%AF%95%E5%8C%BA/">测试区</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a href="/2018/08/31/web-tool/#post-comment"><span class="valine-comment-count" data-xid="/2018/08/31/web-tool/"><i class="fa-solid fa-spinner fa-spin"></i></span></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">图片处理类工具 Ai转常用图片格式 图片转favicon 艺术字生成 logo设计2（国外网站，可能会慢） 图片压缩  开发工具 代码转换 ascii文字生成 油猴脚本中心 天气api 生成外网可访问的本机域名 leangoo-团队协作工具  我喜欢的几个博客 litten Makito’s Notebook 澳洲小哥原始技术 MARKSZのBlog 魚·后花园  </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2018/08/27/im-a-test/" title="im-a-test"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="im-a-test"></a></div><div class="recent-post-info"><a class="article-title" href="/2018/08/27/im-a-test/" title="im-a-test">im-a-test</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-08-27T08:38:58.000Z" title="发表于 2018-08-27 16:38:58">2018-08-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B5%8B%E8%AF%95%E5%8C%BA/">测试区</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a href="/2018/08/27/im-a-test/#post-comment"><span class="valine-comment-count" data-xid="/2018/08/27/im-a-test/"><i class="fa-solid fa-spinner fa-spin"></i></span></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">I am a test… test for git push, because I losted an article… 好吧，能推送，就是丢了周末的一个文件，虽然它明明就躺在文件夹里 既然能推送，那我就再得瑟一下。 大舅二舅都是他舅，大哈二哈都是条狗~ 噢噢 都是狗~~ </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2018/08/13/happy-birthday/" title="Happy Birthday"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Happy Birthday"></a></div><div class="recent-post-info"><a class="article-title" href="/2018/08/13/happy-birthday/" title="Happy Birthday">Happy Birthday</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-08-13T01:35:38.000Z" title="发表于 2018-08-13 09:35:38">2018-08-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%97%B2%E8%A8%80%E8%B5%98%E8%AF%AD/">闲言赘语</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a href="/2018/08/13/happy-birthday/#post-comment"><span class="valine-comment-count" data-xid="/2018/08/13/happy-birthday/"><i class="fa-solid fa-spinner fa-spin"></i></span></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">昨天我爹生日，我竟然可耻的忘了…… 晚上看到我姑姑们在群里发红包祝福，吓得我赶紧打电话表示慰问。 结果接通电话我妈也忘了。 心疼我爹。 Happy Birthday!  </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2018/08/13/hello-world/" title="Hello World"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"></a></div><div class="recent-post-info"><a class="article-title" href="/2018/08/13/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-08-13T01:35:38.000Z" title="发表于 2018-08-13 09:35:38">2018-08-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a href="/2018/08/13/hello-world/#post-comment"><span class="valine-comment-count" data-xid="/2018/08/13/hello-world/"><i class="fa-solid fa-spinner fa-spin"></i></span></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2018/07/19/nothing-to-say/" title="nothing to say,just hope"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="nothing to say,just hope"></a></div><div class="recent-post-info"><a class="article-title" href="/2018/07/19/nothing-to-say/" title="nothing to say,just hope">nothing to say,just hope</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2018-07-19T00:58:19.000Z" title="发表于 2018-07-19 08:58:19">2018-07-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%97%B2%E8%A8%80%E8%B5%98%E8%AF%AD/">闲言赘语</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a href="/2018/07/19/nothing-to-say/#post-comment"><span class="valine-comment-count" data-xid="/2018/07/19/nothing-to-say/"><i class="fa-solid fa-spinner fa-spin"></i></span></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">一眨眼我一个月没更新博客了…… 无法挽留的消逝早上起来,照例去阳台观察我的几盆肉肉时，发现其中最大的一颗黑腐了。 坚实的根茎瘪下去一半，已经撑不住叶冠开始歪了……我想把它揪出来砍头，试图去挽留这个脆弱的生命，结果揪出来叶子也快掉光了。强忍着心疼把叶冠切了下来，放在一旁通风处晾着，然后把根和掉落的叶子都放进旁边的盒子，那里已经放了很多干枯腐朽的叶子。 应该是一个月前吧，当时长得最好的一颗肉，如今就躺在“棺材”里，张牙舞爪地等着新成员的到来。 我的肉肉都挺凄惨的：最好看的一颗，死了，化水；第二好看的一颗老桩，长徒了，现在耷拉在盆子外边，一副猥琐的样子；最大的和最大的死后最大的，死了，黑腐；最小的一个石生花压根儿就没活过；最喜爱的发财树仙人球染了蚧壳虫,兑了点醋喷了一下,现在好了点。 这么整理了一下觉得更凄凉了，几棵死的多肉我特么就知道个石生花叫石生花。😂 叶插的苗有三个正在茁壮成长,最大的一个老叶子却干枯了,只剩几颗新出的嫩芽还垂死挣扎,能不能挨过这个夏天还是一个迷。 还是撑过这个夏天吧，我很希望你们都好好活着……  </div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/8/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="page-number" href="/page/11/#content-inner">11</a><a class="extend next" rel="next" href="/page/10/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">m-finder</div><div class="author-info-description">happy coding</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">110</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/m-finder"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/m-finder" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:m@m-finder.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/09/28/2024-09-28-cmake-aseprite/" title="Mac m1 编译安装 Aseprite"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac m1 编译安装 Aseprite"/></a><div class="content"><a class="title" href="/2024/09/28/2024-09-28-cmake-aseprite/" title="Mac m1 编译安装 Aseprite">Mac m1 编译安装 Aseprite</a><time datetime="2024-09-28T01:51:13.000Z" title="发表于 2024-09-28 09:51:13">2024-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/19/2024-09-19-brew-php-version/" title="Mac 用 Brew 安装旧版本 PHP"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac 用 Brew 安装旧版本 PHP"/></a><div class="content"><a class="title" href="/2024/09/19/2024-09-19-brew-php-version/" title="Mac 用 Brew 安装旧版本 PHP">Mac 用 Brew 安装旧版本 PHP</a><time datetime="2024-09-19T15:41:13.000Z" title="发表于 2024-09-19 23:41:13">2024-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/19/2024-09-19-boring-in-home/" title="水篇流水账，记下最近的情况"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="水篇流水账，记下最近的情况"/></a><div class="content"><a class="title" href="/2024/09/19/2024-09-19-boring-in-home/" title="水篇流水账，记下最近的情况">水篇流水账，记下最近的情况</a><time datetime="2024-09-19T15:33:00.000Z" title="发表于 2024-09-19 23:33:00">2024-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/2024-03-03-abstract-and-interface/" title="职业生涯知识回顾-关于抽象类和接口的思考"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="职业生涯知识回顾-关于抽象类和接口的思考"/></a><div class="content"><a class="title" href="/2024/03/02/2024-03-03-abstract-and-interface/" title="职业生涯知识回顾-关于抽象类和接口的思考">职业生涯知识回顾-关于抽象类和接口的思考</a><time datetime="2024-03-02T17:54:00.000Z" title="发表于 2024-03-03 01:54:00">2024-03-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/2024-02-29-review-http/" title="职业生涯知识回顾-基础篇之网络传输协议"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="职业生涯知识回顾-基础篇之网络传输协议"/></a><div class="content"><a class="title" href="/2024/03/02/2024-02-29-review-http/" title="职业生涯知识回顾-基础篇之网络传输协议">职业生涯知识回顾-基础篇之网络传输协议</a><time datetime="2024-03-02T14:00:00.000Z" title="发表于 2024-03-02 22:00:00">2024-03-02</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/laravel/"><span class="card-category-list-name">laravel</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/redis/"><span class="card-category-list-name">redis</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%B9%A6%E5%8D%95/"><span class="card-category-list-name">书单</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%8C%BA/"><span class="card-category-list-name">测试区</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A0%81%E4%B8%8D%E8%83%BD%E5%81%9C/"><span class="card-category-list-name">码不能停</span><span class="card-category-list-count">54</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A0%81%E4%B8%8D%E8%83%BD%E5%81%9C/hexo/"><span class="card-category-list-name">hexo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%A0%81%E4%B8%8D%E8%83%BD%E5%81%9C/php/"><span class="card-category-list-name">php</span><span class="card-category-list-count">8</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="card-category-list-name">设计模式</span><span class="card-category-list-count">28</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/vue/" style="font-size: 1.1em; color: #999">vue</a> <a href="/tags/openssl/" style="font-size: 1.1em; color: #999">openssl</a> <a href="/tags/python/" style="font-size: 1.17em; color: #999ca0">python</a> <a href="/tags/terminal/" style="font-size: 1.1em; color: #999">terminal</a> <a href="/tags/php/" style="font-size: 1.46em; color: #99a8bc">php</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 1.1em; color: #999">书单</a> <a href="/tags/%E8%AE%A1%E5%88%92%E6%B8%85%E5%8D%95/" style="font-size: 1.28em; color: #99a0aa">计划清单</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.5em; color: #99a9bf">设计模式</a> <a href="/tags/ssh/" style="font-size: 1.1em; color: #999">ssh</a> <a href="/tags/swoole/" style="font-size: 1.1em; color: #999">swoole</a> <a href="/tags/hexo/" style="font-size: 1.17em; color: #999ca0">hexo</a> <a href="/tags/%E9%97%B2%E8%A8%80%E8%B5%98%E8%AF%AD/" style="font-size: 1.43em; color: #99a6b8">闲言赘语</a> <a href="/tags/js/" style="font-size: 1.25em; color: #999fa7">js</a> <a href="/tags/%E7%A0%81%E4%B8%8D%E8%83%BD%E5%81%9C/" style="font-size: 1.32em; color: #99a2ae">码不能停</a> <a href="/tags/keras/" style="font-size: 1.14em; color: #999a9c">keras</a> <a href="/tags/redis/" style="font-size: 1.1em; color: #999">redis</a> <a href="/tags/layui/" style="font-size: 1.17em; color: #999ca0">layui</a> <a href="/tags/layim/" style="font-size: 1.1em; color: #999">layim</a> <a href="/tags/test/" style="font-size: 1.21em; color: #999da3">test</a> <a href="/tags/docker/" style="font-size: 1.35em; color: #99a3b1">docker</a> <a href="/tags/laravel/" style="font-size: 1.39em; color: #99a5b5">laravel</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/09/">
+          <span class="card-archive-list-date">九月 2024</span>
+          <span class="card-archive-list-count">3</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/03/">
+          <span class="card-archive-list-date">三月 2024</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/02/">
+          <span class="card-archive-list-date">二月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/01/">
+          <span class="card-archive-list-date">一月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/11/">
+          <span class="card-archive-list-date">十一月 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/09/">
+          <span class="card-archive-list-date">九月 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/05/">
+          <span class="card-archive-list-date">五月 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/01/">
+          <span class="card-archive-list-date">一月 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">110</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">52.6k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-11T03:51:21.271Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2024 By m-finder</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">备案已注销 <span style="color:pink">❤</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>(() => {
+  const panguFn = () => {
+    if (typeof pangu === 'object') pangu.autoSpacingPage()
+    else {
+      btf.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+        .then(() => {
+          pangu.autoSpacingPage()
+        })
+    }
+  }
+
+  const panguInit = () => {
+    if (false){
+      GLOBAL_CONFIG_SITE.isPost && panguFn()
+    } else {
+      panguFn()
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', panguInit, 'pangu')
+  document.addEventListener('DOMContentLoaded', panguInit)
+})()</script><div class="js-pjax"><script>(() => {
+  function loadValine () {
+    function initValine () {
+      let initData = {
+        el: '#vcomment',
+        appId: 'oOiybpJc2or7SPhTu2v9YUvq-gzGzoHsz',
+        appKey: 'h0W2X6C4C7qOovTn9VM06Ql2',
+        serverURLs: 'https://ooiybpjc.lc-cn-n1-shared.com'
+      }
+      
+      const valine = new Valine(initData)
+    }
+
+    if (typeof Valine === 'function') initValine() 
+    else btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+  }
+
+  window.pjax ? loadValine() : window.addEventListener('load', loadValine)
+})()</script><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["删繁就简&#44; 发现更多"])
+  } else {
+    document.getElementById("subtitle").textContent = "删繁就简&#44; 发现更多"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = false;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

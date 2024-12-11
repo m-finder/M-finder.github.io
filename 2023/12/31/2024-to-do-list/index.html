@@ -1,36 +1,222 @@
-extends includes/layout.pug
-
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
-
-    article#article-container.container.post-content
-      if theme.noticeOutdate.enable && page.noticeOutdate !== false 
-        include includes/post/outdate-notice.pug
-      else
-        !=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (page.tags.length > 0 && theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
-        
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
-
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2024 年计划清单 | M-finder</title><meta name="author" content="m-finder"><meta name="copyright" content="m-finder"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="  找份好工作  家具家电购置  等大美丽毕业，拍婚纱照  结 fen～  软考继续   我倒要看看这个证我还得考几年  "><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://m-finder.github.io/2023/12/31/2024-to-do-list/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
       
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2024 年计划清单',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">110</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://m-finder.github.io/images/top.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">M-finder</span></a><a class="nav-page-title" href="/"><span class="site-name">2024 年计划清单</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">2024 年计划清单</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-31T16:00:00.000Z" title="发表于 2024-01-01 00:00:00">2024-01-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-11T03:50:54.511Z" title="更新于 2024-12-11 11:50:54">2024-12-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%97%B2%E8%A8%80%E8%B5%98%E8%AF%AD/">闲言赘语</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%97%B2%E8%A8%80%E8%B5%98%E8%AF%AD/%E8%AE%A1%E5%88%92%E6%B8%85%E5%8D%95/">计划清单</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">41</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2023/12/31/2024-to-do-list/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/2023/12/31/2024-to-do-list/" itemprop="commentCount"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><ul>
+<li><input disabled="" type="checkbox"> 找份好工作</li>
+<li><input checked="" disabled="" type="checkbox"> 家具家电购置</li>
+<li><input disabled="" type="checkbox"> 等大美丽毕业，拍婚纱照</li>
+<li><input disabled="" type="checkbox"> 结 fen～</li>
+<li><input checked="" disabled="" type="checkbox"> 软考继续</li>
+</ul>
+<blockquote>
+<p>我倒要看看这个证我还得考几年</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://m-finder.github.io">m-finder</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://m-finder.github.io/2023/12/31/2024-to-do-list/">https://m-finder.github.io/2023/12/31/2024-to-do-list/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://m-finder.github.io" target="_blank">M-finder</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%97%B2%E8%A8%80%E8%B5%98%E8%AF%AD/">闲言赘语</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E5%88%92%E6%B8%85%E5%8D%95/">计划清单</a></div><div class="post-share"><div class="social-share" data-image="https://m-finder.github.io/images/top.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/hb.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/hb.png" alt="不用给钱，领个红包吧"/></a><div class="post-qr-code-desc">不用给钱，领个红包吧</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/02/28/2024-02-28-swoole-and-octane/" title="Laravel Octane 和 Swoole 协程的使用分析"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Laravel Octane 和 Swoole 协程的使用分析</div></div><div class="info-2"><div class="info-item-1">之前在工作中使用 Laravel Octane 的 concurrently 处理并发时，发现在队列和定时任务中不会触发并发效果。经过分析，作了如下猜测：队列定时任务都属于一个独立的进程，与 Octane 服务无关，而 Octane conturrently 恰恰需要在 Octane 环境下才能运行。 后来通过代码进行环境检测和查看 php 的进程，证明猜想成立。 1234info(&#x27;check env&#x27;, [    &#x27;served by octane&#x27; =&gt; isset($_SERVER[&#x27;LARAVEL_OCTANE&#x27;]) &amp;&amp; ((int)$_SERVER[&#x27;LARAVEL_OCTANE&#x27;] === 1),    &#x27;on swoole server&#x27; =&gt; (extension_loaded(&#x27;swoole&#x27;) || extension_loaded(&#x27;openswoole&#x27;)) &amp;&amp;...</div></div></div></a><a class="pagination-related" href="/2023/11/20/2023-11-20-laravel-swoole-socket/" title="为你的 Laravel 应用添加一个基于 Swoole 的 WebSocket 服务"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">为你的 Laravel 应用添加一个基于 Swoole 的 WebSocket 服务</div></div><div class="info-2"><div class="info-item-1">做了一个基于 Swoole 的 WebSocket 扩展包，可以用来做实时状态推送，或者自定义消息处理实现 im，有需要的可以看看:  [giorgio-socket]   使用方法安装安装扩展包 1composer require wu/giorgio-socket  发布配置文件 1php artisan vendor:publish --provider=&quot;GiorgioSocket\Providers\SocketServiceProvider&quot;  运行 Socket 服务 1php artisan socket:start  注意事项 可以通过实现 GiorgioSocket\Services\Handlers\Interfaces 下的接口类来自定义自己的业务逻辑。 如果要从服务端发送消息，这里有两种方式： 第一种，借助 Laravel HTTP 客户端  123456Route::get(&#x27;/socket&#x27;, function () &#123;   ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2019/08/23/2019-to-do-list/" title="2019 年学习清单"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-08-23</div><div class="info-item-2">2019 年学习清单</div></div><div class="info-2"><div class="info-item-1"> laradock laravel 内置 vue 的用法 laravel 事件 laravel 队列 laravel 内置测试模块 laravel 广播系统 laravel 消息通知 composer 扩展包开发 php travis ci 可持续集成 swoole 深入学习 trait 的实际应用 php 代码分析工具 PHPStan 的研究与学习 laravel 最新版项目实战 deep learning 卷积网络预测股票涨跌 laravel-swoole laravel-admin  </div></div></div></a><a class="pagination-related" href="/2020/12/31/2020-to-do-list/" title="2020 年计划清单"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-31</div><div class="info-item-2">2020 年计划清单</div></div><div class="info-2"><div class="info-item-1">上一年的计划还没有结束，新的一年它就已经来了。   laravel-vue-spa 后台，开发中  composer 包开发  学习一下手写 swoole 分布式框架  尝试做一个基于 laravel-swoole 的 websocket 项目  研究 laravel framework  继续学习 ps，做个不合格的美工  学习 pr 剪辑  软考软件设计师  软考架构师  研究下 win10 linux 子系统在开发中的使用  域名备案  </div></div></div></a><a class="pagination-related" href="/2021/01/01/2021-to-do-list/" title="2021 年计划清单"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-01</div><div class="info-item-2">2021 年计划清单</div></div><div class="info-2"><div class="info-item-1">魔幻的 2020 已经成为过去……   好好活着  giorgio-spa 改版  用 Qt 做个小工具箱  泰拉瑞亚毕业  梳理设计模式  redis 进一步学习  rabbitmq 进一步学习  再剪几个视频玩玩 [ bilibili ]  继续去年的软考  </div></div></div></a><a class="pagination-related" href="/2022/01/01/2022-to-do-list/" title="2022 年计划清单"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-01</div><div class="info-item-2">2022 年计划清单</div></div><div class="info-2"><div class="info-item-1">  减肥  上半年软考-系统分析师，2月中旬报名，5月下旬考试  下半年软考-系统架构设计师 ，8月中上旬报名，11月下旬考试  没有其他了。  – 2021-12-31 2022-08-06已经瘦了差不多20斤吧，还在继续努力系分的软考g了，因为疫情一直拖，直到昨天看到公告说取消了开始冲刺下半年架构，干巴得💪 2022-11-05多次报名初次参考，可惜论文写的有点惨不忍睹，只能明年再接再厉。 </div></div></div></a><a class="pagination-related" href="/2022/12/31/2023-to-do-list/" title="2023 年计划清单"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="info-item-2">2023 年计划清单</div></div><div class="info-2"><div class="info-item-1">  继续减肥  装修&amp;办小红本  下半年软考-系统架构设计师 ，8月中上旬报名，11月下旬考试   我倒要看看这个证我能考几年  </div></div></div></a><a class="pagination-related" href="/2022/05/13/2022-05-13/" title="碎碎念"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-13</div><div class="info-item-2">碎碎念</div></div><div class="info-2"><div class="info-item-1">今天周五，白天躺在床上干活（摸鱼）时掰手指算了一下，今天应该是被封控在家的第 49 天。 未来还要继续封多久？这个我也不知道。可能快解放了吧。 我已经脱下了冬装换上了短袖，从 150 瘦到了 140，被我拎回家的电瓶已经充了第三次电，窗外的景色也从光秃秃变成了郁郁葱葱，枇杷都熟了。今天冒雨去核酸时，还因为看枇杷一脚踩进水坑，淦！ 封了这么久，多少是有点麻了，想起来刚开始每天早起收拾的利利索索，楼下一喊就核酸就光速下楼，现在每天能多躺会儿就绝对不会早起，蓬头垢面、邋里邋遢，心情好了可能才洗个头再下去。也没去记核酸了多少次，反正家里做抗原的盒子被我码的整整齐齐，也有一大堆了。本来想等快递通了搞点热熔胶，粘几个小摆件玩，那不是挺有纪念价值嘛。但是……上次拍照发群里被同事喷，说我攒了一堆的大鼻涕，再看总觉得有点恶心🤢。 头发也长了，天天扎个小啾啾，感觉自己还挺好看。要不就留长发吧，解封了去修一修，或者干脆就修也不修，省下一笔又一笔不菲的理发钱，真开心，又可以多喝两罐啤酒。 我迟早会做个扎辫子的程序员，左手键盘，右手鼠标，就像个艺术家。 </div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">m-finder</div><div class="author-info-description">happy coding</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">110</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/m-finder"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/m-finder" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:m@m-finder.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/09/28/2024-09-28-cmake-aseprite/" title="Mac m1 编译安装 Aseprite"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac m1 编译安装 Aseprite"/></a><div class="content"><a class="title" href="/2024/09/28/2024-09-28-cmake-aseprite/" title="Mac m1 编译安装 Aseprite">Mac m1 编译安装 Aseprite</a><time datetime="2024-09-28T01:51:13.000Z" title="发表于 2024-09-28 09:51:13">2024-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/19/2024-09-19-brew-php-version/" title="Mac 用 Brew 安装旧版本 PHP"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac 用 Brew 安装旧版本 PHP"/></a><div class="content"><a class="title" href="/2024/09/19/2024-09-19-brew-php-version/" title="Mac 用 Brew 安装旧版本 PHP">Mac 用 Brew 安装旧版本 PHP</a><time datetime="2024-09-19T15:41:13.000Z" title="发表于 2024-09-19 23:41:13">2024-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/19/2024-09-19-boring-in-home/" title="水篇流水账，记下最近的情况"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="水篇流水账，记下最近的情况"/></a><div class="content"><a class="title" href="/2024/09/19/2024-09-19-boring-in-home/" title="水篇流水账，记下最近的情况">水篇流水账，记下最近的情况</a><time datetime="2024-09-19T15:33:00.000Z" title="发表于 2024-09-19 23:33:00">2024-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/2024-03-03-abstract-and-interface/" title="职业生涯知识回顾-关于抽象类和接口的思考"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="职业生涯知识回顾-关于抽象类和接口的思考"/></a><div class="content"><a class="title" href="/2024/03/02/2024-03-03-abstract-and-interface/" title="职业生涯知识回顾-关于抽象类和接口的思考">职业生涯知识回顾-关于抽象类和接口的思考</a><time datetime="2024-03-02T17:54:00.000Z" title="发表于 2024-03-03 01:54:00">2024-03-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/02/2024-02-29-review-http/" title="职业生涯知识回顾-基础篇之网络传输协议"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://m-finder.github.io/images/top.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="职业生涯知识回顾-基础篇之网络传输协议"/></a><div class="content"><a class="title" href="/2024/03/02/2024-02-29-review-http/" title="职业生涯知识回顾-基础篇之网络传输协议">职业生涯知识回顾-基础篇之网络传输协议</a><time datetime="2024-03-02T14:00:00.000Z" title="发表于 2024-03-02 22:00:00">2024-03-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2024 By m-finder</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">备案已注销 <span style="color:pink">❤</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>(() => {
+  const panguFn = () => {
+    if (typeof pangu === 'object') pangu.autoSpacingPage()
+    else {
+      btf.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+        .then(() => {
+          pangu.autoSpacingPage()
+        })
+    }
+  }
+
+  const panguInit = () => {
+    if (false){
+      GLOBAL_CONFIG_SITE.isPost && panguFn()
+    } else {
+      panguFn()
+    }
+  }
+
+  btf.addGlobalFn('pjaxComplete', panguInit, 'pangu')
+  document.addEventListener('DOMContentLoaded', panguInit)
+})()</script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'oOiybpJc2or7SPhTu2v9YUvq-gzGzoHsz',
+      appKey: 'h0W2X6C4C7qOovTn9VM06Ql2',
+      avatar: 'monsterid',
+      serverURLs: 'https://ooiybpjc.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = false;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
