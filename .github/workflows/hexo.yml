@@ -32,7 +32,8 @@ jobs:
       - name: Install Dependencies
         run: | 
           npm install
-          npm install -g hexo-cli
+          npm install hexo-cli
+          npm update hexo --save
           npm install hexo-deployer-git --save
           npm install hexo-asset-image --save
           npm install hexo-wordcount --save
