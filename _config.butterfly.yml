@@ -214,15 +214,12 @@ post_copyright:
 
 # Sponsor/reward
 reward:
- enable: true
+ enable: false
  text:
  QR_code:
   # - img: /img/wechat.jpg
   #   link:
   #   text: wechat
-  - img: /img/alipay.jpg
-    link:
-    text: 不用给钱，领个红包吧
 
 # Post edit
 # Easily browse and edit blog source code online.
@@ -265,7 +262,7 @@ footer:
  owner:
   enable: true
   since: 2016
- custom_text: 备案已注销 <span style="color:pink">❤</span>
+ custom_text: 感谢 <a href="https://alon.wang" target="_blank">along</a> 借一个二级域名给我开蹭 <span style="color:pink">❤</span>
  # Copyright of theme and framework
  copyright: true
 
